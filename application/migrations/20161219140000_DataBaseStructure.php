@@ -103,6 +103,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  `applicantVehicle` TINYINT(1) NOT NULL,
 		  `applicantWorkStatus` TINYINT(1) NOT NULL,
 		  `applicantStatus` TINYINT(1) NOT NULL,
+		  `applicantLastConnection` DATE NOT NULL,
 		  UNIQUE INDEX `DNI_UNIQUE` (`applicantId` ASC),
 		  PRIMARY KEY (`user_idUser`),
 		  INDEX `fk_applicant_user1_idx` (`user_idUser` ASC),
@@ -186,8 +187,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`notification` (
 		  `idNotification` INT NOT NULL AUTO_INCREMENT,
-		  `notificationName` VARCHAR(45) NOT NULL,
-		  `notificationDescription` VARCHAR(45) NOT NULL,
+		  `notificationName` VARCHAR(45) NOT NULL,		
 		  PRIMARY KEY (`idNotification`))
 		ENGINE = InnoDB
 		");
@@ -294,6 +294,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  `user_idUser` INT NOT NULL,
 		  `notification_idNotification` INT NOT NULL,
 		  `offer_idOffer` INT NULL,
+		  `notificationDescription` VARCHAR(45) NOT NULL,
 		  PRIMARY KEY (`user_idUser`, `notification_idNotification`),
 		  INDEX `fk_user_has_notification_notification1_idx` (`notification_idNotification` ASC),
 		  INDEX `fk_user_has_notification_user1_idx` (`user_idUser` ASC),
@@ -575,10 +576,10 @@ class Migration_DataBaseStructure extends CI_Migration {
 	  		$this->dbforge->drop_table('applicant');
 	  		$this->dbforge->drop_table('applicant_has_knowledge');
 	  		$this->dbforge->drop_table('applicant_has_language');
+	  		$this->dbforge->drop_table('applicant_has_gradeTitle');
 	  		$this->dbforge->drop_table('contract');
 	  		$this->dbforge->drop_table('day');
 	  		$this->dbforge->drop_table('department');
-	  		$this->dbforge->drop_table('education');
 	  		$this->dbforge->drop_table('enterprise');
 	  		$this->dbforge->drop_table('experience');
 	  		$this->dbforge->drop_table('function');
