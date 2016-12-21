@@ -1,5 +1,5 @@
 <?php
-class Login_controller extends CI_Controller {
+class Login extends CI_Controller {
 
         public function __construct()
         {
@@ -22,7 +22,7 @@ class Login_controller extends CI_Controller {
 	    	if ($this->form_validation->run() === FALSE)
 	    	{				
         		$this->load->view('templates/header', $data);
-        		$this->load->view('login');
+        		$this->load->view('login_view');
         		$this->load->view('templates/footer');
 			}
 			else {
