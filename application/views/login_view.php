@@ -1,4 +1,3 @@
-<h2><?php echo $title; ?></h2>
 
 <ul>
 	<?php
@@ -7,7 +6,6 @@
 	}
 	echo validation_errors("<li>","</li>"); ?>
 </ul>	
-	
 
 <?php echo form_open('login'); ?>
 
