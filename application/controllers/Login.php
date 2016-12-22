@@ -19,16 +19,16 @@ class Login extends CI_Controller {
 			$this->form_validation->set_message	('min_length[8]', '8 caracteres minimo.');
 			$this->form_validation->set_message	('max_length[45]', 'El campo %s debe tener menos de 45 caracteres');
 	    	if ($this->form_validation->run() === FALSE){
-	    		$datos["mensaje"]= "validacion incorrecta";		
+	    		$data["error"]= "validacion incorrecta";		
         		
 			}
 			else {
 			
-		     echo "Datos cargador correctamente";
+		     $data["error"]="Datos cargados correctamente";
 			}	
 			
 			
-        		$this->load->view('login_view');
+        		$this->load->view('login/login_view', $data);
         		    	
 }
 			

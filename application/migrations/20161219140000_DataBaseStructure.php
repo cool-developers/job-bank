@@ -133,7 +133,6 @@ class Migration_DataBaseStructure extends CI_Migration {
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`enterprise` (
 		  `user_idUser` INT NOT NULL,
 		  `enterpriseName` VARCHAR(45) NOT NULL,
-		  `VATIN` VARCHAR(45) NOT NULL,
 		  `town_idTown` INT NOT NULL,
 		  UNIQUE INDEX `Cif_UNIQUE` (`VATIN` ASC),
 		  INDEX `fk_enterprise_user1_idx` (`user_idUser` ASC),

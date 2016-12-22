@@ -1,4 +1,3 @@
-
 <ul>
 	<?php
 	if (isset($error)){
