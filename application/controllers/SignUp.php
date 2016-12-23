@@ -17,15 +17,19 @@ class SignUp extends CI_Controller {
 	   $this->load->view('templates/header', $data);
        
        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');   
-       $this->form_validation->set_rules('password', 'password', 'required');   
+       $this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[45]');   
       
-       $this->form_validation->set_message('required', 'el campo %s es requerido');
+       $this->form_validation->set_message('required', 'el campo %s es obligatorio');
        $this->form_validation->set_message('valid_email', 'El email no es válido');
+	   $this->form_validation->set_message('min_length', 'El Campo %s debe tener un minimo de %d Caracteres');
+	   $this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
           
        $this -> form_validation -> set_error_delimiters('<ul><li>', '</li></ul>');
       
-       $this->form_validation->set_message('required', 'el campo %s es requerido');
+       $this->form_validation->set_message('required', 'el campo %s es obligatorio');
        $this->form_validation->set_message('valid_email', 'El email no es válido');
+	   $this->form_validation->set_message('min_length', 'El Campo %s debe tener un minimo de %d Caracteres');
+	   $this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
           
        $this -> form_validation -> set_error_delimiters('<ul><li>', '</li></ul>');
        
