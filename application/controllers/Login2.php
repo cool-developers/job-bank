@@ -77,7 +77,7 @@ class Login2 extends CI_Controller {
             }else{
                 $this->load->model("Login_model");
                 $email = $this->input->post("email");
-                $password = $this->input->post("password");               
+                $password = password_hash($this->input->post("password"), PASSWORD_DEFAULT);    				         
                 $loginUser = $this->Login_model->signupUser($email,$password);
                 if($loginUser === true){
                     echo json_encode(array("respuesta" => "success"));
@@ -88,8 +88,44 @@ class Login2 extends CI_Controller {
         }else{
             echo json_encode(array("respuesta" => "error_form"));
         }
+  	   }
+
+	   
+    //logueamos usuarios con codeigniter y angularjs
+    public function loginUser(){
+        if($this->input->post("email") && $this->input->post("password"))
+        {
+            $this->form_validation->set_rules('email', 'email', 'required');
+		    $this->form_validation->set_rules('password', 'password', 'required');
+            if($this->form_validation->run() == false){
+                echo json_encode(array("respuesta" => "incomplete_form"));
+            }else{
+                $this->load->model("login_model");
+                $email = $this->input->post("email");
+                $password = $this->input->post("password");          
+				$resultado = $this->Login_model->get_email($this->input->post('email'));
+				
+				if(password_verify($this->input->post('password'), $resultado['password'])){				
+					
+					$usuario_data = array( 
+						'email' => $this->input->post('user'),
+						'logueado' => TRUE
+					); 
+					$this->session->set_userdata($usuario_data);
+					redirect(""); 
+				
+                }else{
+                    echo json_encode(array("respuesta" => "failed"));
+                }
+            }
+        }else{
+            echo json_encode(array("respuesta" => "incomplete_form"));
+        }
     }
-		
-	
+ 
+    public function logoutUser(){
+        $this->session->sess_destroy();
+    }
+
 }
 ?>
