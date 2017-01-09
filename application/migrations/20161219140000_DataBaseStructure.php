@@ -134,7 +134,6 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  `user_idUser` INT NOT NULL,
 		  `enterpriseName` VARCHAR(45) NOT NULL,
 		  `town_idTown` INT NOT NULL,
-		  UNIQUE INDEX `Cif_UNIQUE` (`VATIN` ASC),
 		  INDEX `fk_enterprise_user1_idx` (`user_idUser` ASC),
 		  INDEX `fk_enterprise_town1_idx` (`town_idTown` ASC),
 		  PRIMARY KEY (`user_idUser`),

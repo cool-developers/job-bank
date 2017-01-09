@@ -1,3 +1,0 @@
-<h1 class="subheader">{{ saludo }}</h1>
-
-<button class="button success" ng-click="toLogin()">Al login</button>

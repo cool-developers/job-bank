@@ -3,8 +3,6 @@
 <html lang="es" ng-app="app">
 	<head>
 		<meta charset="UTF-8" />
-		<link  rel="stylesheet" type="text/css" href="/job-bank/css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="/job-bank/css/foundation.min.css" />
 		<script type="text/javascript" src="/job-bank/js/prueba.js"></script>
 		<script type="text/javascript" src="/job-bank/js/angular.min.js"></script>
 		<script type="text/javascript" src="/job-bank/js/angular-route.min.js"></script>

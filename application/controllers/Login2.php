@@ -1,11 +1,12 @@
 <?php
-class Login extends CI_Controller {
+class Login2 extends CI_Controller {
 
         public function __construct()
         {
                 parent::__construct();
                 $this->load->model('Login_model');
                 $this->load->helper('url_helper');
+				$this->load->library('form_validation');
         }
 
         public function index()
@@ -23,7 +24,7 @@ class Login extends CI_Controller {
 			 
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header', $data);
-		        $this->load->view('login/Login_view', $data);
+		        $this->load->view('login/index_view' , $data);		
 		        $this->load->view('templates/footer');
 			}else{
 			//echo($this->input->post('email'));
@@ -56,7 +57,7 @@ class Login extends CI_Controller {
 				echo $resultado;
 				$data['error'] ='email o $resultado password incorrecta';
 				$this->load->view('templates/header', $data);
-	       		$this->load->view('login/Login_view', $data);
+	       		$this->load->view('login/index_view' , $data);		
 	       		$this->load->view('templates/footer');
 			}
 			//echo('Loading...');
@@ -65,6 +66,29 @@ class Login extends CI_Controller {
 				
 			       
 		}
+		
+		 public function signupUser(){		 
+         if($this->input->post("email") && $this->input->post("password"))
+         {         	
+            $this->form_validation->set_rules('email', 'email', 'required');
+		    $this->form_validation->set_rules('password', 'password', 'required');
+            if($this->form_validation->run() == false){           
+               echo json_encode(array("respuesta" => "error_form"));
+            }else{
+                $this->load->model("Login_model");
+                $email = $this->input->post("email");
+                $password = $this->input->post("password");               
+                $loginUser = $this->Login_model->signupUser($email,$password);
+                if($loginUser === true){
+                    echo json_encode(array("respuesta" => "success"));
+                }else{
+                    echo json_encode(array("respuesta" => "exists"));
+                }
+            }
+        }else{
+            echo json_encode(array("respuesta" => "error_form"));
+        }
+    }
 		
 	
 }
