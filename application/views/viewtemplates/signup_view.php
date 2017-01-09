@@ -13,12 +13,21 @@
             </div>
              
              <label>Email</label>
-             <input type="email" required placeholder="Introduce un email correcto..." ng-model="user.email" />
+             <input type="email" required placeholder="Introduce un email correcto..." name="email" ng-model="user.email" />
+              <span ng-show="registerUserForm.email.$error.required">El email introducido no es valido.</span>
  
              <label>Password</label>
-             <input type="password" required placeholder="Introduce un password..." ng-model="user.password" />
+             <input type="password" required placeholder="Introduce un password..." name="password" ng-model="user.password" ng-minlength="8" ng-maxlength="45"/>
+             <span ng-show="registerUserForm.password.$error.required">La contraeña obligatoria.</span>
+             <span ng-show="registerUserForm.password.$error.minlength">La contraseña debe tener un minimo de 8 caracteres.</span>
+             <span ng-show="registerUserForm.password.$error.maxlength">La contraseña debe tener un minimo de 8 caracteres.</span>
+             
+             <label>Password2</label>
+             <input type="password" required placeholder="Introduce un password..." name="password2" ng-model="password2" ng-minlength="8" ng-maxlength="45"/>
+             
+             
  
-             <button ng-disabled="!registerUserForm.$valid" ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button>
+             <button ng-disabled="!registerUserForm.$valid" ng-disabled= ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button>
              <button type="reset" class="button radius alert large-5 columns">Reset</button>
  		 </div>
     </fieldset>

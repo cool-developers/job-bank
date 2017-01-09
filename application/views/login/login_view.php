@@ -13,7 +13,7 @@
     <input type="input" name="user" /><br />
 
     <label for="password">Contraseña</label>
-    <input type="input" name="password" /><br />
+    <input type="input" name="password" required=""/><br />
 
     <button name="submit" value="Logearse">Logearse</button>
 
