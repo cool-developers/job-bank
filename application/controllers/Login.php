@@ -31,7 +31,11 @@ class Login extends CI_Controller {
 			
         		$this->load->view('login/login_view', $data);
         		    	
-}
+		}
+
+		public function prueba(){
+			$this->load->view('login/index_view');		
+		}
 			
 }
 ?>

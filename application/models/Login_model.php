@@ -37,6 +37,23 @@ class Login_model extends CI_Model {
 			return $this->db->insert('enterprise', $data);						
 		}
 		
+		public function signupUser($email,$password){
+						
+		    $data = array(		        
+		        "email"         =>      $email,
+		        "password"      =>      $password,
+		        "rol_idRol"        =>      4
+		    );
+		
+		    $this->db->where("email",$email);
+		    $check_exists = $this->db->get("user");
+		    if($check_exists->num_rows() == 0){
+		        $this->db->insert("user", $data);
+		        return true;
+		    }else{
+		        return false;
+		    }
+		}
 		
 		
 }
