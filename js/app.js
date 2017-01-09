@@ -3,7 +3,7 @@ var app = angular.module("app", ["ngRoute"]);
 app.config(function($routeProvider){
 		
 	$routeProvider.when("/", {
-		templateUrl : "/job-bank/index.php/templates/get/login3_view",
+		templateUrl : "/job-bank/index.php/templates/get/login_view",
 		controller : "loginController"
 	})
 	.when("/signup", {

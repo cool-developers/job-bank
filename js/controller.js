@@ -1,4 +1,4 @@
-app.controller("loginController", function loginController($scope, $location){
+/**app.controller("loginController", function loginController($scope, $location){
 	$scope.saludo = "Hola desde el controlador login";
 	$scope.toSignup = function(){
 		$location.url("/signup");
@@ -8,6 +8,29 @@ app.controller("loginController", function loginController($scope, $location){
 		$location.url("/recover");
 	};
 });
+
+*/
+
+
+
+app.controller("loginController", function($scope, $location, authUsers){
+	$scope.saludo = "Hola desde el controlador login";
+    $scope.user = { email : "", password : "" };
+    authUsers.flash = "";
+    //función que llamamos al hacer sumbit al formulario
+    $scope.login = function(){
+        authUsers.login($scope.user);
+    };
+    
+	$scope.toSignup = function(){
+		$location.url("/signup");
+	};
+
+	$scope.toRecover = function(){
+		$location.url("/recover");
+	};
+});
+
 
 app.controller("signupController", function signupController($scope, $location, signupUsers){
 	$scope.saludo = "Hola estas en el registro";
@@ -36,6 +59,9 @@ app.factory("mensajesFlash", function($rootScope){
         },
         show_error : function(message){
             $rootScope.flash_error = message;
+        },
+        show : function(message){
+            $rootScope.flash = message;
         },
         clear : function(){
             $rootScope.flash_success = "";
@@ -71,3 +97,34 @@ app.factory("signupUsers", function($http, mensajesFlash){
         }
     };
 });
+
+//factoria para loguear y desloguear usuarios en angularjs
+app.factory("authUsers", function($http, $location,  mensajesFlash){
+    return {
+        //retornamos la función login de la factoria authUsers para loguearnos correctamente
+        login : function(user){
+            return $http({
+                url: 'http://127.0.0.1/job-bank/login2/loginuser',
+                method: "POST",
+                data : "email="+user.email+"&password="+user.password,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(data){
+                if(data.respuesta == "success"){
+                	
+                    mensajesFlash.clear();
+                  
+                    $location.path("/home");
+                }else if(data.respuesta == "incomplete_form"){
+                    mensajesFlash.show("Debes introducir bien los datos del formulario");
+                }else if(data.respuesta == "failed"){
+                    mensajesFlash.show("El email o el password introducidos son incorrectos, inténtalo de nuevo.");
+                }
+            }).error(function(){
+                $location.path("/");
+            });
+        }
+       
+    };
+});
+
+
