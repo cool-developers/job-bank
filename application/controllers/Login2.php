@@ -5,10 +5,11 @@ class Login2 extends CI_Controller {
         {
                 parent::__construct();
                 $this->load->model('Login_model');
-                $this->load->helper('url_helper');
-				$this->load->library('form_validation');
+                $this->load->helper('url_helper','form');
+	    		$this->load->library('form_validation');
         }
-
+		
+		
         public function index()
         {        
         	
@@ -19,8 +20,13 @@ class Login2 extends CI_Controller {
         	$data['title'] = 'Login de empresas';	
 			
 		
-		 	$this->form_validation->set_rules('email', 'email', 'required');
-		    $this->form_validation->set_rules('password', 'password', 'required');
+		 	$this->form_validation->set_rules('user', 'Usuario','required|valid_email');
+	    	$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[45]');
+			$this->form_validation->set_message	('valid_email', 'El Email no es valido.');			
+        	$this->form_validation->set_message	('required', 'El campo  %s es obligatorio.');
+			$this->form_validation->set_message('min_length', 'El Campo %s debe tener un minimo de %d Caracteres');
+			$this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
+
 			 
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header', $data);
@@ -70,8 +76,14 @@ class Login2 extends CI_Controller {
 		 public function signupUser(){		 
          if($this->input->post("email") && $this->input->post("password"))
          {         	
-            $this->form_validation->set_rules('email', 'email', 'required');
-		    $this->form_validation->set_rules('password', 'password', 'required');
+          
+		 	$this->form_validation->set_rules('user', 'Usuario','required|valid_email');
+	    	$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[45]');
+			$this->form_validation->set_message	('valid_email', 'El Email no es valido.');			
+        	$this->form_validation->set_message	('required', 'El campo  %s es obligatorio.');
+			$this->form_validation->set_message('min_length', 'El Campo %s debe tener un minimo de %d Caracteres');
+			$this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
+			
             if($this->form_validation->run() == false){           
                echo json_encode(array("respuesta" => "error_form"));
             }else{
@@ -95,8 +107,14 @@ class Login2 extends CI_Controller {
     public function loginUser(){
         if($this->input->post("email") && $this->input->post("password"))
         {
-            $this->form_validation->set_rules('email', 'email', 'required');
-		    $this->form_validation->set_rules('password', 'password', 'required');
+           
+		 	$this->form_validation->set_rules('user', 'Usuario','required|valid_email');
+	    	$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[45]');
+			$this->form_validation->set_message	('valid_email', 'El Email no es valido.');			
+        	$this->form_validation->set_message	('required', 'El campo  %s es obligatorio.');
+			$this->form_validation->set_message('min_length', 'El Campo %s debe tener un minimo de %d Caracteres');
+			$this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
+
             if($this->form_validation->run() == false){
                 echo json_encode(array("respuesta" => "incomplete_form"));
             }else{
