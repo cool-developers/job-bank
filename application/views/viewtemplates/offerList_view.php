@@ -3,9 +3,10 @@
 
 <form>
 	<div>
-             <label>Email</label>
-             <input type="text" required placeholder="Introduce un email correcto..." ng-model="user.email" />
+             <label>Titulo del puesto</label>
+             <input type="text" required ng-model="offer." />
  
+ 			
              <label>Password</label>
              <input type="password" required placeholder="Introduce un password..." ng-model="user.password" />
  

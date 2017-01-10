@@ -7,11 +7,13 @@
             </div>
             <div class="large-12 columns">
                 <label>Email</label>
-                <input type="email" required placeholder="Introduce tu email" ng-model="user.email">
+                <input type="email" required placeholder="Introduce tu email" ng-model="user.email" name"email">
+                <span ng-show="loginUserForm.email.$error.required">Campo obligatorio.</span>
             </div>
             <div class="large-12 columns">
                 <label>Password</label>
-                <input type="password" required placeholder="Introduce tu password" ng-model="user.password">
+                <input type="password" required placeholder="Introduce tu password" ng-model="user.password"name"password">
+                <span ng-show="loginUserForm.password.$error.required">Campo obligatorio.</span>
             </div>
  
             <button type="submit" ng-disabled="!loginUserForm.$valid" ng-click="login(user)" class="button expand round">Login</button>
