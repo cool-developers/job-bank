@@ -8,7 +8,7 @@ class Location_model extends CI_Model {
 		}	
 			
 		public function get_towns($idProvince){			  
-	    	$query = $this->db->get_where('town', array('province_idProvince' => $idProvice));		
+	    	$query = $this->db->get_where('town', array('province_idProvince' => $idProvince));		
 			return $query->result_array();			
 		}	
 		

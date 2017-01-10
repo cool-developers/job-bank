@@ -40,11 +40,19 @@ app.controller("signupController", function signupController($http, $scope, $loc
 	$scope.toLogin = function(){
 		$location.url("/");
 	};
+	
 	$http.get('http://127.0.0.1/job-bank/Location/getProvinces').success(function(Provinces){
 		console.log(Provinces);
-		$scope.provinces = Provinces;
+		$scope.provinces = Provinces;			  
 	});	
-	console.log($scope.provinces);
+    
+ 
+	$http.get('http://127.0.0.1/job-bank/Location/getTowns').success(function(Towns){
+	console.log(Towns);
+	$scope.towns = Towns;			  
+	});	
+		
+	
     
     
 });
