@@ -20,7 +20,7 @@ class Login2 extends CI_Controller {
         	$data['title'] = 'Login de empresas';	
 			
 		
-		 	$this->form_validation->set_rules('user', 'Usuario','required|valid_email');
+		 	$this->form_validation->set_rules('email', 'Usuario','required|valid_email');
 	    	$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[45]');
 			$this->form_validation->set_message	('valid_email', 'El Email no es valido.');			
         	$this->form_validation->set_message	('required', 'El campo  %s es obligatorio.');
@@ -77,7 +77,7 @@ class Login2 extends CI_Controller {
          if($this->input->post("email") && $this->input->post("password"))
          {         	
           
-		 	$this->form_validation->set_rules('user', 'Usuario','required|valid_email');
+		 	$this->form_validation->set_rules('email', 'Usuario','required|valid_email');
 	    	$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[45]');
 			$this->form_validation->set_message	('valid_email', 'El Email no es valido.');			
         	$this->form_validation->set_message	('required', 'El campo  %s es obligatorio.');
@@ -108,7 +108,7 @@ class Login2 extends CI_Controller {
         if($this->input->post("email") && $this->input->post("password"))
         {
            
-		 	$this->form_validation->set_rules('user', 'Usuario','required|valid_email');
+		 	$this->form_validation->set_rules('email', 'Usuario','required|valid_email');
 	    	$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[45]');
 			$this->form_validation->set_message	('valid_email', 'El Email no es valido.');			
         	$this->form_validation->set_message	('required', 'El campo  %s es obligatorio.');
@@ -130,7 +130,7 @@ class Login2 extends CI_Controller {
 						'logueado' => TRUE
 					); 
 					$this->session->set_userdata($usuario_data);
-					redirect(""); 
+					echo json_encode(array("respuesta" => "success"));
 				
                 }else{
                     echo json_encode(array("respuesta" => "failed"));
@@ -140,10 +140,12 @@ class Login2 extends CI_Controller {
             echo json_encode(array("respuesta" => "incomplete_form"));
         }
     }
- 
-    public function logoutUser(){
-        $this->session->sess_destroy();
+
+    public function getHeader(){
+        $this->load->view('templates/header2.php');
     }
+
+
 
 }
 ?>

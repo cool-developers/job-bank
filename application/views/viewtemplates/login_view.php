@@ -1,10 +1,7 @@
 <h1 class="subheader">{{ saludo }}</h1>
 
-<form name="loginUserForm">
-    <fieldset>
-        <legend>Login</legend>
- 
-        <div class="row">
+<form name="loginUserForm"> 
+        <div>
             <div ng-show="flash">
                 <div data-alert class="alert-box alert round">{{ flash }}</div>
             </div>
@@ -20,9 +17,7 @@
             </div>
  
             <button type="submit" ng-disabled="!loginUserForm.$valid" ng-click="login(user)" class="button expand round">Login</button>
-        </div>
- 
-    </fieldset>
+        </div> 
 </form>
 
 <button class="button success" ng-click="toSignup()">Al signup</button>
