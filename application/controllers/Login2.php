@@ -112,7 +112,7 @@ class Login2 extends CI_Controller {
 						'logueado' => TRUE
 					); 
 					$this->session->set_userdata($usuario_data);
-					redirect(""); 
+					echo json_encode(array("respuesta" => "success"));
 				
                 }else{
                     echo json_encode(array("respuesta" => "failed"));
@@ -122,10 +122,12 @@ class Login2 extends CI_Controller {
             echo json_encode(array("respuesta" => "incomplete_form"));
         }
     }
- 
-    public function logoutUser(){
-        $this->session->sess_destroy();
+
+    public function getHeader(){
+        $this->load->view('templates/header2.php');
     }
+
+
 
 }
 ?>

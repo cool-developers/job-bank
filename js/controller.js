@@ -32,7 +32,7 @@ app.controller("loginController", function($scope, $location, authUsers){
 });
 
 
-app.controller("signupController", function signupController($scope, $location, signupUsers){
+app.controller("signupController", function signupController($http, $scope, $location, signupUsers){
 	$scope.saludo = "Hola estas en el registro";
 	$scope.signupUser = function(){
         signupUsers.newUser($scope.user);
@@ -40,6 +40,12 @@ app.controller("signupController", function signupController($scope, $location, 
 	$scope.toLogin = function(){
 		$location.url("/");
 	};
+	$http.get('http://127.0.0.1/job-bank/Location/getProvinces').success(function(Provinces){
+		$scope.provinces = Provinces;
+	});	
+	console.log($scope.provinces);
+    
+    
 });
 
 
@@ -98,6 +104,16 @@ app.factory("signupUsers", function($http, mensajesFlash){
     };
 });
 
+
+app.factory("getProvinces",function($http){
+	return {
+		Provinces : function(){
+			return $http.get('http://127.0.0.1/job-bank/Location/getProvinces').success(function(Provinces){});					
+		}
+	};
+});
+
+
 //factoria para loguear y desloguear usuarios en angularjs
 app.factory("authUsers", function($http, $location,  mensajesFlash){
     return {
@@ -109,11 +125,9 @@ app.factory("authUsers", function($http, $location,  mensajesFlash){
                 data : "email="+user.email+"&password="+user.password,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function(data){
-                if(data.respuesta == "success"){
-                	
-                    mensajesFlash.clear();
-                  
-                    $location.path("/home");
+                if(data.respuesta == "success"){             	
+                    mensajesFlash.clear();                  
+                    $location.path("/offerList");
                 }else if(data.respuesta == "incomplete_form"){
                     mensajesFlash.show("Debes introducir bien los datos del formulario");
                 }else if(data.respuesta == "failed"){
@@ -127,4 +141,10 @@ app.factory("authUsers", function($http, $location,  mensajesFlash){
     };
 });
 
+app.controller("offerListController", function($http, $scope, getProvinces){
+    $scope.saludo = "hola";  
+    $scope.provinces = $http.get('http://127.0.0.1/job-bank/Location/getProvinces').success(function(Provinces){
+    	console.log(Provinces);
+    });	
+});
 
