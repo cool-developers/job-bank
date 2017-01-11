@@ -32,7 +32,7 @@ app.controller("loginController", function($scope, $location, authUsers){
 });
 
 
-app.controller("signupController", function signupController($http, $scope, $location, signupUsers){
+app.controller("signupController", function signupController($scope, $location, signupUsers, Provinces, Towns){
 	$scope.saludo = "Hola estas en el registro";
 	$scope.signupUser = function(){
         signupUsers.newUser($scope.user);
@@ -40,15 +40,32 @@ app.controller("signupController", function signupController($http, $scope, $loc
 	$scope.toLogin = function(){
 		$location.url("/");
 	};
-	var prueba = $http.get('http://127.0.0.1/job-bank/Location/getProvinces').success(function(Provinces){
-		$scope.provinces = Provinces;
-		console.log(Provinces);
-	});	
-	console.log(prueba);
-    
-    
-});
+	
+	Provinces.getProvinces().then(function(Provinces){
+		$scope.provinces = Provinces.data;	
+	});
+	
+	$scope.provinceSelected = function(){
+		Towns.geTowns($scope.selectedProvince).then(function (Towns){
+			$scope.towns = Towns.data;
+		});
+	};
+	
 
+	/*
+	$http.get('http://127.0.0.1/job-bank/Location/getProvinces').success(function(Provinces){
+		console.log(Provinces);
+		$scope.provinces = Provinces;			  
+	});	
+   
+	$http.get('http://127.0.0.1/job-bank/Location/getTowns').success(function(Towns){
+	console.log(Towns);
+	$scope.towns = Towns;			  
+	});	
+	 */
+ 	
+
+});
 
 
 app.controller("recoverController", function recoverController($scope, $location){
@@ -106,12 +123,25 @@ app.factory("signupUsers", function($http, mensajesFlash){
 });
 
 
-app.factory("getProvinces",function($http){
+app.factory("Provinces",function($http){
 	return {
-		Provinces : function(){
-			return $http.get('http://127.0.0.1/job-bank/Location/getProvinces').success(function(Provinces){});					
-		}
+		getProvinces : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Location/getProvinces');			
+			}
 	};
+});
+
+app.factory("Towns",function($http){
+	return {
+		geTowns : function(idProvince){			
+			return $http({
+                url: 'http://127.0.0.1/job-bank/Location/getTowns',
+                method: "POST",
+                data : "idProvince="+idProvince,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+           });
+        }       
+    };
 });
 
 
@@ -145,7 +175,7 @@ app.factory("authUsers", function($http, $location,  mensajesFlash){
 app.controller("offerListController", function($http, $scope, getProvinces){
     $scope.saludo = "hola";  
     $scope.provinces = $http.get('http://127.0.0.1/job-bank/Location/getProvinces').success(function(Provinces){
-    	console.log(Provinces);
+    	return Provinces;
     });	
 });
 
