@@ -9,9 +9,7 @@
                 <div data-alert class="alert-box success round">{{ flash_success }}</div>
             </div>
    	         <label>Población</label>
- 			 <select >
- 				<option ng-repeat="province in provinces" value="{{province.idProvince}}"> {{province.provinceName}}</option>
- 			 </select>	
+ 			 
  			 <br> 		    
 			 <label>Email</label>
              <input type="email" required placeholder="Introduce un email correcto..." name="email" ng-model="user.email" />
