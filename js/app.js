@@ -20,7 +20,7 @@ app.config(function($routeProvider){
 	})
 	.when("/teacherList", {
 		templateUrl : "/job-bank/templates/get/teacherList_view",
-		controller : "offerListController"
+		controller : "teacherListController"
 	})
 	.when("/applicantList", {
 		templateUrl : "/job-bank/templates/get/applicantList_view",
