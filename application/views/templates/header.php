@@ -14,7 +14,7 @@
 			var root = '<?php echo base_url(); ?>';
 		</script>
 		
-		
+		<!--
 		 <img src="http://localhost/job-bank/img/icono.png"; alt="Smiley face" height="42" width="42">
 		 
 		 <p>ES</p>
@@ -30,7 +30,7 @@
 		 <br>
 		 
 		 <button class="button success" ng-click="">MENU</button>
-		
+		-->
 		
 		
 		

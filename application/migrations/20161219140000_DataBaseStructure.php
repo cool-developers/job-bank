@@ -73,7 +73,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`town` (
 		  `idTown` INT NOT NULL AUTO_INCREMENT,
-		  `townname` VARCHAR(45) NOT NULL,
+		  `townName` VARCHAR(45) NOT NULL,
 		  `province_idProvince` INT NOT NULL,
 		  PRIMARY KEY (`idTown`),
 		  INDEX `fk_town_province1_idx` (`province_idProvince` ASC),
@@ -133,11 +133,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`enterprise` (
 		  `user_idUser` INT NOT NULL,
 		  `enterpriseName` VARCHAR(45) NOT NULL,
-<<<<<<< HEAD
-		  `town_idTown` INT NOT NULL,		
-=======
 		  `town_idTown` INT NOT NULL,
->>>>>>> e358aae54c160d6c23326aead4b0cd6f4d1e3a08
 		  INDEX `fk_enterprise_user1_idx` (`user_idUser` ASC),
 		  INDEX `fk_enterprise_town1_idx` (`town_idTown` ASC),
 		  PRIMARY KEY (`user_idUser`),
