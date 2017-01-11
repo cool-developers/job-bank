@@ -49,20 +49,7 @@ app.controller("signupController", function signupController($scope, $location, 
 		Towns.geTowns($scope.selectedProvince).then(function (Towns){
 			$scope.towns = Towns.data;
 	});
-		
-	$scope.user.password1 = '';
-	$scope.password2 = '';
-	$scope.habilitado = true;
-	$scope.passwd = function (){
-	if($scope.user.password1 == $scope.password2){
-		
-		$scope.habilitado = false;
-	}else{
-	
-		$scope.habilitado = true;
-	};
 
-	};
 	
 
 	/*
