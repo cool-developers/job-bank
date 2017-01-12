@@ -8,6 +8,7 @@
             <div ng-show="flash_success">
                 <div data-alert class="alert-box success round">{{ flash_success }}</div>
             </div>
+   	   
    	         <label>Provincia</label>
    	         <br>   	         
  			 <select ng-change="provinceSelected()" ng-model="selectedProvince" >
@@ -28,14 +29,14 @@
 			 <br>
              <label>Password</label>
              <br>
-             <input type="password" required placeholder="Introduce un password..." name="password" ng-model="user.password" ng-minlength="8" ng-maxlength="45"/>
+             <input type="password" required placeholder="Introduce un password..." name="password" ng-change="passwd()" ng-model="user.password" ng-minlength="8" ng-maxlength="45"/>
              <span ng-show="registerUserForm.password.$error.required">La contraeña obligatoria.</span>
              <span ng-show="registerUserForm.password.$error.minlength">La contraseña debe tener un minimo de 8 caracteres.</span>
 
              <span ng-show="registerUserForm.password.$error.maxlength">La contraseña debe tener un minimo de 8 caracteres.</span>
              <br>
              <label>Password2</label>
-             <input type="password" required placeholder="Introduce un password..." name="password2" ng-model="password2" ng-minlength="8" ng-maxlength="45"/>
+             <input type="password" required placeholder="Introduce un password..." name="password2" ng-change="passwd()" ng-model="password2" ng-minlength="8" ng-maxlength="45"/>
              
          
              
@@ -43,8 +44,9 @@
              <!-- <button ng-disabled="!registerUserForm.$valid" ng-disabled="user.password!=password2" ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button> -->
     
  
-             <button ng-disabled="!registerUserForm.$valid" ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button>
+             <button ng-disabled="!habilitado" ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button>
              <button type="reset" class="button radius alert large-5 columns">Reset</button>
+             
  		 </div>   
 </form>
 <button class="button success" ng-click="toLogin()">Al login</button>
