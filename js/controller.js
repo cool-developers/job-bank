@@ -1,18 +1,3 @@
-/**app.controller("loginController", function loginController($scope, $location){
-	$scope.saludo = "Hola desde el controlador login";
-	$scope.toSignup = function(){
-		$location.url("/signup");
-	};
-
-	$scope.toRecover = function(){
-		$location.url("/recover");
-	};
-});
-
-*/
-
-
-
 app.controller("loginController", function($scope, $location, authUsers){
 	$scope.saludo = "Hola desde el controlador login";
     $scope.user = { email : "", password : "" };
@@ -48,23 +33,25 @@ app.controller("signupController", function signupController($scope, $location, 
 	$scope.provinceSelected = function(){
 		Towns.geTowns($scope.selectedProvince).then(function (Towns){
 			$scope.towns = Towns.data;
-	});
-
+		});
+	};	
+	
 	
 
-	/*
-	$http.get('http://127.0.0.1/job-bank/Location/getProvinces').success(function(Provinces){
-		console.log(Provinces);
-		$scope.provinces = Provinces;			  
-	});	
-   
-	$http.get('http://127.0.0.1/job-bank/Location/getTowns').success(function(Towns){
-	console.log(Towns);
-	$scope.towns = Towns;			  
-	});	
-	 */
- 	
-
+	$scope.habilitado = false;
+	$scope.passwd = function (){
+		
+	if($scope.user.password == $scope.password2 && !registerUserForm.$valid){
+	
+		$scope.habilitado = true;
+	}else{
+	
+		$scope.habilitado = false;
+	}
+	};
+	
+	
+	
 });
 
 
@@ -73,6 +60,53 @@ app.controller("recoverController", function recoverController($scope, $location
 	$scope.toLogin = function(){
 		$location.url("/");
 	};
+});
+
+
+app.controller("offerListController", function($http, $scope){
+	
+});
+
+app.controller("teacherListController", function($http, $scope, signupUsers, Departments){
+	$scope.signupUser = function(){
+		 var caracteres = "abcdefghijkmnpqrtuvwxyzABCDEFGHIJKLMNPQRTUVWXYZ2346789";
+ 		 $scope.user.password = "";
+ 		 for (i=0; i < 8; i++) $scope.user.password += caracteres.charAt(Math.floor(Math.random()*caracteres.length));
+		 
+	     signupUsers.newUser($scope.user);
+    };
+    Departments.getDeparments().then(function(Provinces){
+		$scope.provinces = Provinces.data;	
+	});
+});
+
+app.factory("Departments",function($http){
+	return {
+		getDepartments : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Education/getDepartments');			
+			}
+	};
+});
+
+app.factory("Provinces",function($http){
+	return {
+		getProvinces : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Location/getProvinces');			
+			}
+	};
+});
+
+app.factory("Towns",function($http){
+	return {
+		geTowns : function(idProvince){			
+			return $http({
+                url: 'http://127.0.0.1/job-bank/Location/getTowns',
+                method: "POST",
+                data : "idProvince="+idProvince,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+           });
+        }       
+    };
 });
 
 //esto simplemente es para lanzar un mensaje si el login falla
@@ -122,29 +156,6 @@ app.factory("signupUsers", function($http, mensajesFlash){
     };
 });
 
-
-app.factory("Provinces",function($http){
-	return {
-		getProvinces : function(){			
-			return  $http.get('http://127.0.0.1/job-bank/Location/getProvinces');			
-			}
-	};
-});
-
-app.factory("Towns",function($http){
-	return {
-		geTowns : function(idProvince){			
-			return $http({
-                url: 'http://127.0.0.1/job-bank/Location/getTowns',
-                method: "POST",
-                data : "idProvince="+idProvince,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-           });
-        }       
-    };
-});
-
-
 //factoria para loguear y desloguear usuarios en angularjs
 app.factory("authUsers", function($http, $location,  mensajesFlash){
     return {
@@ -172,7 +183,9 @@ app.factory("authUsers", function($http, $location,  mensajesFlash){
     };
 });
 
+
 app.controller("offerListController", function($http, $scope, getProvinces){
 
 });
+
 

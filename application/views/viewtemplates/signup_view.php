@@ -44,7 +44,7 @@
              <!-- <button ng-disabled="!registerUserForm.$valid" ng-disabled="user.password!=password2" ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button> -->
     
  
-             <button ng-disabled="!registerUserForm.$valid && habilitado" ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button>
+             <button ng-disabled="!habilitado" ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button>
              <button type="reset" class="button radius alert large-5 columns">Reset</button>
              
  		 </div>   
