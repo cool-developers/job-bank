@@ -4,9 +4,11 @@ app.controller("teacherListController", function($http, $scope, signupUsers, Dep
  		 $scope.user.password = "";
  		 for (i=0; i < 8; i++) $scope.user.password += caracteres.charAt(Math.floor(Math.random()*caracteres.length));
 		 
-	     signupUsers.newUser($scope.user);
+	
+         signupUsers.newUser(convertToData($scope.user), "http://127.0.0.1/job-bank/login2/signupuser");
+    	
     };
-    Departments.getDeparments().then(function(Provinces){
-		$scope.provinces = Provinces.data;	
+    Departments.getDepartments().then(function(Departments){
+		$scope.departments = Departments.data;	
 	});
 });

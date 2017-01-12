@@ -45,7 +45,15 @@ app.factory("mensajesFlash", function($rootScope){
         }
     };
 });
- 
+
+function convertToData(object){
+	data = "";
+	for(element in object ){		
+		data += element + "=" + object[element]+"&";			
+	}			
+	return data.substr(0, data.length - 1);
+};
+
 
 //factoria para registrar usuarios a la que le inyectamos la otra factoria
 //mensajesFlash para poder hacer uso de sus funciones

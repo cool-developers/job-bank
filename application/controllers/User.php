@@ -1,19 +1,23 @@
 <?php
-class Login2 extends CI_Controller {
-
+class User extends CI_Controller {
+		
+		private $email;
+		private $user;
+		
+		
         public function __construct()
         {
-                parent::__construct();
-                $this->load->model('Login_model');
-                $this->load->helper('url_helper','form');
-	    		$this->load->library('form_validation');
+            parent::__construct();
+            $this->load->model('Login_model');
+            $this->load->helper('url_helper','form');
+    		$this->load->library('form_validation');
         }
 		
 		
         public function index()
         {        
         	
-			
+	
 	    	$this->load->helper('form');
 	  		$this->load->library('form_validation');
 			
@@ -50,13 +54,12 @@ class Login2 extends CI_Controller {
 				redirect("dietas");
 				*/
 				//echo('coinciden');
-				$user = array( 
-				'email' => $resultado['email'],
-				'rol' => $resultado['rol'],
-				'logueado' => TRUE
+				$usuario_data = array( 
+					'email' => $this->input->post('user'),
+					'logueado' => TRUE
 				); 
-				$this->session->set_userdata($user);
-			
+				$this->session->set_userdata($usuario_data);
+				
 				
 				
 				 
@@ -126,12 +129,11 @@ class Login2 extends CI_Controller {
 				
 				if(password_verify($this->input->post('password'), $resultado['password'])){				
 					
-					$user = array( 
-						'email' => $resultado['email'],
-						'rol' => $resultado['rol'],
+					$usuario_data = array( 
+						'email' => $this->input->post('user'),
 						'logueado' => TRUE
 					); 
-					$this->session->set_userdata($user);
+					$this->session->set_userdata($usuario_data);
 					echo json_encode(array("respuesta" => "success"));
 				
                 }else{

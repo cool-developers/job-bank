@@ -5,6 +5,8 @@
 		<script type="text/javascript" src="/job-bank/js/controllers/signUpController.js"></script>
 		<script type="text/javascript" src="/job-bank/js/controllers/recoverController.js"></script>
 		<script type="text/javascript" src="/job-bank/js/controllers/loginController.js"></script>
-		
+		<script type="text/javascript" src="/job-bank/js/controllers/teacherListController.js"></script>
+		<script type="text/javascript" src="/job-bank/js/controllers/offerListController.js"></script>
+		<script type="text/javascript" src="/job-bank/js/controllers/applicantListController.js"></script>
 	</body>
 </html>
