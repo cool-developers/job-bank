@@ -27,6 +27,7 @@
              <input type="email" required placeholder="Introduce un email correcto..." name="email" ng-model="user.email" />
               <span ng-show="registerUserForm.email.$error.required">El email introducido no es valido.</span>
 			 <br>
+			
              <label>Password</label>
              <br>
              <input type="password" required placeholder="Introduce un password..." name="password" ng-change="passwd()" ng-model="user.password" ng-minlength="8" ng-maxlength="45"/>
@@ -38,7 +39,7 @@
              <label>Password2</label>
              <input type="password" required placeholder="Introduce un password..." name="password2" ng-change="passwd()" ng-model="password2" ng-minlength="8" ng-maxlength="45"/>
              
-         
+         	  {{user.email}}
              
  			 <br>
              <!-- <button ng-disabled="!registerUserForm.$valid" ng-disabled="user.password!=password2" ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button> -->

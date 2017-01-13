@@ -32,10 +32,6 @@
 		 <button class="button success" ng-click="">MENU</button>
 		-->
 		
-		
-		
-	</head>
-	<body>
-               <h1><?php echo $title; ?></h1>
+	           
               
                

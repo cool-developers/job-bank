@@ -1,5 +1,5 @@
 <?php
-class Login2 extends CI_Controller {
+class BolsaDeTrabajo extends CI_Controller {
 
         public function __construct()
         {
@@ -11,67 +11,15 @@ class Login2 extends CI_Controller {
 		
 		
         public function index()
-        {        
-        	
-			
-	    	$this->load->helper('form');
-	  		$this->load->library('form_validation');
-			
-        	$data['title'] = 'Login de empresas';	
-			
-		
-		 	$this->form_validation->set_rules('email', 'Usuario','required|valid_email');
-	    	$this->form_validation->set_rules('password', 'Contraseña', 'required|min_length[8]|max_length[45]');
-			$this->form_validation->set_message	('valid_email', 'El Email no es valido.');			
-        	$this->form_validation->set_message	('required', 'El campo  %s es obligatorio.');
-			$this->form_validation->set_message('min_length', 'El Campo %s debe tener un minimo de %d Caracteres');
-			$this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
-
-			 
-			if($this->form_validation->run() === FALSE){
-				$this->load->view('templates/header', $data);
-		        $this->load->view('login/index_view' , $data);		
-		        $this->load->view('templates/footer');
-			}else{
-			//echo($this->input->post('email'));
-			//echo($this->input->post('password'));
-			$resultado = $this->Login_model->get_email($this->input->post('email'));	
-			//echo password_hash("1234", PASSWORD_DEFAULT);   
-			echo($resultado['email']);
-			echo($resultado['password']);
-			if(password_verify($this->input->post('password'), $resultado['password'])){
-				echo('coinciden');
-				//Guardamos user en variable sesion
-				//pasamos al controlador Dietas
-				//opcion 1
-				/*
-				session_start();
-				$_SESSION['user']=$this->input->post('user');
-				redirect("dietas");
-				*/
-				//echo('coinciden');
-				$user = array( 
-				'email' => $resultado['email'],
-				'rol' => $resultado['rol'],
-				'logueado' => TRUE
-				); 
-				$this->session->set_userdata($user);
-			
-				
-				
-				 
-			}else{
-				echo $resultado;
-				$data['error'] ='email o $resultado password incorrecta';
-				$this->load->view('templates/header', $data);
-	       		$this->load->view('login/index_view' , $data);		
-	       		$this->load->view('templates/footer');
-			}
-			//echo('Loading...');
-			//echo('ir al modelo cargar los datos ver si estan correctos');		
-		}
-				
-			       
+        {
+        	if(!isset($this->session->userdata['email'])){        		
+				redirect("Login");					
+        	}         		
+        	$data['rol'] = $this->session->userdata['rol'];
+			$this->load->view('templates/header');	
+			$this->load->view('templates/menuHome', $data);	
+	        $this->load->view('home/index_view' , $data);		
+	        $this->load->view('templates/footer');    
 		}
 		
 		 public function signupUser(){		 
@@ -123,15 +71,17 @@ class Login2 extends CI_Controller {
                 $email = $this->input->post("email");
                 $password = $this->input->post("password");          
 				$resultado = $this->Login_model->get_email($this->input->post('email'));
-				
+				echo $resultado['rol_idRol'];
 				if(password_verify($this->input->post('password'), $resultado['password'])){				
 					
-					$user = array( 
+					/*$user = array( 
 						'email' => $resultado['email'],
-						'rol' => $resultado['rol'],
+						'rol' => $resultado['rol_idRol'],
 						'logueado' => TRUE
 					); 
-					$this->session->set_userdata($user);
+					 */
+					 
+					//$this->session->set_userdata($user);
 					echo json_encode(array("respuesta" => "success"));
 				
                 }else{
@@ -142,11 +92,6 @@ class Login2 extends CI_Controller {
             echo json_encode(array("respuesta" => "incomplete_form"));
         }
     }
-
-    public function getHeader(){
-        $this->load->view('templates/header2.php');
-    }
-
 
 
 }
