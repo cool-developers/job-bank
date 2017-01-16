@@ -5,13 +5,6 @@
 	}
 	echo validation_errors("<li>","</li>"); ?>
 </ul>	
-
-
-
-
-<div ng-include="'Templates/get/menu.php'"></div>
-
-
 <form>
 	<div>
              <label>Titulo del puesto</label>

@@ -45,7 +45,15 @@ app.factory("mensajesFlash", function($rootScope){
         }
     };
 });
- 
+
+function convertToData(object){
+	data = "";
+	for(element in object ){		
+		data += element + "=" + object[element]+"&";			
+	}			
+	return data.substr(0, data.length - 1);
+};
+
 
 //factoria para registrar usuarios a la que le inyectamos la otra factoria
 //mensajesFlash para poder hacer uso de sus funciones
@@ -80,20 +88,21 @@ app.factory("authUsers", function($http, $location,  mensajesFlash){
         //retornamos la función login de la factoria authUsers para loguearnos correctamente
         login : function(user){
             return $http({
-                url: 'http://127.0.0.1/job-bank/login2/loginuser',
+                url: 'http://127.0.0.1/job-bank/login/loginuser',
                 method: "POST",
                 data : "email="+user.email+"&password="+user.password,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).success(function(data){
-                if(data.respuesta == "success"){             	
-                    mensajesFlash.clear();                  
-                    $location.path("/offerList");
+            }).then(function(data){
+            	console.log(data.data.respuesta);
+                if(data.data.respuesta == "success"){             	
+                    mensajesFlash.clear();                                      
+                window.location.href = 'http://127.0.0.1/job-bank/BolsaDeTrabajo#/offerList';
                 }else if(data.respuesta == "incomplete_form"){
                     mensajesFlash.show("Debes introducir bien los datos del formulario");
                 }else if(data.respuesta == "failed"){
                     mensajesFlash.show("El email o el password introducidos son incorrectos, inténtalo de nuevo.");
                 }
-            }).error(function(){
+            },function(){
                 $location.path("/");
             });
         }

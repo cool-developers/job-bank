@@ -1,6 +1,3 @@
-<div ng-include="'Templates/get/menu.php'"></div>
-
-
 <form name="registerTeacherForm">   
 
  			<label>Email</label>
