@@ -21,6 +21,8 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  `email` VARCHAR(45) NOT NULL,
 		  `password` VARCHAR(128) NOT NULL,
 		  `rol_idRol` INT NOT NULL,
+		  `hash` VARCHAR(128) NOT NULL,
+		  `active` TINYINT(1) NOT NULL,
 		  PRIMARY KEY (`idUser`),
 		  UNIQUE INDEX `Email_UNIQUE` (`email` ASC),
 		  INDEX `fk_user_rol1_idx` (`rol_idRol` ASC),

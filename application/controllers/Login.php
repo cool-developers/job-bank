@@ -6,7 +6,7 @@ class Login extends CI_Controller {
                 parent::__construct();
                 $this->load->model('Login_model');
                 $this->load->helper('url_helper','form');
-	    		$this->load->library('form_validation');
+	    		$this->load->library(array('form_validation','email'));
         }
 		
 		
@@ -39,13 +39,46 @@ class Login extends CI_Controller {
 			
             if($this->form_validation->run() == false){           
                echo json_encode(array("respuesta" => "error_form"));
-            }else{
-                $this->load->model("Login_model");
+            }else{        
+		
                 $email = $this->input->post("email");
-                $password = password_hash($this->input->post("password"), PASSWORD_DEFAULT);    				         
-                $loginUser = $this->Login_model->signupUser($email,$password);
-                if($loginUser === true){
-                    echo json_encode(array("respuesta" => "success"));
+                $password = password_hash($this->input->post("password"), PASSWORD_DEFAULT);	
+				$rol = 4;				
+				$hash = password_hash(rand(0,1000) + " " + rand(0,1000) , PASSWORD_DEFAULT);   
+				$active = FALSE;
+				$loginUser = $this->Login_model->signupUser($email,$password,$rol,$hash,$active);
+			
+				if($loginUser === TRUE){
+								
+					
+					echo json_encode(array("respuesta" => "success"));
+					
+					$this->email->from('cooldevelopers.contact@gmail.com', 'Bolsa de trabajo Txurdinaga');
+		            $this->email->to($email);
+		            $this->email->subject('Validar usuario');               
+		            $this->email->message("  
+								Gracias por registrarte!
+								Tu cuenta ha sido creada, puedes acceder a la Bolsa de Trabajo de Txurdinaga despues de activar tu cuenta presionando el enlace de abajo.
+															 
+								Presiona el siguiente enlace para activar tu cuenta:
+								http://www.job-bank.com/verify.php?email='.$email.'&hash='.$hash.'
+								 
+								"); 
+				 
+				   
+		            if($this->email->send()){
+		           
+		            $data['title']='Mensaje Enviado';
+		            $data['msg'] = 'Mensaje enviado a su email';
+		                     // echo $this->email->print_debugger(); exit;                             
+		            $this->load->view('login/signUp_view', $data);  
+		           
+		             }else{
+		                $data['title']='El mensaje no se pudo enviar' .  show_error($this->email->print_debugger());
+		                $this->load->view('login/signUp_view', $data); 
+		             
+		             }	               
+                   
                 }else{
                     echo json_encode(array("respuesta" => "exists"));
                 }
