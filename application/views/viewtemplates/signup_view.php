@@ -24,8 +24,10 @@
  			 <br>		 
 			 <label>Email</label>
 			 <br>
-             <input type="email" required placeholder="Introduce un email correcto..." name="email" ng-model="user.email" />
-              <span ng-show="registerUserForm.email.$error.required">El email introducido no es valido.</span>
+             <input type="email" required placeholder="Introduce un email correcto..." name="email"  ng-blur="emailc()" ng-model="user.email" />
+             
+             {{user.email}}
+             
 			 <br>
              <label>Password</label>
              <br>
