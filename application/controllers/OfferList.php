@@ -23,7 +23,9 @@ class Login extends CI_Controller {
 			$this->load->view('templates/header');
 			$this->load->view('templates/menuLogin');
 	        $this->load->view('login/OfferList_view' , $data);		
-	        $this->load->view('templates/footer');    
+	        $this->load->view('templates/footer');
+			  
+			  
 		}
 
 		public function index()
