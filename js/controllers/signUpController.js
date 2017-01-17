@@ -32,4 +32,22 @@ app.controller("signupController", function signupController($scope, $location, 
 	
 	
 	
+	
+	$scope.emailc = true;
+	$scope.emailc = function (){
+	console.log($scope.user);
+	if($scope.user.email ===""){
+	
+		alert ("algo");
+	}else{
+		
+			if($scope.habilitado = true ){
+			alert ("");
+			}else{
+			alert("no es valido");
+			}
+		}
+	};
+	
+	
 });
