@@ -97,10 +97,12 @@ app.factory("authUsers", function($http, $location,  mensajesFlash){
                 if(data.data.respuesta == "success"){             	
                     mensajesFlash.clear();                                      
                 window.location.href = 'http://127.0.0.1/job-bank/BolsaDeTrabajo#/offerList';
-                }else if(data.respuesta == "incomplete_form"){
+                }else if(data.data.respuesta == "incomplete_form"){
                     mensajesFlash.show("Debes introducir bien los datos del formulario");
-                }else if(data.respuesta == "failed"){
+                }else if(data.data.respuesta == "failed"){
                     mensajesFlash.show("El email o el password introducidos son incorrectos, inténtalo de nuevo.");
+                }else if(data.data.respuesta == "notActive"){
+                    mensajesFlash.show("Tu cuenta no esta activada, actívala desde tu cuenta de correo");
                 }
             },function(){
                 $location.path("/");

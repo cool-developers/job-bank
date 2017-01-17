@@ -56,14 +56,10 @@ class Login extends CI_Controller {
 					$this->email->from('cooldevelopers.contact@gmail.com', 'Bolsa de trabajo Txurdinaga');
 		            $this->email->to($email);
 		            $this->email->subject('Validar usuario');               
-		            $this->email->message("  
-								Gracias por registrarte!
-								Tu cuenta ha sido creada, puedes acceder a la Bolsa de Trabajo de Txurdinaga despues de activar tu cuenta presionando el enlace de abajo.
-															 
-								Presiona el siguiente enlace para activar tu cuenta:
-								http://www.job-bank.com/verify.php?email='.$email.'&hash='.$hash.'
-								 
-								"); 
+		            $this->email->message("Gracias por registrarte!
+		            Tu cuenta ha sido creada, puedes acceder a la Bolsa de Trabajo de Txurdinaga despues de activar tu cuenta presionando el enlace de abajo.
+		            Presiona el siguiente enlace para activar tu cuenta:
+		            http://127.0.0.1/job-bank/verify?email=$email&hash=$hash"); 
 				 
 				   
 		            if($this->email->send()){
@@ -111,15 +107,21 @@ class Login extends CI_Controller {
 				
 				if(password_verify($this->input->post('password'), $resultado['password'])){				
 					
-					$user = array( 
-						'email' => $resultado['email'],
-						'rol' => $resultado['rol_idRol'],
-						'logged_in' => TRUE,
-						'idUser' =>  $resultado['idUser']
-					); 
-					$this->session->set_userdata($user);
-					//redirect("http://127.0.0.1/job-bank/BolsaDeTrabajo");
-					echo json_encode(array("respuesta" => "success"));						
+					if($resultado['active'] == TRUE){						
+						$user = array( 
+							'email' => $resultado['email'],
+							'rol' => $resultado['rol_idRol'],
+							'logged_in' => TRUE,
+							'idUser' =>  $resultado['idUser']
+						); 
+						$this->session->set_userdata($user);
+						//redirect("http://127.0.0.1/job-bank/BolsaDeTrabajo");
+						echo json_encode(array("respuesta" => "success"));			
+					}else{
+						echo json_encode(array("respuesta" => "notActive"));	
+					}
+					
+								
 				
                 }else{
                     echo json_encode(array("respuesta" => "failed"));

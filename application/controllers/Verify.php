@@ -22,15 +22,20 @@ class Verify extends CI_Controller {
 			
 			if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){			   				    
 				
-					$this->Login_model->activeUser($this->input->get('email'));						    
+					if($this->Login_model->activeUser($this->input->get('email'))){
+						$data['message'] = 'UPDATE';		
+					}else{				
+						$data['message'] = 'ERROR2';		
+					}						    
 			    
 			}else{
+				
 				$data['message'] = 'ERROR';		
 			}
 			       		
         
 
-	        $this->load->view('veify/index_view' , $data);		
+	        $this->load->view('verify/index_view' , $data);		
 	         
 		}
     
