@@ -1,5 +1,11 @@
 <?php
 class User_model extends CI_Model {
+	
+		protected $email;
+		protected $idUser;
+		protected $password;		
+		protected $rol_idRol;
+	
 
 		public function get_email($email = FALSE){
 			

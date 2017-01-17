@@ -37,12 +37,14 @@ class Login_model extends CI_Model {
 			return $this->db->insert('enterprise', $data);						
 		}
 		
-		public function signupUser($email,$password){
+		public function signupUser($email,$password,$rol,$hash,$active){
 						
 		    $data = array(		        
 		        "email"         =>      $email,
 		        "password"      =>      $password,
-		        "rol_idRol"        =>      4
+		        "rol_idRol"     =>      $rol,
+		        "hash"			=> 		$hash ,
+		        "active" 		=> 		$active
 		    );
 		
 		    $this->db->where("email",$email);
@@ -70,6 +72,18 @@ class Login_model extends CI_Model {
 	            return false;
 	        }*/
 	    }
+		
+		public function activeUser($email){
+			$user = $this->get_email($email);													
+			if(isset($user)){
+				$this->db->set('active', TRUE);
+				$this->db->where('email', $email);
+				$this->db->update('user');
+				return true;
+			}else{
+				return false;
+			}						
+		}
 		
 		
 }
