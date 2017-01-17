@@ -8,6 +8,23 @@ class Login extends CI_Controller {
                 $this->load->helper('url_helper','form');
 	    		$this->load->library('form_validation');
         }
+		
+		
+        public function index()
+        {
+        	if(isset($this->session->userdata['email'])){
+        		
+        		$userId = $this->session->userdata('userId');
+				$rol = $this->session->userdata('rol');				
+							
+				redirect("BolsaDeTrabajo");					
+        	}       		
+        
+			$this->load->view('templates/header');
+			$this->load->view('templates/menuLogin');
+	        $this->load->view('login/OfferList_view' , $data);		
+	        $this->load->view('templates/footer');    
+		}
 
 		public function index()
 		{
@@ -28,8 +45,12 @@ class Login extends CI_Controller {
 		}
 
 		public function prueba(){
-			$this->load->view('login/index_view');		
+			$this->load->view('viewtemplates/OfferList_view');		
 		}
-			
+		
+		
+		
+		
+		
 }
 ?>

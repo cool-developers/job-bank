@@ -24,24 +24,31 @@
  			 <br>		 
 			 <label>Email</label>
 			 <br>
-             <input type="email" required placeholder="Introduce un email correcto..." name="email"  ng-blur="emailc()" ng-model="user.email" />
-             
-             {{user.email}}
+             <input type="email" required placeholder="Introduce un email correcto..." name="email"   ng-model="user.email" required/>
+             <span style="color:red" ng-show="registerUserForm.email.$dirty && registerUserForm.email.$invalid">
+  			 <span ng-show="registerUserForm.email.$error.required">Email is required.</span>
+ 			 <span ng-show="registerUserForm.email.$error.email">Invalid email address.</span>
+  			</span>
+         
              
 			 <br>
 			
              <label>Password</label>
              <br>
-             <input type="password" required placeholder="Introduce un password..." name="password" ng-change="passwd()" ng-model="user.password" ng-minlength="8" ng-maxlength="45"/>
+             <input type="password" required placeholder="Introduce un password..." name="password" ng-change="passwd()" ng-model="user.password" ng-minlength="8" ng-maxlength="45" required />
+             <span style="color:red" ng-show="registerUserForm.password.$dirty">
              <span ng-show="registerUserForm.password.$error.required">La contraeña obligatoria.</span>
              <span ng-show="registerUserForm.password.$error.minlength">La contraseña debe tener un minimo de 8 caracteres.</span>
-
              <span ng-show="registerUserForm.password.$error.maxlength">La contraseña debe tener un minimo de 8 caracteres.</span>
+             </span>
              <br>
-             <label>Password2</label>
-             <input type="password" required placeholder="Introduce un password..." name="password2" ng-change="passwd()" ng-model="password2" ng-minlength="8" ng-maxlength="45"/>
              
-         	  {{user.email}}
+             
+             <label>Password2</label><br>
+             <input type="password" required placeholder="Introduce un password..." name="password2" ng-change="passwd()" ng-model="password2" ng-minlength="8" ng-maxlength="45"/>
+             <span style="color:red" ng-show="registerUserForm.password2.$dirty && registerUserForm.password2==registerUserForm.password">
+         	 <span>La contraseña debe tener un minimo de 8 caracteres.</span>
+             </span>
              
  			 <br>
              <!-- <button ng-disabled="!registerUserForm.$valid" ng-disabled="user.password!=password2" ng-click="signupUser(user)" type="submit" class="button radius large-5 columns">Regístrarme</button> -->
