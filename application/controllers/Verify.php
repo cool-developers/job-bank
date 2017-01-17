@@ -25,7 +25,7 @@ class Verify extends CI_Controller {
 					if($this->Login_model->activeUser($this->input->get('email'))){
 						$data['message'] = 'UPDATE';		
 					}else{				
-						$data['message'] = 'ERROR2';		
+						$data['message'] = 'ERROR';		
 					}						    
 			    
 			}else{
