@@ -12,7 +12,7 @@ app.config(function($routeProvider){
 	})
 	.when("/applicantList", {
 		templateUrl : "/job-bank/templates/get/applicantList_view",
-		controller : "offerListController"
+		controller : "applicantListController"
 	})
 	.otherwise({ reditrectTo : "/offerList" });
 });

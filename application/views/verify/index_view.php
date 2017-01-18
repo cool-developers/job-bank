@@ -9,8 +9,16 @@
 <body>
 	<?php 
 	
+	if($message == "UPDATE"){
+	?>
+	 <h1> SUCCESS </h1>	
+	<?php
+	}else {	
+	?> 
 	
-	
+    <h1> ERROR </h1>	
+	<?php
+	}	
 	?>
 </body>
 </html>
