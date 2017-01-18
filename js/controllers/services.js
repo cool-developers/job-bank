@@ -14,6 +14,8 @@ app.factory("Provinces",function($http){
 	};
 });
 
+
+
 app.factory("Towns",function($http){
 	return {
 		geTowns : function(idProvince){			
@@ -26,6 +28,18 @@ app.factory("Towns",function($http){
         }       
     };
 });
+
+app.factory("GradeTitle",function($http){
+	return {
+		getProvinces : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/GradeTitle/getGradeTitle');			
+			}
+	};
+});
+
+
+
+
 
 //esto simplemente es para lanzar un mensaje si el login falla
 app.factory("mensajesFlash", function($rootScope){

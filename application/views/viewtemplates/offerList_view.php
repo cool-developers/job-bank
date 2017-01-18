@@ -14,7 +14,7 @@
  			<br>
              <label>Curso</label>
              <select >
- 				<option ng-repeat="province in provinces" value="{{province.idProvince}}"> {{province.provinceName}}</option>
+ 				<option ng-repeat="curso in GradeTitle" value="{{curso.idGradeTitle}}"> {{curso.gradeTitleName}}</option>
  			 </select>	
  			 
  			 <br>
