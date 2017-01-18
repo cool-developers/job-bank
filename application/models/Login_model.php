@@ -37,6 +37,24 @@ class Login_model extends CI_Model {
 			return $this->db->insert('enterprise', $data);						
 		}
 		
+		public function set_teacher($email,$teacherName,$idDepartment){
+			$user = $this->get_email($email);	
+				
+								
+			if(isset($user)){							
+			    $data = array(
+			        'teacherName' => $teacherName,
+			        'user_idUser' => $user['idUser'],
+			        'department_idDepartment' => $idDepartment
+			    );
+			}
+			return $this->db->insert('teacher', $data);	
+		}
+		
+		
+		
+		
+		
 		public function signupUser($email,$password,$rol,$hash,$active){
 						
 		    $data = array(		        

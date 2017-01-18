@@ -46,6 +46,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`teacher` (
 		  `user_idUser` INT NOT NULL,
+		  `teacherName` VARCHAR(45) NOT NULL,
 		  `department_idDepartment` INT NOT NULL,
 		  PRIMARY KEY (`user_idUser`),
 		  INDEX `fk_teacher_department1_idx` (`department_idDepartment` ASC),
