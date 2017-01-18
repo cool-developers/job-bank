@@ -16,7 +16,7 @@ app.factory("Provinces",function($http){
 
 app.factory("Towns",function($http){
 	return {
-		geTowns : function(idProvince){			
+		getTowns : function(idProvince){			
 			return $http({
                 url: 'http://127.0.0.1/job-bank/Location/getTowns',
                 method: "POST",
