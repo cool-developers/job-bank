@@ -60,6 +60,15 @@ app.factory("Contract",function($http){
 });
 
 
+app.factory("Language",function($http){
+	return {
+		getLanguage : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Language/getLanguage');			
+			}
+	};
+});
+
+
 
 //esto simplemente es para lanzar un mensaje si el login falla
 app.factory("mensajesFlash", function($rootScope){

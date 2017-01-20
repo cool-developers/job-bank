@@ -1,4 +1,4 @@
-app.controller("offerListController", function($scope, GradeTitle, Curso, Contract){
+app.controller("offerListController", function($scope, GradeTitle, Curso, Contract, Language){
 	$scope.saludo = "Hola estas en el offerlist";
 	
 	GradeTitle.getGradeTitle().then(function(GradeTitle){
@@ -17,7 +17,9 @@ app.controller("offerListController", function($scope, GradeTitle, Curso, Contra
 			$scope.Contracts = Contract.data;
 		});
 		
-
+		Language.getLanguage().then(function (Language){
+			$scope.Languages = Language.data;
+		});
 
 });
 

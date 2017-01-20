@@ -37,8 +37,8 @@
  			 </select><br>
  			 
  			  <label>Idiomas: </label>
- 			  <select >
- 				<option ng-repeat="province in provinces" value="{{province.idProvince}}"> {{province.provinceName}}</option>
+ 			  <select ng-model="selectedLanguage">
+ 				<option ng-repeat="Language in Languages" value="{{Language.idLanguage}}"> {{Language.languageName}}</option>
  			 </select><br>
  			 
  			  <label>Conocimientos: </label>
