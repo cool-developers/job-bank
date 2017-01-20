@@ -10,7 +10,7 @@ class Contract extends CI_Controller {
 		
 		public function getContract(){
 			$Contract = $this->Contract_model->get_Contract();
-			echo json_encode($GradeTitle);
+			echo json_encode($Contract);
 		}
 		
 		

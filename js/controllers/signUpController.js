@@ -13,7 +13,7 @@ app.controller("signupController", function signupController($scope, $location, 
 	});
 	
 	$scope.provinceSelected = function(){
-		Towns.geTowns($scope.selectedProvince).then(function (Towns){
+		Towns.getTowns($scope.selectedProvince).then(function (Towns){
 			$scope.towns = Towns.data;
 		});
 	};	

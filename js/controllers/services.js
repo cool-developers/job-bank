@@ -18,7 +18,7 @@ app.factory("Provinces",function($http){
 
 app.factory("Towns",function($http){
 	return {
-		geTowns : function(idProvince){			
+		getTowns : function(idProvince){			
 			return $http({
                 url: 'http://127.0.0.1/job-bank/Location/getTowns',
                 method: "POST",
@@ -31,13 +31,33 @@ app.factory("Towns",function($http){
 
 app.factory("GradeTitle",function($http){
 	return {
-		getProvinces : function(){			
+		getGradeTitle : function(){			
 			return  $http.get('http://127.0.0.1/job-bank/GradeTitle/getGradeTitle');			
 			}
 	};
 });
 
+app.factory("Curso",function($http){
+	return {/*
+		getCurso : function(idGradeTitle){			
+			return $http({
+                url: 'http://127.0.0.1/job-bank/GradeTitle/getCurso',
+                method: "POST",
+                data : "idGradeTitle="+idGradeTitle,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+           });
+        }   */    
+    };
+});
 
+
+app.factory("Contract",function($http){
+	return {
+		getContract : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Contract/getContract');			
+			}
+	};
+});
 
 
 
