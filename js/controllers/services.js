@@ -82,6 +82,36 @@ app.factory("signupUsers", function($http, mensajesFlash){
     };
 });
 
+
+app.factory("updateApplicants", function($http, mensajesFlash){
+	return {
+		updateApplicant : function(data, link){
+			return $http({
+				url: link,
+                method: "POST",
+                data : data,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(data){
+                    if(data.respuesta == "success"){
+                        mensajesFlash.clear();
+                        mensajesFlash.show_success("El registro se ha procesado correctamente.");
+                    }else if(data.respuesta == "exists"){
+                        mensajesFlash.clear();
+                        mensajesFlash.show_error("El email introducido ya existe en la bd.");
+                    }else if(data.respuesta == "error_form"){
+                        mensajesFlash.show_error("Ha ocurrido algún error al realizar el registro!.");
+                    }
+                }).error(function(){
+                    mensajesFlash.show_error("Ha ocurrido algún error al realizar el registro!.");
+                });			
+		}
+	};
+	
+	
+	
+	
+});
+
 //factoria para loguear y desloguear usuarios en angularjs
 app.factory("authUsers", function($http, $location,  mensajesFlash){
     return {
