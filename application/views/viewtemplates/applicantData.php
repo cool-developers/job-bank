@@ -1,4 +1,4 @@
-<form name="cvForm">   
+<form name="applicantDataForm">   
 			 
 			<div ng-show="flash_error">
                 <div data-alert class="alert-box alert round">{{ flash_error }}</div>
@@ -25,7 +25,7 @@
 			 
 			 <label>Fecha</label>
 			  <br>
-			 <input type="date" name="fechalimi" step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01" ng-model="applicant.applicantBirthDate">
+			 <input type="date" required  name="applicantBirthDate" ng-model="applicant.applicantBirthDate">
 			 
 			 <!--
 			
@@ -47,7 +47,7 @@
 			 <br> 
 			 <label>Código Postal</label>
 			 <br>
-			 <input type="text" required placeholder="Introduce código postal" name="applicantName" ng-model="applicant.applicantPostcode" />
+			 <input type="text" required placeholder="Introduce código postal" name="applicantPostcode" ng-model="applicant.applicantPostcode" />
               <span ng-show="registerTeacherForm.email.$error.required">El nombre introducido no es valido.</span>
 			 <br>
 			 <label>Provincia</label>
@@ -64,28 +64,35 @@
  			 <br> 				 
 			 <label>Dirección</label>
 			 <br>
-			 <input type="text" required placeholder="Introduce dirección" name="applicantName" ng-model="applicant.applicantAddress" />
+			 <input type="text" placeholder="Introduce dirección" name="applicantAddress" ng-model="applicant.applicantAddress" />
               <span ng-show="registerTeacherForm.email.$error.required">La direccion introducida no es valida.</span>
 			 <br>
 			 
 			 <label>Teléfono 1</label>
 			 <br>
-			 <input type="text" required placeholder="Introduce el télefono" name="applicantName" ng-model="applicant.applicantPhone1" />
+			 <input type="text" placeholder="Introduce el télefono" name="applicantPhone1" ng-model="applicant.applicantPhone1" />
               <span ng-show="registerTeacherForm.email.$error.required">El teléfono introducido no es valido</span>
 			 <br>
  			 
  			 <label>Teléfono 2</label>
 			 <br>
-			 <input type="text" required placeholder="Introduce otro télefono" name="applicantName" ng-model="applicant.applicantPhone2" />
+			 <input type="text" placeholder="Introduce otro télefono" name="applicantPhone2" ng-model="applicant.applicantPhone2" />
              <span ng-show="registerTeacherForm.email.$error.required">El teléfono introducido no es valido</span>
 			 <br>
+ 			 
+ 			 <label>Permiso de Trabajo</label>
+			 <br>
+			 Si <input type="radio" name="applicantWorkPermit" ng-model="applicant.applicantWorkPermit" value="true">
+			 No <input type="radio" name="	applicantWorkPermit" ng-model="applicant.applicantWorkPermit" value="false">
+			 <br>
+ 			 
  			 
  			 <label>Permiso de conducir</label>
 			 <br>
 			 Si <input type="radio" name="applicantDriverLicense" ng-model="applicant.applicantDriverLicense" value="true">
 			 No <input type="radio" name="	applicantDriverLicense" ng-model="applicant.applicantDriverLicense" value="false">
-			 <br>
-			 
+			 <br>			 
+				 
 			 <label>Coche</label>
 			 <br>
 			 Si <input type="radio" name="applicantVehicle" ng-model="applicant.applicantVehicle" value="true">
@@ -106,7 +113,7 @@
 			 
 			 
  			 
-             <button ng-disabled="!cvForm.$valid" ng-click="updateApplicant(applicant)" type="submit" class="button radius large-5 columns">Regístrarme</button>
+             <button ng-disabled="!applicantDataForm.$valid" ng-click="updateApplicant(applicant)" type="submit" class="button radius large-5 columns">Regístrarme</button>
             
  		 </div>   
 </form>

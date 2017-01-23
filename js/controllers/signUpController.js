@@ -57,6 +57,7 @@ app.controller("signupController", function signupController($scope, $location, 
 	
 });
 
+/*
 app.directive('pwCheck', function () {
 	return {
 	  require: 'ngModel',
@@ -76,3 +77,5 @@ app.directive('pwCheck', function () {
 	};
     
 });
+
+*/
