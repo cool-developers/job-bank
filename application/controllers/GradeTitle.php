@@ -13,7 +13,14 @@ class GradeTitle extends CI_Controller {
 			echo json_encode($GradeTitle);
 		}
 		
-		
-       
+	/*
+		public function getCurso(){
+			$idGradeTitle = $this->input->post("idGradeTitle");			
+			$curso = $this->GradeTitle_model->get_Curso($idGradeTitle);
+			echo json_encode($curso);
+		}
+	 
+	 */
+   
 }
 ?>

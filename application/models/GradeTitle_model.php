@@ -1,5 +1,5 @@
 <?php
-class Location_model extends CI_Model {
+class GradeTitle_model extends CI_Model {
 
 		public function get_gradetitle(){
 			
@@ -7,6 +7,13 @@ class Location_model extends CI_Model {
        		return $query->result_array();
 		}	
 			
+		
+		public function get_curso($idGradeTitle){			  
+	    	$query = $this->db->get_where('gradetitle', array('idGradeTitle' => $idGradeTitle));		
+			return $query->result_array();			
+		}
+		
+		
 		
 }
 

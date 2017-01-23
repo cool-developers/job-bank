@@ -14,6 +14,8 @@ app.factory("Provinces",function($http){
 	};
 });
 
+
+
 app.factory("Towns",function($http){
 	return {
 		getTowns : function(idProvince){			
@@ -26,6 +28,47 @@ app.factory("Towns",function($http){
         }       
     };
 });
+
+app.factory("GradeTitle",function($http){
+	return {
+		getGradeTitle : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/GradeTitle/getGradeTitle');			
+			}
+	};
+});
+
+app.factory("Curso",function($http){
+	return {/*
+		getCurso : function(idGradeTitle){			
+			return $http({
+                url: 'http://127.0.0.1/job-bank/GradeTitle/getCurso',
+                method: "POST",
+                data : "idGradeTitle="+idGradeTitle,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+           });
+        }   */    
+    };
+});
+
+
+app.factory("Contract",function($http){
+	return {
+		getContract : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Contract/getContract');			
+			}
+	};
+});
+
+
+app.factory("Language",function($http){
+	return {
+		getLanguage : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Language/getLanguage');			
+			}
+	};
+});
+
+
 
 //esto simplemente es para lanzar un mensaje si el login falla
 app.factory("mensajesFlash", function($rootScope){
