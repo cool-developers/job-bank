@@ -18,6 +18,9 @@ class Location extends CI_Controller {
 			$towns = $this->Location_model->get_Towns($idProvince);
 			echo json_encode($towns);
 		}
+		
+		
+		
 
        
 }

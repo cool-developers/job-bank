@@ -18,6 +18,8 @@ app.controller("signupController", function signupController($scope, $location, 
 		});
 	};	
 	
+	
+	/*
 	$scope.habilitado = false;
 	$scope.passwd = function (){
 		
@@ -31,7 +33,7 @@ app.controller("signupController", function signupController($scope, $location, 
 	};
 	
 	
-	
+
 	
 	$scope.emailc = true;
 	$scope.emailc = function (){
@@ -48,6 +50,32 @@ app.controller("signupController", function signupController($scope, $location, 
 			}
 		}
 	};
+	*/
 	
+	
+
 	
 });
+
+/*
+app.directive('pwCheck', function () {
+	return {
+	  require: 'ngModel',
+	  link: function (scope, elem, attrs, ctrl) {
+	    var firstPassword = '#' + attrs.pwCheck;
+	    
+	    var password = document.getElementById(attrs.pwCheck);	    
+	    
+	    elem.append(firstPassword).on('keyup', function () {
+	      scope.$apply(function () {
+	      	console.log(elem.val() === document.getElementById(attrs.pwCheck).value);
+	        var v = elem.val() === document.getElementById(attrs.pwCheck).value;
+	        ctrl.$setValidity('pwmatch', v);
+	      });
+	    });
+	  }
+	};
+    
+});
+
+*/
