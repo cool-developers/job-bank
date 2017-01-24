@@ -14,6 +14,6 @@
 	<li>  <a href="#/applicantList">Alumnos</a></li>
 	<?php } ?>
 	<?php if($rol == 3){ ?>
-	<li>  <a href="#/CV">Curriculum</a> </li>
+	<!-- <li>  <a href="#/CV">Curriculum</a> </li> -->
 	<?php } ?>
 </ul>

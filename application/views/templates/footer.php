@@ -8,6 +8,7 @@
 		<script type="text/javascript" src="/job-bank/js/controllers/teacherListController.js"></script>
 		<script type="text/javascript" src="/job-bank/js/controllers/offerListController.js"></script>
 		<script type="text/javascript" src="/job-bank/js/controllers/applicantListController.js"></script>
-		<script type="text/javascript" src="/job-bank/js/controllers/cvController.js"></script>
+		<script type="text/javascript" src="/job-bank/js/controllers/applicantDataController.js"></script>
+		<script type="text/javascript" src="/job-bank/js/controllers/applicantGradeTitleController.js"></script>
 	</body>
 </html>

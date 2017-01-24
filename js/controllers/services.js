@@ -29,6 +29,15 @@ app.factory("Towns",function($http){
     };
 });
 
+app.factory("Titulations",function($http){
+	return {
+		getTitulations : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Titulation/getTitulations');			
+			}
+	};
+});
+
+
 app.factory("GradeTitle",function($http){
 	return {
 		getGradeTitle : function(){			

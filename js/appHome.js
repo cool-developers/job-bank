@@ -14,9 +14,13 @@ app.config(function($routeProvider){
 		templateUrl : "/job-bank/templates/get/applicantList_view",
 		controller : "applicantListController"
 	})
-	.when("/CV", {
-		templateUrl : "/job-bank/templates/get/cv_view",
-		controller : "cvController"
+	.when("/applicantData", {
+		templateUrl : "/job-bank/templates/get/applicantData_view",
+		controller : "applicantDataController"
+	})
+	.when("/applicantGradeTitle", {
+		templateUrl : "/job-bank/templates/get/applicantGradeTitle_view",
+		controller : "applicantGradeTitleController"
 	})
 	.otherwise({ reditrectTo : "/offerList" });
 });

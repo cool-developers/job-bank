@@ -1,4 +1,4 @@
-app.controller("cvController", function($scope, $location, Provinces, Towns , updateApplicants){
+app.controller("applicantDataController", function($scope, $location, Provinces, Towns , updateApplicants){
 	
 	Provinces.getProvinces().then(function(Provinces){
 		$scope.provinces = Provinces.data;	
@@ -13,11 +13,6 @@ app.controller("cvController", function($scope, $location, Provinces, Towns , up
 	$scope.updateApplicant = function(){			
         updateApplicants.updateApplicant(convertToData($scope.applicant), "http://127.0.0.1/job-bank/applicant/updateapplicant");
     };
-
-	
-	
-	
-	
 	
 	
 });
