@@ -68,7 +68,14 @@ app.factory("Language",function($http){
 	};
 });
 
-
+//Controler para las etiquetas
+app.controller('MainCtrl', function($scope, $http) {
+  $scope.tags = [
+    { text: 'Tag1' },
+    { text: 'Tag2' },
+    { text: 'Tag3' }
+  ];
+});
 
 //esto simplemente es para lanzar un mensaje si el login falla
 app.factory("mensajesFlash", function($rootScope){
