@@ -8200,7 +8200,7 @@ class Migration_DataBaseFields extends CI_Migration {
        ('Técnico en actividades comerciales', 2 , 4),       
        ('Técnico en instalaciones de telecomunicaciones', 2 , 1) , 
        ('Técnico en sistemas microinformáticos y redes', 2 , 3) , 
-       ('Técnico superior en desarrollo de aplicaciones informáticas', 4 , 3),
+       ('Técnico superior en desarrollo de aplicaciones multiplataforma', 4 , 3),
        ('Técnico superior en administración y finanzas', 4 , 5),
        ('Técnico superior en gestión de ventas y espacios comerciales', 4 , 4),
        ('Técnico superior en laboratorio de ánalisis y de control de calidad', 4 , 2),

@@ -8,23 +8,46 @@
                 <div data-alert class="alert-box success round">{{ flash_success }}</div>
             </div>
 
-			
- 			 <label>Nombre</label>
-			 <br>
-			 <input type="text" required placeholder="Introduce el nombre" name="applicantName" ng-model="applicant.applicantName" />
-              <span ng-show="registerTeacherForm.email.$error.required">El nombre introducido no es valido.</span>
-			 <br>
-			 		
+				
  			 <label>Titulación</label>
  			 <br>
- 			 <select ng-model="selectedTitulation">
+ 			 <select ng-change="titulationSelected()" ng-model="selectedTitulation">
  				<option ng-repeat="titulation in titulations" value="{{titulation.idTitulation}}"> {{titulation.titulationName}}</option>
  			 </select>	
- 			 <br> 	
+ 			 <br> 	 			 
  			 
  			 
+			 
+			 <input ng-show="selectedTitulation == 13"type="text" placeholder="Introduce el nombre" name="applicant_has_gradeTitleTitulation" ng-model="applicant.applicant_has_gradeTitleTitulation" />
+         	 <!-- <span ng-show="applicantGradeTitleForm.applicant_has_gradeTitleTitulation.$error.required">Introduce la titulación.</span> -->
+			
+ 			 <br> 
  			 
-             <button ng-disabled="!applicantGradeTitle.$valid" ng-click="updateApplicant(applicant)" type="submit" class="button radius large-5 columns">Regístrarme</button>
+ 			 <div ng-show="(selectedTitulation != 13 && selectedTitulation) || applicant.applicant_has_gradeTitleTitulation">
+	 			 <label>Titulo del grado</label>
+	 			 <br>
+	 			 
+	 			 <select ng-show="gradeTitles.length >= 1 " ng-model="applicant.gradeTitle_idGradeTitle">
+	 				<option ng-repeat="gradeTitle in gradeTitles" value="{{gradeTitle.idGradeTitle}}"> {{gradeTitle.gradeTitleName}}</option>
+	 			 </select>	 
+	 			 			
+				 <input ng-show="gradeTitles.length <= 0"type="text" placeholder="Introduce el nombre" name="applicant_has_gradeTitleName" ng-model="applicant.applicant_has_gradeTitleName" />
+	         	 <!-- <span ng-show="applicantGradeTitleForm.applicant_has_gradeTitleName.$error.required">Introduce el titulo del grado/curso.</span> -->
+	 		</div> 
+	 			
+	 			
+	 		 <br> 	
+	 			 
+	 			 		 
+	 		 <div ng-show="applicant.applicant_has_gradeTitleName || applicant.gradeTitle_idGradeTitle">
+	 			  <label>Fecha de inicio</label>
+	 			 		 <input type="date" required  name="applicant_has_gradeTitleStartDate" ng-model="applicant.applicant_has_gradeTitleStartDate">
+	 			  <label>Fecha fin</label>	 
+	 			 		 <input type="date" name="applicant_has_gradeTitleEndDate" ng-model="applicant.applicant_has_gradeTitleEndDate">
+	 		 </div>
+ 			 <br>
+ 			 
+             <button ng-disabled="!applicantGradeTitleForm.$valid" ng-click="inputApplicantGrade(applicant)" type="submit" class="button radius large-5 columns">Añadir estudio</button>
             
  		 </div>   
 </form>

@@ -163,7 +163,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`gradeTitle` (
 		  `idGradeTitle` INT NOT NULL AUTO_INCREMENT,
-		  `gradeTitleName` VARCHAR(45) NOT NULL,
+		  `gradeTitleName` VARCHAR(128) NOT NULL,
 		  `titulation_idTitulation` INT NOT NULL,
 		  `department_idDepartment` INT NOT NULL,
 		  PRIMARY KEY (`idGradeTitle`),
@@ -182,7 +182,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		ENGINE = InnoDB
 		");
 		
-		
+	
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`notification` (
 		  `idNotification` INT NOT NULL AUTO_INCREMENT,
@@ -546,7 +546,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`applicant_has_gradeTitle` (
 		  `applicant_user_idUser` INT NOT NULL,
-		  `gradeTitle_idGradeTitle` INT NOT NULL,
+		  `gradeTitle_idGradeTitle` INT NULL,
 		  `applicant_has_gradeTitleStartDate` DATE NOT NULL,
 		  `applicant_has_gradeTitleEndDate` DATE NULL,
 		  `applicant_has_gradeTitleName` VARCHAR(45) NOT NULL,
