@@ -60,7 +60,7 @@ app.factory("GradeTitle",function($http){
 });
 
 app.factory("Curso",function($http){
-	return {/*
+	return {
 		getCurso : function(idGradeTitle){			
 			return $http({
                 url: 'http://127.0.0.1/job-bank/GradeTitle/getCurso',
@@ -68,7 +68,7 @@ app.factory("Curso",function($http){
                 data : "idGradeTitle="+idGradeTitle,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
            });
-        }   */    
+        }       
     };
 });
 
@@ -156,6 +156,34 @@ app.factory("signupUsers", function($http, mensajesFlash){
         }
     };
 });
+
+app.factory("insert", function($http, mensajesFlash){
+	return {
+		insertData : function(data, link){
+			return $http({
+				url: link,
+                method: "POST",
+                data : data,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(data){
+                    if(data.respuesta == "success"){
+                        mensajesFlash.clear();
+                        mensajesFlash.show_success("El registro se ha procesado correctamente.");
+                    }else if(data.respuesta == "exists"){
+                        mensajesFlash.clear();
+                        mensajesFlash.show_error("El email introducido ya existe en la bd.");
+                    }else if(data.respuesta == "error_form"){
+                        mensajesFlash.show_error("Ha ocurrido algún error al realizar el registro!.");
+                    }
+                }).error(function(){
+                    mensajesFlash.show_error("Ha ocurrido algún error al realizar el registro!.");
+                });			
+		}
+	};	
+	
+});
+
+
 
 
 app.factory("updateApplicants", function($http, mensajesFlash){

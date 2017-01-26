@@ -27,7 +27,7 @@
  			 <br>
  			 
  			 <label>Descripción: </label><br>
- 			 <textarea name="description" rows="6" cols="50" name="comment">Escriba aquí su descripción...</textarea>
+ 			 <textarea name="description" rows="6" cols="50" name="comment" ng-model="offer.description">Escriba aquí su descripción...</textarea>
  			 
  			 <br>
  			 <label>Tipo de contrato: </label><br>
@@ -40,6 +40,7 @@
  				<option ng-repeat="Language in Languages" value="{{Language.idLanguage}}"> {{Language.languageName}}</option>
  			 </select><br>
  			 
+ 			 <!--
  			  <label>Conocimientos: </label>
  			  <select >
  				<option ng-repeat="province in provinces" value="{{province.idProvince}}"> {{province.provinceName}}</option>
@@ -47,6 +48,9 @@
  			 
  			 <br> 
  			 
+ 			 -->
+ 			 
+ 			 </br>
  			
  			  <input type="radio" name="estado"  ng-model="offer.applicantWorkPermit" value="true"> Pribada<br>
   			  <input type="radio" name="estado"  ng-model="offer.applicantWorkPermit" value="true"> Publica<br>

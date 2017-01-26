@@ -1,4 +1,4 @@
-app.controller("offerListController", function($scope, GradeTitle, Curso, Contract, Language, updateOffers){
+app.controller("offerListController", function($scope, GradeTitle, Curso, Contract, Language, insert){
 	$scope.saludo = "Hola estas en el offerlist";
 	
 	GradeTitle.getGradeTitle().then(function(GradeTitle){
@@ -22,7 +22,7 @@ app.controller("offerListController", function($scope, GradeTitle, Curso, Contra
 		});
 		
 		$scope.updateOffer = function(){			
-        updateOffers.updateOffer(convertToData($scope.applicant), "http://127.0.0.1/job-bank/OfferList/updateOffer");
+        insert.insertData(convertToData($scope.offer), "http://127.0.0.1/job-bank/OfferList/updateOffer");
     };
 		
 		
