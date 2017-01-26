@@ -45,8 +45,9 @@
  				<option ng-repeat="province in provinces" value="{{province.idProvince}}"> {{province.provinceName}}</option>
  			 </select>
  			 
- 			 <br>
+ 			 <br> 
  			 
+ 			
  			  <input type="radio" name="estado"  ng-model="offer.applicantWorkPermit" value="true"> Pribada<br>
   			  <input type="radio" name="estado"  ng-model="offer.applicantWorkPermit" value="true"> Publica<br>
 
