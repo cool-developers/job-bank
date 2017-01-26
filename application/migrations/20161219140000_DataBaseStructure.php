@@ -254,14 +254,14 @@ class Migration_DataBaseStructure extends CI_Migration {
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`offer` (
 		  `idOffer` INT NOT NULL AUTO_INCREMENT,
-		  `offerJobTitle` VARCHAR(45) NOT NULL,
+		  `offerJobTitle` VARCHAR(150) NOT NULL,
 		  `offerEnterpriseName` VARCHAR(45) NOT NULL,
 		  `offerEnterpriseEmail` VARCHAR(45) NOT NULL,
 		  `offerEnterpisePhone` VARCHAR(15) NULL,
 		  `offerStartDate` DATE NOT NULL,
 		  `offerEndDate` DATE NULL,
 		  `offerType` TINYINT(1) NOT NULL,
-		  `offerDescription` TEXT NULL,
+		  `offerDescription` VARCHAR(8000) NULL,
 		  `offerVacant` INT NOT NULL,
 		  `gradeTitle_idGradeTitle` INT NOT NULL,
 		  `contract_idContract` INT NOT NULL,

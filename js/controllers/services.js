@@ -77,6 +77,9 @@ app.factory("Language",function($http){
 	};
 });
 
+
+
+
 //Controler para las etiquetas
 app.controller('MainCtrl', function($scope, $http) {
   $scope.tags = [

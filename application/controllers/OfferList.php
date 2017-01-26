@@ -1,12 +1,12 @@
 <?php
-class Login extends CI_Controller {
+class OfferList extends CI_Controller {
 
         public function __construct()
         {
                 parent::__construct();
                 $this->load->model('Login_model');
                 $this->load->helper('url_helper','form');
-	    		$this->load->library('form_validation');
+	    		$this->load->library(array('form_validation'));
         }
 		
 		
@@ -28,23 +28,66 @@ class Login extends CI_Controller {
 			  
 		}
 
-		public function index()
-		{
+
+		
+		
+		
+		public function updateOffer(){
+		if(
+		$this->input->post("title") &&
+		$this->input->post("fechalimi") && 	
+		$this->input->post("estado") &&	
+		$this->input->post("description") 	
+		
+		){
 			
+			$this->form_validation->set_rules('tittle', 'Titulo', 'required');
+	    	$this->form_validation->set_rules('description', 'Descripcion', 'required');
+			$this->form_validation->set_rules('fechalimi', 'Titulo', 'required');
+			$this->form_validation->set_rules('estado', 'Titulo', 'required');
 			
-	    	if ($this->form_validation->run() === FALSE){
-	    		$data["error"]= "validacion incorrecta";		
-        		
-			}
-			else {
+		if($this->form_validation->run() == false){           
+	                echo json_encode(array("respuesta" => "error_form"));		  
+			}else{
+				$offerListData  = array(		        
 			
-		     $data["error"]="Datos cargados correctamente";
-			}	
+			      	"title" => $this->input->post("title"),
+					"description" => $this->input->post("description"),
+					"estado" => $this->input->post("estado"),
+					"fechalimi"  => $this->input->post("fechalimi")
+					
+					 );					
+				
+					$updateOfferList = $this->Offer_model->updateOfferList($offerListData);
+				
+					if($updateOfferList === TRUE){								
+						
+						echo json_encode(array("respuesta" => "success"));					
+						                   
+	                }else{
+	                    echo json_encode(array("respuesta" => "exists"));
+	                }			    	
 			
-			
-        		$this->load->view('login/login_view', $data);
-        		    	
 		}
+		
+		}else{
+            echo json_encode(array("respuesta" => "error_form"));
+        }
+		
+		
+		}   
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		public function prueba(){
 			$this->load->view('viewtemplates/OfferList_view');		
