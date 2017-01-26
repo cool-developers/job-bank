@@ -27,11 +27,12 @@
 	 			 <label>Titulo del grado</label>
 	 			 <br>
 	 			 
-	 			 <select ng-show="gradeTitles.length >= 1 " ng-model="applicant.gradeTitle_idGradeTitle">
-	 				<option ng-repeat="gradeTitle in gradeTitles" value="{{gradeTitle.idGradeTitle}}"> {{gradeTitle.gradeTitleName}}</option>
+	 			 <select ng-change="gradeTitleSelected()" ng-show="gradeTitles.length >= 1 " ng-model="applicant.gradeTitle_idGradeTitle">
+	 				<option ng-repeat="gradeTitle in gradeTitles" value="{{gradeTitle.idGradeTitle}} {{gradeTitle.gradeTitleName}}"> {{gradeTitle.gradeTitleName}}</option>
 	 			 </select>	 
-	 			 			
-				 <input ng-show="gradeTitles.length <= 0"type="text" placeholder="Introduce el nombre" name="applicant_has_gradeTitleName" ng-model="applicant.applicant_has_gradeTitleName" />
+	 		    
+	 		   
+				 <input required ng-show="gradeTitles.length <= 0 || another == true" type="text" placeholder="Introduce el nombre" name="applicant_has_gradeTitleName" ng-model="applicant.applicant_has_gradeTitleName" />
 	         	 <!-- <span ng-show="applicantGradeTitleForm.applicant_has_gradeTitleName.$error.required">Introduce el titulo del grado/curso.</span> -->
 	 		</div> 
 	 			

@@ -94,58 +94,38 @@ class Applicant extends CI_Controller {
 	
 	public function inputApplicantGrade(){
 		if(
-		$this->input->post("applicant_has_gradeTitleTitulation") &&		
-		$this->input->post("applicant_has_gradeTitleName") && 
+	
 		$this->input->post("applicant_has_gradeTitleStartDate") && 	
-		$this->input->post("applicant_has_gradeTitleEndDate")		 
+		$this->input->post("applicant_has_gradeTitleTitulation") &&	
+		$this->input->post("applicant_has_gradeTitleName")
+			 
 		){   	
 		
 			
-			$this->form_validation->set_rules('applicantName', 'Nombre', 'required');
-	    	$this->form_validation->set_rules('applicantLastName', 'Apellido', 'required');
-			$this->form_validation->set_rules('applicantBirthDate', 'Nombre', 'required');
-	    	$this->form_validation->set_rules('applicantPostcode', 'Apellido', 'required');
-			$this->form_validation->set_rules('town_idTown', 'Nombre', 'required');
+			$this->form_validation->set_rules('applicant_has_gradeTitleStartDate', 'Fecha inico', 'required');
+	    	$this->form_validation->set_rules('applicant_has_gradeTitleTitulation', 'Titulación', 'required');
+			$this->form_validation->set_rules('applicant_has_gradeTitleName', 'Nombre del grado', 'required');
+	    
 			
-			if($this->input->post("applicantAddress")){
-				$this->form_validation->set_rules('applicantAddress', 'Nombre', 'required');			
+			if($this->input->post("applicant_has_gradeTitleEndDate")){
+				$this->form_validation->set_rules('applicant_has_gradeTitleEndDate', 'Fecha fin', 'required');			
 			}
 			
-			if($this->input->post("applicantPhone1")){
-				$this->form_validation->set_rules('applicantPhone1', 'Nombre', 'required');				
+			if($this->input->post("gradeTitle_idGradeTitle")){
+				$this->form_validation->set_rules('gradeTitle_idGradeTitle', 'Nombre', 'required');				
 			}
-			
-			if($this->input->post("applicantPhone2")){
-				$this->form_validation->set_rules('applicantPhone2', 'Nombre', 'required');				
-			}
-			
-	    	$this->form_validation->set_rules('applicantWorkPermit', 'Apellido', 'required');
-			$this->form_validation->set_rules('applicantDriverLicense', 'Apellido', 'required');
-			$this->form_validation->set_rules('applicantVehicle', 'Nombre', 'required');
-	    	$this->form_validation->set_rules('applicantWorkStatus', 'Apellido', 'required');
-			$this->form_validation->set_rules('applicantStatus', 'Apellido', 'required');
-	    	$this->form_validation->set_message	('required', 'El campo  %s es obligatorio.');
 	
 	 		
 	        if($this->form_validation->run() == false){           
 	                echo json_encode(array("respuesta" => "error_form"));		  
 			}else{				    
 					$applicantData  = array(		        
-			      	"user_idUser" => $this->session->userdata['idUser'],
-					"applicantName" => $this->input->post("applicantName"),
-					"applicantLastName"  => $this->input->post("applicantLastName"),
-					"applicantBirthDate"  => $this->input->post("applicantBirthDate"),
-					"applicantPostcode"  => $this->input->post("applicantPostcode"),
-					"town_idTown"  => $this->input->post("town_idTown"),
-					"applicantAddress" => $this->input->post("applicantAddress"),			 	
-					"applicantWorkPermit"  => $this->input->post("applicantWorkPermit"),
-					"applicantPhone1" => $this->input->post("applicantPhone1"),
-				 	"applicantPhone2" => $this->input->post("applicantPhone2"),
-					"applicantDriverLicense"  => $this->input->post("applicantDriverLicense"),
-					"applicantVehicle"  => $this->input->post("applicantVehicle"),
-					"applicantWorkStatus" => $this->input->post("applicantWorkStatus"),
-					"applicantStatus"  => $this->input->post("applicantStatus"),
-					"applicantLastConnection" => date("Y-m-d")				
+			      	"applicant_user_idUser" => $this->session->userdata['idUser'],
+					"gradeTitle_idGradeTitle" => $this->input->post("gradeTitle_idGradeTitle"),
+					"applicant_has_gradeTitleStartDate"  => $this->input->post("applicant_has_gradeTitleStartDate"),
+					"applicant_has_gradeTitleEndDate"  => $this->input->post("applicant_has_gradeTitleEndDate"),
+					"applicant_has_gradeTitleName"  => $this->input->post("applicant_has_gradeTitleName"),
+					"applicant_has_gradeTitleTitulation"  => $this->input->post("applicant_has_gradeTitleTitulation")					
 			        );					
 				
 					$updateApplicant = $this->Applicant_model->updateApplicant($applicantData);
