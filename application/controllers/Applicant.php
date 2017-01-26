@@ -119,7 +119,7 @@ class Applicant extends CI_Controller {
 	        if($this->form_validation->run() == false){           
 	                echo json_encode(array("respuesta" => "error_form"));		  
 			}else{				    
-					$applicantData  = array(		        
+					$applicantGradeTitle  = array(		        
 			      	"applicant_user_idUser" => $this->session->userdata['idUser'],
 					"gradeTitle_idGradeTitle" => $this->input->post("gradeTitle_idGradeTitle"),
 					"applicant_has_gradeTitleStartDate"  => $this->input->post("applicant_has_gradeTitleStartDate"),
@@ -128,11 +128,11 @@ class Applicant extends CI_Controller {
 					"applicant_has_gradeTitleTitulation"  => $this->input->post("applicant_has_gradeTitleTitulation")					
 			        );					
 				
-					$updateApplicant = $this->Applicant_model->updateApplicant($applicantData);
+					$updateApplicantGradeTitle  = $this->Applicant_model->updateApplicantGradeTitle ($applicantGradeTitle);
 				
 					   
 			
-					if($updateApplicant === TRUE){								
+					if($updateApplicantGradeTitle === TRUE){								
 						
 						echo json_encode(array("respuesta" => "success"));					
 						                   

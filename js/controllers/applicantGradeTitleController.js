@@ -24,7 +24,7 @@ app.controller("applicantGradeTitleController", function($scope, $location, Titu
 	$scope.gradeTitleSelected = function(){			
 		str = $scope.applicant["gradeTitle_idGradeTitle"];
 		$scope.applicant["applicant_has_gradeTitleName"] = str.substring(str.indexOf(" ")+1);
-		$scope.applicant["gradeTitle_idGradeTitle"] = str.substring(0, str.indexOf(" "));
+		//$scope.applicant["gradeTitle_idGradeTitle"] = str.substring(0, str.indexOf(" "));
 		if($scope.applicant["applicant_has_gradeTitleName"] == "Otro"){
 			$scope.another = true;
 			$scope.applicant["applicant_has_gradeTitleName"] = null;
