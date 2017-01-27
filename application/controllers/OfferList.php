@@ -4,7 +4,7 @@ class OfferList extends CI_Controller {
         public function __construct()
         {
                 parent::__construct();
-                $this->load->model('Login_model');
+                $this->load->model('Offer_model');
                 $this->load->helper('url_helper','form');
 	    		$this->load->library(array('form_validation'));
         }
@@ -21,9 +21,9 @@ class OfferList extends CI_Controller {
         	}       		
         
 			$this->load->view('templates/header');
-			$this->load->view('templates/menuLogin');
 	        $this->load->view('login/OfferList_view' , $data);		
 	        $this->load->view('templates/footer');
+			
 			  
 			  
 		}
@@ -38,6 +38,8 @@ class OfferList extends CI_Controller {
 		$this->input->post("fechalimi") && 	
 		$this->input->post("estado") &&	
 		$this->input->post("description") 	
+		
+		
 		
 		){
 			

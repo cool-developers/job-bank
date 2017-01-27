@@ -3,7 +3,7 @@ class Offer_model extends CI_Model {
 		
 		
 	function updateOfferList($offerListData){
-		  $this->db->where("user_idUser",$offerListData["user_idUser"]);
+		  $this->db->where("idOffer",$offerListData["idOffer"]);
 		    $check_exists = $this->db->get("offer");
 		    if($check_exists->num_rows() == 0){
 		        $this->db->insert("offer", $offerListData);
