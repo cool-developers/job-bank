@@ -61,6 +61,9 @@ class OfferList extends CI_Controller {
 					 );					
 				
 					$updateOfferList = $this->Offer_model->updateOfferList($offerListData);
+					
+					
+					
 				
 					if($updateOfferList === TRUE){								
 						
@@ -68,6 +71,7 @@ class OfferList extends CI_Controller {
 						                   
 	                }else{
 	                    echo json_encode(array("respuesta" => "exists"));
+						
 	                }			    	
 			
 		}
