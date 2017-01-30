@@ -34,30 +34,48 @@ class OfferList extends CI_Controller {
 		
 		public function updateOffer(){
 		if(
-		$this->input->post("title") &&
-		$this->input->post("fechalimi") && 	
-		$this->input->post("estado") &&	
-		$this->input->post("description") 	
-		
-		
-		
+		$this->input->post("offerEnterpisePhone") &&
+		$this->input->post("offerEnterpriseName") && 	
+		$this->input->post("offerEnterpriseEmail") &&	
+		$this->input->post("offerJobTitle") &&
+		$this->input->post("offerEndDate") && 	
+		$this->input->post("offerType") &&	
+		$this->input->post("offerDescription") 	&&
+		$this->input->post("offerVacant") &&	
+		$this->input->post("day_idDay") 	&&
+		$this->input->post("contract_idContract") &&			
+		$this->input->post("gradeTitle_idGradeTitle") 		
 		){
 			
-			$this->form_validation->set_rules('tittle', 'Titulo', 'required');
-	    	$this->form_validation->set_rules('description', 'Descripcion', 'required');
-			$this->form_validation->set_rules('fechalimi', 'Titulo', 'required');
-			$this->form_validation->set_rules('estado', 'Titulo', 'required');
+		 	$this->form_validation->set_rules('offerEnterpisePhone', 'Titulo', 'required');
+	    	$this->form_validation->set_rules('offerEnterpriseName', 'Descripcion', 'required');
+			$this->form_validation->set_rules('offerEnterpriseEmail', 'Titulo', 'required');
+			$this->form_validation->set_rules('offerJobTitle', 'Titulo', 'required');
+	    	$this->form_validation->set_rules('offerEndDate', 'Descripcion', 'required');
+			$this->form_validation->set_rules('offerType', 'Titulo', 'required');
+			$this->form_validation->set_rules('offerDescription', 'Titulo', 'required');
+			$this->form_validation->set_rules('offerVacant', 'Titulo', 'required');
+			$this->form_validation->set_rules('day_idDay', 'Titulo', 'required');
+			$this->form_validation->set_rules('gradeTitle_idGradeTitle', 'Titulo', 'required');
+			$this->form_validation->set_rules('contract_idContract', 'Titulo', 'required');
 			
 		if($this->form_validation->run() == false){           
-	                echo json_encode(array("respuesta" => "error_form"));		  
+	                echo json_encode(array("respuesta" => "error_form2"));		  
 			}else{
 				$offerListData  = array(		        
-			
-			      	"title" => $this->input->post("title"),
-					"description" => $this->input->post("description"),
-					"estado" => $this->input->post("estado"),
-					"fechalimi"  => $this->input->post("fechalimi")
 					
+					"offerEnterpisePhone" => $this->input->post("offerEnterpisePhone"),
+					"offerEnterpriseName" => $this->input->post("offerEnterpriseName"),
+					"offerEnterpriseEmail" => $this->input->post("offerEnterpriseEmail"),										
+			      	"offerJobTitle" => $this->input->post("offerJobTitle"),
+					"offerEndDate" => $this->input->post("offerEndDate"),
+					"offerType" => $this->input->post("offerType"),
+					"offerDescription"  => $this->input->post("offerDescription"),							
+			      	"offerVacant" => $this->input->post("offerVacant"),
+					"day_idDay" => $this->input->post("day_idDay"),
+					"gradeTitle_idGradeTitle" => $this->input->post("gradeTitle_idGradeTitle"),
+					"contract_idContract"  => $this->input->post("contract_idContract"),
+					"offerStartDate" => date("Y-m-d")	
 					 );					
 				
 					$updateOfferList = $this->Offer_model->updateOfferList($offerListData);
@@ -77,7 +95,7 @@ class OfferList extends CI_Controller {
 		}
 		
 		}else{
-            echo json_encode(array("respuesta" => "error_form"));
+            echo json_encode(array("respuesta" => "error_form3"));
         }
 		
 		

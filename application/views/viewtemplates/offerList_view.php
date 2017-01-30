@@ -7,38 +7,75 @@
 </ul>	
 <form name="offerForm">
 	<div>
+			 <label> Nombre de la empresa </label> <br>
+			 <input type="text" required placeholder="Introduce el nombre" name="offerEnterpriseName" ng-model="offer.offerEnterpriseName" />
+			 <br>
+			 
+			 <label> Email de la empresa </label> <br>
+			 <input type="email" required placeholder="Introduce el correo" name="offerEnterpriseEmail" ng-model="offer.offerEnterpriseEmail" />
+			  <br>
+			  
+			 <label> Teléfono de la empresa </label> <br>
+			 <input type="text" required placeholder="Introduce un titulo" name="offerEnterpisePhone" ng-model="offer.offerEnterpisePhone" />
+			 <br>					 
+			 
              <label>Titulo del puesto</label><br>	
-			 <input type="text" required placeholder="Introduce un titulo" name="title" ng-model="offer.title" />
+			 <input type="text" required placeholder="Introduce un titulo" name="offerJobTitle" ng-model="offer.offerJobTitle" />
              <!-- <input type="text" required ng-model="offer." /> -->
  			
- 			<br>
+ 			 <br>
              <label>Curso</label>
              <br>   	
                
- 			 <select ng-model="offer.selectedCurso" >
- 				<option ng-repeat="curso in GradeTitle" value="{{curso.idGradeTitle}}"> {{curso.gradeTitleName}}</option>
+ 			 <select ng-model="offer.gradeTitle_idGradeTitle" >
+ 				<option ng-repeat="gradeTitles in gradeTitle" value="{{gradeTitles.idGradeTitle}}"> {{gradeTitles.gradeTitleName}}</option>
  			 </select>	
  
  			 <br>
  			 
  			 <label>Fecha limite: </label>
- 			 <input type="date" name="fechalimi" step="1"  value="<?php echo date("Y-m-d");?>" ng-model="offer.fechalimi" />
+ 			 <input type="date" name="offerEndDate" step="1"  value="<?php echo date("Y-m-d");?>" ng-model="offer.offerEndDate" />
  			 
  			 <br>
  			 
  			 <label>Descripción: </label><br>
- 			 <textarea name="description" rows="6" cols="50" name="comment" ng-model="offer.description">Escriba aquí su descripción...</textarea>
+ 			 <textarea name="offerDescription" rows="6" cols="50" name="comment" ng-model="offer.offerDescription">Escriba aquí su descripción...</textarea>
  			 
  			 <br>
  			 <label>Tipo de contrato: </label><br>
- 			  <select ng-model="offer.selectedContract">
- 			 <option ng-repeat="Contract in Contracts" value="{{Contract.idContract}}"> {{Contract.contractName}}</option>
+ 			  <select ng-model="offer.contract_idContract">
+ 			 <option ng-repeat="contract in contracts" value="{{contract.idContract}}"> {{contract.contractName}}</option>
  			 </select><br>
  			 
- 			  <label>Idiomas: </label>
- 			  <select ng-model="offer.selectedLanguage">
- 				<option ng-repeat="Language in Languages" value="{{Language.idLanguage}}"> {{Language.languageName}}</option>
+ 			 <br>
+ 			 <label>Jornada: </label><br>
+ 			  <select ng-model="offer.day_idDay">
+ 			 <option ng-repeat="day in days" value="{{day.idDay}}"> {{day.dayName}}</option>
  			 </select><br>
+ 			 
+ 			 
+ 			 <label>Idiomas: </label> <br>
+ 			 
+ 			 <div ng-repeat="offer_has_language in offer_has_languages">
+ 			 	
+ 			 <select ng-model="offer_has_language.language_idLanguage">
+ 				<option ng-repeat="language in languages" value="{{language.idLanguage}}"> {{language.languageName}}</option>
+ 			 </select>
+ 			  <button class="remove" ng-show="$last" ng-click="removeChoice()">-</button>	
+ 			 
+ 			 </div>	 
+ 		
+   			 <button class="addfields" ng-click="addNewChoice()">Add fields</button>
+ 			 
+ 			 
+ 			 
+ 			  <label>Idiomas: </label> <br>
+ 			  <select ng-model="offer.selectedLanguage">
+ 				<option ng-repeat="language in languages" value="{{language.idLanguage}}"> {{language.languageName}}</option>
+ 			 </select><br>
+ 			 
+ 			 <label>Numero de vacantes: </label><br>	
+			 <input type="number" required name="offerVacant" ng-model="offer.offerVacant" />
  			 
  			 <!--
  			  <label>Conocimientos: </label>
@@ -50,17 +87,18 @@
  			 
  			 -->
  			 
- 			 </br>
- 			
- 			  <input type="radio" name="estado"  ng-model="offer.applicantWorkPermit" value="true"> Pribada<br>
-  			  <input type="radio" name="estado"  ng-model="offer.applicantWorkPermit" value="true"> Publica<br>
-
+ 			  </br>
+ 			  <label>Gestión: </label><br> 			  
+ 			  Pribada <input type="radio" name="Pribada"  ng-model="offer.offerType" value="true"> 
+  			  Publica <input type="radio" name="Publica"  ng-model="offer.offerType" value="false"> <br>
+			  <span ng-show = "offer.offerType == true">La oferta la gestionara el centro</span> 
+			  <span ng-show = "offer.offerType == false">La oferta la gestionara el propio sistema y sera publica para los alumnos</span> 
              
 
  
  		
  			 
-             <button ng-disabled="!offerForm.$valid" ng-click="updateOffer(offer)" type="submit" class="button radius large-5 columns">Regístrarme</button>
+             <button ng-disabled="!offerForm.$valid" ng-click="updateOffer()" type="submit" class="button radius large-5 columns">Regístrarme</button>
              <button type="reset" class="button radius alert large-5 columns">Reset</button>
  		 </div>   	
 </form>
