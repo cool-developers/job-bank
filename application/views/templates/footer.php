@@ -10,5 +10,6 @@
 		<script type="text/javascript" src="/job-bank/js/controllers/applicantListController.js"></script>
 		<script type="text/javascript" src="/job-bank/js/controllers/applicantDataController.js"></script>
 		<script type="text/javascript" src="/job-bank/js/controllers/applicantGradeTitleController.js"></script>
+		<script type="text/javascript" src="/job-bank/js/controllers/applicantExperienceController.js"></script>
 	</body>
 </html>

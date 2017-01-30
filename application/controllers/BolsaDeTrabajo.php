@@ -7,10 +7,16 @@ class BolsaDeTrabajo extends CI_Controller {
                 $this->load->model('Login_model');
                 $this->load->helper('url_helper','form');
 	    		$this->load->library('form_validation');
-        }
+        }		
 		
+			
+		public function logout(){
+			$array_items = array('email', 'rol' , 'logged_in', 'idUser' );
+			$this->session->unset_userdata($array_items);
+			redirect("Login");			
+		}
 		
-        public function index()
+	    public function index()
         {
         	if(!isset($this->session->userdata['email'])){        		
 				redirect("Login");					

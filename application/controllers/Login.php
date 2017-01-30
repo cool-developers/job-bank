@@ -5,6 +5,7 @@ class Login extends CI_Controller {
         {
                 parent::__construct();
                 $this->load->model('Login_model');
+				$this->load->model('Applicant_model');
                 $this->load->helper('url_helper','form');
 	    		$this->load->library(array('form_validation','email'));
         }
@@ -115,8 +116,17 @@ class Login extends CI_Controller {
 							'idUser' =>  $resultado['idUser']
 						); 
 						$this->session->set_userdata($user);
-						//redirect("http://127.0.0.1/job-bank/BolsaDeTrabajo");
-						echo json_encode(array("respuesta" => "success"));			
+						if($user["rol"] == 3){
+							$applicant = $this->Applicant_model->get_applicant($user["idUser"]);							
+							if($applicant){
+								echo json_encode(array("respuesta" => "success"));	
+							}else{
+								echo json_encode(array("respuesta" => "noData"));	
+							}
+						}else{			
+						//redirect("http://127.0.0.1/job-bank/BolsaDeTrabajo");	
+						echo json_encode(array("respuesta" => "success"));	
+						}		
 					}else{
 						echo json_encode(array("respuesta" => "notActive"));	
 					}
