@@ -17,3 +17,5 @@
 	<!-- <li>  <a href="#/CV">Curriculum</a> </li> -->
 	<?php } ?>
 </ul>
+
+<a href="http://127.0.0.1/job-bank/BolsaDeTrabajo/logout">Cerrar sesión</a>

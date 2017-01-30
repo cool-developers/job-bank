@@ -51,6 +51,24 @@ app.factory("GradeTitles",function($http){
 });
 
 
+app.factory("ProfessionalLevels",function($http){
+	return {
+		getProfessionalLevels : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/ProfessionalLevel/getProfessionalLevels');			
+			}
+	};
+});
+
+app.factory("Functions",function($http){
+	return {
+		getFunctions : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Functions/getFunctions');			
+			}
+	};
+});
+
+
+
 app.factory("GradeTitle",function($http){
 	return {
 		getGradeTitle : function(){			
@@ -128,6 +146,9 @@ function convertToData(object){
 	}			
 	return data.substr(0, data.length - 1);
 };
+
+
+
 
 
 //factoria para registrar usuarios a la que le inyectamos la otra factoria
@@ -237,6 +258,33 @@ app.factory("inputApplicantGrades", function($http, mensajesFlash){
 	};	
 	
 });
+app.factory("inputApplicantExperiences", function($http, mensajesFlash){
+	return {
+		inputApplicantExperience : function(data, link){
+			return $http({
+				url: link,
+                method: "POST",
+                data : data,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(data){
+                    if(data.respuesta == "success"){
+                        mensajesFlash.clear();
+                        mensajesFlash.show_success("El registro se ha procesado correctamente.");
+                    }else if(data.respuesta == "exists"){
+                        mensajesFlash.clear();
+                        mensajesFlash.show_error("El email introducido ya existe en la bd.");
+                    }else if(data.respuesta == "error_form"){
+                        mensajesFlash.show_error("Ha ocurrido algún error al realizar el registro!.");
+                    }
+                }).error(function(){
+                    mensajesFlash.show_error("Ha ocurrido algún error al realizar el registro!.");
+                });			
+		}
+	};	
+	
+});
+
+
 
 
 //factoria para loguear y desloguear usuarios en angularjs
@@ -254,6 +302,8 @@ app.factory("authUsers", function($http, $location,  mensajesFlash){
                 if(data.data.respuesta == "success"){             	
                     mensajesFlash.clear();                                      
                 window.location.href = 'http://127.0.0.1/job-bank/BolsaDeTrabajo#/offerList';
+                }else if(data.data.respuesta == "noData"){                	
+                window.location.href = 'http://127.0.0.1/job-bank/BolsaDeTrabajo#/applicantData';
                 }else if(data.data.respuesta == "incomplete_form"){
                     mensajesFlash.show("Debes introducir bien los datos del formulario");
                 }else if(data.data.respuesta == "failed"){

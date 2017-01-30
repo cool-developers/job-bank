@@ -545,13 +545,13 @@ class Migration_DataBaseStructure extends CI_Migration {
 		
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`applicant_has_gradeTitle` (
-		  `applicant_user_idUser` INT NOT NULL,
+		 `applicant_user_idUser` INT NOT NULL,
 		  `gradeTitle_idGradeTitle` INT NULL,
 		  `applicant_has_gradeTitleStartDate` DATE NOT NULL,
 		  `applicant_has_gradeTitleEndDate` DATE NULL,
-		  `applicant_has_gradeTitleName` VARCHAR(45) NOT NULL,
+		  `applicant_has_gradeTitleName` VARCHAR(128) NOT NULL,
 		  `applicant_has_gradeTitleTitulation` VARCHAR(45) NOT NULL,
-		  PRIMARY KEY (`applicant_user_idUser`, `gradeTitle_idGradeTitle`),
+		  PRIMARY KEY (`applicant_user_idUser`, `applicant_has_gradeTitleName`),
 		  INDEX `fk_applicant_has_gradeTitle_gradeTitle1_idx` (`gradeTitle_idGradeTitle` ASC),
 		  INDEX `fk_applicant_has_gradeTitle_applicant1_idx` (`applicant_user_idUser` ASC),
 		  CONSTRAINT `fk_applicant_has_gradeTitle_applicant1`

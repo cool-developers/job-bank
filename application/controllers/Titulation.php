@@ -13,7 +13,12 @@ class Titulation extends CI_Controller {
 			echo json_encode($tituations);
 		}
 		
-	
+		public function getGradeTitles(){
+			$idTitulation = $this->input->post("idTitulation");				
+			$gradeTitles = $this->GradeTitle_model->get_gradetitles($idTitulation);
+			echo json_encode($gradeTitles);
+		}
+		
        
 }
 ?>

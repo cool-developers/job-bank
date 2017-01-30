@@ -8192,7 +8192,7 @@ class Migration_DataBaseFields extends CI_Migration {
        ");
        
        $this->db->query("
-       INSERT INTO `department`(`departmentName`) VALUES ('Electrónica'), ('Química'), ('Informática') , ('Comercio y Marketing') , ('Administración y Finanzas')
+       INSERT INTO `department`(`departmentName`) VALUES ('Electrónica'), ('Química'), ('Informática') , ('Comercio y Marketing') , ('Administración y Finanzas') , ('Gestión')
        ");
        
        $this->db->query("
@@ -8205,7 +8205,9 @@ class Migration_DataBaseFields extends CI_Migration {
        ('Técnico superior en gestión de ventas y espacios comerciales', 4 , 4),
        ('Técnico superior en laboratorio de ánalisis y de control de calidad', 4 , 2),
        ('Técnico superior en desarrollo de aplicaciones web', 4 , 3),
-       ('Técnico superior en administración de sistemas informáticos en red', 4 , 3)
+       ('Técnico superior en administración de sistemas informáticos en red', 4 , 3),
+       ('Otro', 4 , 6),
+	   ('Otro', 2, 6)
        ");
        
        $this->db->query("
