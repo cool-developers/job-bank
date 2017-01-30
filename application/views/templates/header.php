@@ -3,6 +3,8 @@
 <html lang="es" ng-app="app">
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/job-bank/css/index.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 		<!--
 		<link  rel="stylesheet" type="text/css" href="/job-bank/css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="/job-bank/css/foundation.min.css" />
@@ -14,23 +16,9 @@
 			var root = '<?php echo base_url(); ?>';
 		</script>
 		
-		<!--
-		 <img src="http://localhost/job-bank/img/icono.png"; alt="Smiley face" height="42" width="42">
-		 
-		 <p>ES</p>
-		 <p>/</p>
-		 <p>EU</p>
-		 
- 		<img src="http://localhost/job-bank/img/add.png"; alt="Smiley face" height="42" width="42">	
- 			
-		<P>NOMBRE</P>
 		
-		 <img src="http://localhost/job-bank/img/!.png"; alt="Smiley face" height="42" width="42">	
-		 <img src="http://localhost/job-bank/img/ajustes.png"; alt="Smiley face" height="42" width="42">	
-		 <br>
 		 
-		 <button class="button success" ng-click="">MENU</button>
-		-->
+		
 		
 	           
               

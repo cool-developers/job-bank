@@ -6,6 +6,7 @@
 	echo validation_errors("<li>","</li>"); ?>
 </ul>	
 
+
 <?php echo form_open('login'); ?>
 
  
