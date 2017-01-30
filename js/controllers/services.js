@@ -77,6 +77,10 @@ app.factory("GradeTitle",function($http){
 	};
 });
 
+
+
+
+/*Curso IKER
 app.factory("Curso",function($http){
 	return {
 		getCurso : function(idGradeTitle){			
@@ -89,7 +93,7 @@ app.factory("Curso",function($http){
         }       
     };
 });
-
+*/
 
 app.factory("Contract",function($http){
 	return {
@@ -107,6 +111,15 @@ app.factory("Language",function($http){
 			}
 	};
 });
+
+app.factory("Day",function($http){
+	return {
+		getDay : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Day/getDay');			
+			}
+	};
+});
+
 
 
 
