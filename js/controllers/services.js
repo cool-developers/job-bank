@@ -112,6 +112,16 @@ app.factory("Language",function($http){
 	};
 });
 
+
+app.factory("LanguageLevel",function($http){
+	return {
+		getLanguageLevel : function(){			
+			return  $http.get('http://127.0.0.1/job-bank/LanguageLevel/getLanguageLevel');			
+			}
+	};
+});
+
+
 app.factory("Day",function($http){
 	return {
 		getDay : function(){			

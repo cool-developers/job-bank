@@ -53,26 +53,105 @@
  			 <option ng-repeat="day in days" value="{{day.idDay}}"> {{day.dayName}}</option>
  			 </select><br>
  			 
+ 					 
+ 			 <label>Idiomas: </label> <br><br>
+ 			
  			 
- 			 <label>Idiomas: </label> <br>
  			 
  			 <div ng-repeat="offer_has_language in offer_has_languages">
  			 	
- 			 <select ng-model="offer_has_language.language_idLanguage">
- 				<option ng-repeat="language in languages" value="{{language.idLanguage}}"> {{language.languageName}}</option>
- 			 </select>
- 			  <button class="remove" ng-show="$last" ng-click="removeChoice()">-</button>	
+ 			 	<table>
+ 			 		<tr>
+ 			 			<td> <label>Idioma: </label> </td>
+ 			 			<td> <label>Titulación mínima:<input ng-change="titulationChange(offer_has_language.id)" type="checkbox" ng-model="Titulation"> </label>    </td>
+ 			 		</tr>
+ 			 		<tr> 			 				
+ 			 			<td>  
+ 			 				 <select ng-model="offer_has_language.language_idLanguage">
+								<option ng-repeat="language in languages" value="{{language.idLanguage}}"> {{language.languageName}}</option>
+							 </select>
+						</td> 			 			
+ 			 			<td>
+							 <select ng-show="Titulation" ng-model="offer_has_language.languageTitulationLevel_idLanguageLevel">
+								<option ng-repeat="languagelevel in languagelevels" value="{{languagelevel.idLanguageLevel}}"> {{languagelevel.languageLevelName}}</option>
+							 </select>
+						</td>
+ 			 		</tr>
+ 			 		<tr>
+ 			 			<td>Nivel Leido</td>
+ 			 			<td>Nivel Escrito</td>
+ 			 			<td>Nivel Oido</td>
+ 			 			<td>Nivel Hablado</td>
+ 			 			<td>Nivel Expresado</td>
+ 			 		</tr>
+ 			 		<tr>
+ 			 			<td>
+ 			 				 <select ng-hide="Titulation" ng-model="offer_has_language.languageReadLevel_idLanguageLevel">
+								<option ng-repeat="languagelevel in languagelevels" value="{{languagelevel.idLanguageLevel}}"> {{languagelevel.languageLevelName}}</option>
+							 </select>
+ 			 			</td>
+ 			 			<td>
+ 			 				 <select ng-hide="Titulation" ng-model="offer_has_language.languageWriteLevel_idLanguageLevel">
+								<option ng-repeat="languagelevel in languagelevels" value="{{languagelevel.idLanguageLevel}}"> {{languagelevel.languageLevelName}}</option>
+							 </select>
+ 			 			</td>
+ 			 			<td>
+ 			 				 <select ng-hide="Titulation" ng-model="offer_has_language.languageTitulationLevel_idLanguageLevel">
+								<option ng-repeat="languagelevel in languagelevels" value="{{languagelevel.idLanguageLevel}}"> {{languagelevel.languageLevelName}}</option>
+							 </select>
+ 			 			</td>
+ 			 			<td>
+ 			 				 <select ng-hide="Titulation" ng-model="offer_has_language.languageTitulationLevel_idLanguageLevel">
+								<option ng-repeat="languagelevel in languagelevels" value="{{languagelevel.idLanguageLevel}}"> {{languagelevel.languageLevelName}}</option>
+							 </select>
+ 			 			</td>
+ 			 			<td>
+ 			 				 <select ng-hide="Titulation" ng-model="offer_has_language.languageTitulationLevel_idLanguageLevel">
+								<option ng-repeat="languagelevel in languagelevels" value="{{languagelevel.idLanguageLevel}}"> {{languagelevel.languageLevelName}}</option>
+							 </select>
+ 			 			</td>
+ 			 		</tr>
+ 			 		
+ 			 	</table> 			 	
+ 			 		 
+				 <button type="button" class="remove" ng-show="$last" ng-click="removeChoice()">-</button>	
  			 
  			 </div>	 
- 		
-   			 <button class="addfields" ng-click="addNewChoice()">Add fields</button>
+ 	
+   			 <button type="button" class="addfields" ng-click="addNewChoice()">Add fields</button>
+ 			 
+ 			 <div id="choicesDisplay">
+			      {{ offer_has_languages }}
+			 </div>
  			 
  			 
+ 			 <!--
+ 			 	<div ng-app="angularjs-starter" ng-controller="MainCtrl">
+			   <fieldset  data-ng-repeat="choice in choices">
+			      <select ng-model="choice.option">
+			         <option value>Select</option>
+			         <option value="Mobile">Mobile</option>
+			         <option value="Office">Office</option>
+			         <option value="Home">Home</option>
+			      </select>
+			      <input type="text" ng-model="choice.number" name="" placeholder="Enter mobile number">
+			      <button class="remove" ng-show="$last" ng-click="removeChoice()">-</button>
+			   </fieldset>
+			   <button class="addfields" ng-click="addNewChoice()">Add fields</button>
+			       
+			   <div id="choicesDisplay">
+			      {{ choices }}
+			   </div>
+			</div>
+ 			 -->
  			 
+ 			 <br><br>
  			  <label>Idiomas: </label> <br>
  			  <select ng-model="offer.selectedLanguage">
  				<option ng-repeat="language in languages" value="{{language.idLanguage}}"> {{language.languageName}}</option>
  			 </select><br>
+ 			 
+
  			 
  			 <label>Numero de vacantes: </label><br>	
 			 <input type="number" required name="offerVacant" ng-model="offer.offerVacant" />

@@ -342,21 +342,21 @@ class Migration_DataBaseStructure extends CI_Migration {
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`offer_has_language` (
 		  `offer_idOffer` INT NOT NULL,
 		  `language_idLanguage` INT NOT NULL,
-		  `languageTitle_idLanguageTitle` INT NOT NULL,
-		  `languageReadLevel_idLanguageLevel` INT NOT NULL,
-		  `languageWriteLevel_idLanguageLevel` INT NOT NULL,
-		  `languageListenLevel_idLanguageLevel2` INT NOT NULL,
-		  `languageSpeakLevel_idLanguageLevel` INT NOT NULL,
-		  `languageExpresateLevel_idLanguageLevel` INT NOT NULL,
+		  `languageReadLevel_idLanguageLevel` INT NULL,
+		  `languageWriteLevel_idLanguageLevel` INT NULL,
+		  `languageListenLevel_idLanguageLevel2` INT NULL,
+		  `languageSpeakLevel_idLanguageLevel` INT NULL,
+		  `languageExpresateLevel_idLanguageLevel` INT NULL,
+		  `languageTitulationLevel_idLanguageLevel` INT NULL,
 		  PRIMARY KEY (`offer_idOffer`, `language_idLanguage`),
 		  INDEX `fk_offer_has_language_language1_idx` (`language_idLanguage` ASC),
 		  INDEX `fk_offer_has_language_offer1_idx` (`offer_idOffer` ASC),
-		  INDEX `fk_offer_has_language_languageTitle1_idx` (`languageTitle_idLanguageTitle` ASC),
 		  INDEX `fk_offer_has_language_languageLevel1_idx` (`languageReadLevel_idLanguageLevel` ASC),
 		  INDEX `fk_offer_has_language_languageLevel2_idx` (`languageWriteLevel_idLanguageLevel` ASC),
 		  INDEX `fk_offer_has_language_languageLevel3_idx` (`languageListenLevel_idLanguageLevel2` ASC),
 		  INDEX `fk_offer_has_language_languageLevel4_idx` (`languageSpeakLevel_idLanguageLevel` ASC),
 		  INDEX `fk_offer_has_language_languageLevel5_idx` (`languageExpresateLevel_idLanguageLevel` ASC),
+		  INDEX `fk_offer_has_language_languageLevel6_idx` (`languageTitulationLevel_idLanguageLevel` ASC),
 		  CONSTRAINT `fk_offer_has_language_offer1`
 		    FOREIGN KEY (`offer_idOffer`)
 		    REFERENCES `jobBankDB`.`offer` (`idOffer`)
@@ -365,11 +365,6 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  CONSTRAINT `fk_offer_has_language_language1`
 		    FOREIGN KEY (`language_idLanguage`)
 		    REFERENCES `jobBankDB`.`language` (`idLanguage`)
-		    ON DELETE NO ACTION
-		    ON UPDATE NO ACTION,
-		  CONSTRAINT `fk_offer_has_language_languageTitle1`
-		    FOREIGN KEY (`languageTitle_idLanguageTitle`)
-		    REFERENCES `jobBankDB`.`languageTitle` (`idLanguageTitle`)
 		    ON DELETE NO ACTION
 		    ON UPDATE NO ACTION,
 		  CONSTRAINT `fk_offer_has_language_languageLevel1`
@@ -396,6 +391,11 @@ class Migration_DataBaseStructure extends CI_Migration {
 		    FOREIGN KEY (`languageExpresateLevel_idLanguageLevel`)
 		    REFERENCES `jobBankDB`.`languageLevel` (`idLanguageLevel`)
 		    ON DELETE NO ACTION
+		    ON UPDATE NO ACTION,
+		  CONSTRAINT `fk_offer_has_language_languageLevel6`
+		    FOREIGN KEY (`languageTitulationLevel_idLanguageLevel`)
+		    REFERENCES `jobBankDB`.`languageLevel` (`idLanguageLevel`)
+		    ON DELETE NO ACTION
 		    ON UPDATE NO ACTION)
 		ENGINE = InnoDB
 		");
@@ -405,21 +405,21 @@ class Migration_DataBaseStructure extends CI_Migration {
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`applicant_has_language` (
 		  `applicant_user_idUser` INT NOT NULL,
 		  `language_idLanguage` INT NOT NULL,
-		  `languageTitle_idLanguageTitle` INT NOT NULL,
-		  `languageReadLevel_idLanguageLevel` INT NOT NULL,
-		  `languageWriteLevel_idLanguageLevel` INT NOT NULL,
-		  `languageListenLevel_idLanguageLevel` INT NOT NULL,
-		  `languageSpeakLevel_idLanguageLevel` INT NOT NULL,
-		  `languageExpresateLevel_idLanguageLevel` INT NOT NULL,
+		  `languageReadLevel_idLanguageLevel` INT NULL,
+		  `languageWriteLevel_idLanguageLevel` INT NULL,
+		  `languageListenLevel_idLanguageLevel` INT NULL,
+		  `languageSpeakLevel_idLanguageLevel` INT NULL,
+		  `languageExpresateLevel_idLanguageLevel` INT NULL,
+		  `languageTiulationLevel_idLanguageLevel` INT NULL,
 		  PRIMARY KEY (`applicant_user_idUser`, `language_idLanguage`),
 		  INDEX `fk_applicant_has_language_language1_idx` (`language_idLanguage` ASC),
 		  INDEX `fk_applicant_has_language_applicant1_idx` (`applicant_user_idUser` ASC),
-		  INDEX `fk_applicant_has_language_languageTitle1_idx` (`languageTitle_idLanguageTitle` ASC),
 		  INDEX `fk_applicant_has_language_languageLevel1_idx` (`languageReadLevel_idLanguageLevel` ASC),
 		  INDEX `fk_applicant_has_language_languageLevel2_idx` (`languageWriteLevel_idLanguageLevel` ASC),
 		  INDEX `fk_applicant_has_language_languageLevel3_idx` (`languageListenLevel_idLanguageLevel` ASC),
 		  INDEX `fk_applicant_has_language_languageLevel4_idx` (`languageSpeakLevel_idLanguageLevel` ASC),
 		  INDEX `fk_applicant_has_language_languageLevel5_idx` (`languageExpresateLevel_idLanguageLevel` ASC),
+		  INDEX `fk_applicant_has_language_languageLevel6_idx` (`languageTiulationLevel_idLanguageLevel` ASC),
 		  CONSTRAINT `fk_applicant_has_language_applicant1`
 		    FOREIGN KEY (`applicant_user_idUser`)
 		    REFERENCES `jobBankDB`.`applicant` (`user_idUser`)
@@ -428,11 +428,6 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  CONSTRAINT `fk_applicant_has_language_language1`
 		    FOREIGN KEY (`language_idLanguage`)
 		    REFERENCES `jobBankDB`.`language` (`idLanguage`)
-		    ON DELETE NO ACTION
-		    ON UPDATE NO ACTION,
-		  CONSTRAINT `fk_applicant_has_language_languageTitle1`
-		    FOREIGN KEY (`languageTitle_idLanguageTitle`)
-		    REFERENCES `jobBankDB`.`languageTitle` (`idLanguageTitle`)
 		    ON DELETE NO ACTION
 		    ON UPDATE NO ACTION,
 		  CONSTRAINT `fk_applicant_has_language_languageLevel1`
@@ -457,6 +452,11 @@ class Migration_DataBaseStructure extends CI_Migration {
 		    ON UPDATE NO ACTION,
 		  CONSTRAINT `fk_applicant_has_language_languageLevel5`
 		    FOREIGN KEY (`languageExpresateLevel_idLanguageLevel`)
+		    REFERENCES `jobBankDB`.`languageLevel` (`idLanguageLevel`)
+		    ON DELETE NO ACTION
+		    ON UPDATE NO ACTION,
+		  CONSTRAINT `fk_applicant_has_language_languageLevel6`
+		    FOREIGN KEY (`languageTiulationLevel_idLanguageLevel`)
 		    REFERENCES `jobBankDB`.`languageLevel` (`idLanguageLevel`)
 		    ON DELETE NO ACTION
 		    ON UPDATE NO ACTION)

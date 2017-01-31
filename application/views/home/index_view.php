@@ -1,4 +1,4 @@
-
+<!--
 <header>
 	<img src="http://localhost/job-bank/img/icono.png"; alt="Smiley face" height="42" width="42">
 		 
@@ -18,7 +18,7 @@
 	
 	
 </header>
-
+-->
 
 <div>		
 	<div ng-view></div>

@@ -155,7 +155,7 @@ class Login extends CI_Controller {
 			}else{
 				$email = $this->input->post("email");
                 $password = password_hash($this->input->post("password"), PASSWORD_DEFAULT);	
-				$rol = 2;				
+				$rol = 3;				
 				$hash = password_hash(rand(0,1000) + " " + rand(0,1000) , PASSWORD_DEFAULT);   
 				$active = FALSE;
 				$loginUser = $this->Login_model->signupUser($email,$password,$rol,$hash,$active);      
