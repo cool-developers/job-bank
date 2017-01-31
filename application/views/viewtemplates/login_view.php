@@ -1,5 +1,5 @@
 <h1 class="subheader">{{ saludo }}</h1>
-
+<div class="formpadre">
 <div class=form>
 <form name="loginUserForm"> 
         <div>
@@ -27,7 +27,7 @@
 <div class=form1>
 
 
-<h1>BOLSA DE TRABAJO</h1>
+<h1>BOLSA DE TRABAJO</h1><br>
 
 <p>¿Buscas profesionales en nuestro centro?</p>
 	
@@ -36,4 +36,5 @@
 
 <button class="button success" ng-click="toSignup()">Registrarse</button>
 
+</div>
 </div>
