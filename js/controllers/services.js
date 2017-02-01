@@ -343,3 +343,86 @@ app.factory("authUsers", function($http, $location,  mensajesFlash){
 });
 
 
+app.directive("languageDirective", ["Language","LanguageLevel",function(Language, LanguageLevel){
+	
+return {
+	restrict: "E",
+	replace: true,
+	scope: {
+		offer_has_languages : "=ngModel"
+	},
+	required: "?ngModel",
+	templateUrl: "/job-bank/templates/get/languagedirectivetemplate",
+	link: function(scope, element, attrs){
+		scope.offer_has_languages =[];
+		
+		scope.required = false;
+		    
+     	Language.getLanguage().then(function (Language){
+			scope.languages = Language.data;
+		});
+		
+		LanguageLevel.getLanguageLevel().then(function (LanguageLevel){
+		 	scope.languagelevels = LanguageLevel.data;
+		});
+	
+		
+		
+		
+	    scope.titulationChange = function(num){
+	
+			scope.offer_has_languages = scope.offer_has_languages.filter(function(l){ 
+				if(l.id==num) { 
+					l.languageTitulationLevel_idLanguageLevel = null;
+					l.languageReadLevel_idLanguageLevel = null;
+					l.languageWriteLevel_idLanguageLevel = null;
+					l.languageListenLevel_idLanguageLevel = null;
+					l.languageSpeakLevel_idLanguageLevel = null;
+					l.languageExpresateLevel_idLanguageLevel = null;
+					}  
+				return l;
+			
+			});	
+			
+		};    
+
+      
+     
+      scope.cont = 0;
+    
+      scope.addNewChoice = function() {
+ 		scope.required = true;
+      	if(scope.offer_has_languages.length == 0){
+      		
+      	  scope.cont++;
+		  scope.offer_has_languages.push({'id': scope.cont , 'language_idLanguage' : null} );      		
+      	}else{
+      		console.log();
+      		language = scope.offer_has_languages[scope.offer_has_languages.length - 1]["language_idLanguage"];
+           	            	
+	      	if (language!= null ){
+	      		 //scope.languages = scope.languages.filter(function (l) {return l.idLanguage != language; });
+	      		 scope.cont++;
+		 		 scope.offer_has_languages.push({'id': scope.cont});
+	      	}else{
+	      		scope.required = true;
+	      	}
+      	}   	    	
+	   
+	  };
+	  
+	  scope.languageSelected = function(){
+	  	scope.required = false;
+	  };
+	    
+	  scope.removeChoice = function(num) {	    
+	    scope.offer_has_languages = scope.offer_has_languages.filter(function(l) { return l.id != num; });
+	  };	
+	  
+	  
+	  
+	}
+};
+}]);
+
+
