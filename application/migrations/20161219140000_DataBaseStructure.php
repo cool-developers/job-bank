@@ -344,7 +344,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  `language_idLanguage` INT NOT NULL,
 		  `languageReadLevel_idLanguageLevel` INT NULL,
 		  `languageWriteLevel_idLanguageLevel` INT NULL,
-		  `languageListenLevel_idLanguageLevel2` INT NULL,
+		  `languageListenLevel_idLanguageLevel` INT NULL,
 		  `languageSpeakLevel_idLanguageLevel` INT NULL,
 		  `languageExpresateLevel_idLanguageLevel` INT NULL,
 		  `languageTitulationLevel_idLanguageLevel` INT NULL,

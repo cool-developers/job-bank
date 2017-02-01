@@ -1,4 +1,7 @@
 app.controller("offerListController", function($scope, GradeTitle, Contract, Language, LanguageLevel, Day , insert){
+	
+	$scope.offer_has_languages = [];
+	
 	$scope.saludo = "Hola estas en el offerlist";
 	
 	GradeTitle.getGradeTitle().then(function(GradeTitle){
@@ -30,29 +33,29 @@ app.controller("offerListController", function($scope, GradeTitle, Contract, Lan
 		$scope.languagelevels = LanguageLevel.data;
 	});
 	
-	$scope.updateOffer = function(){			
+	$scope.updateOffer = function(){	
+		
+		console.log($scope.offer_has_languages);
+		
+		for(l = 0; l < $scope.offer_has_languages.length; l++){	
+			
+		for(x = 0; x < Object.keys($scope.offer_has_languages[l]).length; x++){	
+				
+				name = Object.keys($scope.offer_has_languages[l])[x];
+				console.log(name);
+				if(name != "id" && name != "$$hashKey"){					
+					$scope.offer[name+l] = $scope.offer_has_languages[l][name];
+				}
+				
+			}				
+		}
+		
+		
+				
     	insert.insertData(convertToData($scope.offer), "http://127.0.0.1/job-bank/OfferList/updateOffer");
     };
     
-    $scope.titulationChange = function(num){
-    	console.log($scope.offer_has_languages);
-    	$scope.offer_has_languages[num - 1]["languageTitulationLevel_idLanguageLevel"] = null;
-    };    
-    
-      $scope.offer_has_languages = [{id: '1' , languageTitulationLevel_idLanguageLevel: null}];
-    
-    
-      $scope.addNewChoice = function() {
-	    var newItemNo = $scope.offer_has_languages.length+1;
-	    $scope.offer_has_languages.push({'id': newItemNo});
-	  };
-	    
-	  $scope.removeChoice = function() {
-	    var lastItem = $scope.offer_has_languages.length-1;
-	    $scope.offer_has_languages.splice(lastItem);
-	  };
-		
-		
+	
 
 });
 
