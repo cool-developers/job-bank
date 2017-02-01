@@ -8,30 +8,70 @@
 
 .formpadre{
 	 display: flex;
-    width: :100%;
-   
+	 flex-wrap: wrap;
+     width: 80%;    
+     margin: auto;
+     margin-top: 150px;
+     border: 1px solid black;
+     
     
 }
 
 
+
+
+
+
 .form {
+	border: 3px solid blue;
+    padding: 30px;
     margin: 5px;
-    padding: 15px
-    height: 300px;
-    flex-grow: 1;
+    float: left;
+    flex: 1;
     
     } 
 
 
+
+
 .form1 {
+	border: 3px solid blue;
     float: left;
-    min-width:300px;
     margin: 5px;
     padding: 15px;
-    height: 300px;
     background-color:#c0d9f2;
    text-align: center;
-   flex-grow: 1;
+   flex: 1;
  
 } 
 
+
+
+.slider{
+	margin:auto;
+	margin-top:30px;
+	max-width:980px;
+	
+	
+}
+
+
+
+.imagen{
+	
+	width:100;
+	
+	
+}
+
+.boton{
+	height: 32px;
+	background-color: #2d83d5;
+	color:white;
+	margin-top:15px;
+	margin-bottom:15px;
+	margin-left:200px;
+	padding-right: 20px;
+	padding-left: 20px;
+	
+}
