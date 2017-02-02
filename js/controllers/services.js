@@ -131,6 +131,13 @@ app.factory("Day",function($http){
 });
 
 
+app.factory("Knowledges",function($http){
+	return {
+		getKnowledge: function(){			
+			return  $http.get('http://127.0.0.1/job-bank/Knowledge/getKnowledge');			
+			}
+	};
+});
 
 
 
@@ -395,7 +402,8 @@ return {
       	if(scope.offer_has_languages.length == 0){
       		
       	  scope.cont++;
-		  scope.offer_has_languages.push({'id': scope.cont , 'language_idLanguage' : null} );      		
+		  scope.offer_has_languages.push({'id': scope.cont , 'language_idLanguage' : null} );
+		   		
       	}else{
       		console.log();
       		language = scope.offer_has_languages[scope.offer_has_languages.length - 1]["language_idLanguage"];
@@ -404,6 +412,7 @@ return {
 	      		 //scope.languages = scope.languages.filter(function (l) {return l.idLanguage != language; });
 	      		 scope.cont++;
 		 		 scope.offer_has_languages.push({'id': scope.cont});
+		 		
 	      	}else{
 	      		scope.required = true;
 	      	}
@@ -411,8 +420,9 @@ return {
 	   
 	  };
 	  
-	  scope.languageSelected = function(){
+	  scope.languageSelected = function(num){
 	  	scope.required = false;
+	  	scope.titulationChange(num); 
 	  };
 	    
 	  scope.removeChoice = function(num) {	    

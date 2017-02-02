@@ -216,15 +216,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  PRIMARY KEY (`idProfessionalLevel`))
 		ENGINE = InnoDB
 		");
-		
-		$this->db->query("
-		CREATE TABLE IF NOT EXISTS `jobBankDB`.`languageTitle` (
-		  `idLanguageTitle` INT NOT NULL AUTO_INCREMENT,
-		  `languageTitleName` VARCHAR(45) NULL,
-		  PRIMARY KEY (`idLanguageTitle`))
-		ENGINE = InnoDB
-		");
-		
+				
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`languageLevel` (
 		  `idLanguageLevel` INT NOT NULL AUTO_INCREMENT,
@@ -586,8 +578,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 	  		$this->dbforge->drop_table('gradetitle');
 	  		$this->dbforge->drop_table('knowledge');
 	  		$this->dbforge->drop_table('language');
-	  		$this->dbforge->drop_table('languagelevel');
-	  		$this->dbforge->drop_table('languagetitle');
+	  		$this->dbforge->drop_table('languagelevel');	  	
 	  		$this->dbforge->drop_table('notification');
 	  		$this->dbforge->drop_table('offer');
 	  		$this->dbforge->drop_table('offer_has_applicant');
