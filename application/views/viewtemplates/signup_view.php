@@ -1,4 +1,3 @@
-<h1 class="subheader">{{ saludo }}</h1>
 <form name="registerUserForm">   
         <div>
             <div ng-show="flash_error">
