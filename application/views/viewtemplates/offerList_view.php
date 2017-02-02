@@ -56,8 +56,25 @@
  		 			 
  			 <language-directive ng-model="offer_has_languages"></language-directive>	
    			 
+
    			 
-   			    			   
+   			 <br>
+   			
+   			 Conocimientos
+   			 <br>
+   			  <div ng-repeat = "offer_has_knowlege in offer_has_knowleges"> 
+ 			 	<div> {{offer_has_knowlege.knowledgeName}} <span ng-click="deleteKnowledge(offer_has_knowlege)"> x </span>	 </div>  		 	
+ 			 </div>
+   			 {{offer_has_knowleges.knowledgeName}}
+   			 <br>
+   			 <input type="text" name="Knowledge" ng-model="search.knowledge" />
+ 			 
+ 			 <div ng-show="search.knowledge" ng-repeat = "knowledge in knowledges | filter:search.knowledge"> 
+ 			 	<div ng-click="addKnowledge(knowledge)"> {{knowledge.knowledgeName}} </div>  			 	
+ 			 </div>
+   			  
+   			 <br> 
+   			 		   
  			 <label>Numero de vacantes: </label><br>	
 			 <input type="number" required name="offerVacant" ng-model="offer.offerVacant" />
  			 
@@ -73,8 +90,8 @@
  			 
  			  </br>
  			  <label>Gestión: </label><br> 			  
- 			  Pribada <input type="radio" name="Pribada"  ng-model="offer.offerType" value="true"> 
-  			  Publica <input type="radio" name="Publica"  ng-model="offer.offerType" value="false"> <br>
+ 			  Pribada <input type="radio" name="Pribada" required  ng-model="offer.offerType" value="true" /> 
+  			  Publica <input type="radio" name="Publica" required ng-model="offer.offerType" value="false" /> <br>
 			  <span ng-show = "offer.offerType == true">La oferta la gestionara el centro</span> 
 			  <span ng-show = "offer.offerType == false">La oferta la gestionara el propio sistema y sera publica para los alumnos</span> 
              

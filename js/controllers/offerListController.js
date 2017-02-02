@@ -1,4 +1,4 @@
-app.controller("offerListController", function($scope, GradeTitle, Contract, Language, LanguageLevel, Day , insert){
+app.controller("offerListController", function($scope, GradeTitle, Contract, Language, LanguageLevel , Knowledges, Day , insert){
 	
 	$scope.offer_has_languages = [];
 	
@@ -33,25 +33,35 @@ app.controller("offerListController", function($scope, GradeTitle, Contract, Lan
 		$scope.languagelevels = LanguageLevel.data;
 	});
 	
+	Knowledges.getKnowledge().then(function (knowledge){
+		$scope.knowledges = knowledge.data;
+	});
+	
+	$scope.offer_has_knowleges = [];
+	
+	$scope.addKnowledge =function (knowledge){
+		$scope.search["knowledge"] = " ";
+		$scope.offer_has_knowleges.push(knowledge);
+	};
+	
+	$scope.deleteKnowledge =function (knowledge){
+		$scope.offer_has_knowleges = $scope.offer_has_knowleges.filter(function(k){ return k != knowledge;});
+	};
+	
+	$scope.newKnowledge = function(){
+		
+	};
+	
+	
+	
+	
+	
+	
+	
+	
 	$scope.updateOffer = function(){	
 		
-		console.log($scope.offer_has_languages);
-		
-		for(l = 0; l < $scope.offer_has_languages.length; l++){	
-			
-		for(x = 0; x < Object.keys($scope.offer_has_languages[l]).length; x++){	
-				
-				name = Object.keys($scope.offer_has_languages[l])[x];
-				console.log(name);
-				if(name != "id" && name != "$$hashKey"){					
-					$scope.offer[name+l] = $scope.offer_has_languages[l][name];
-				}
-				
-			}				
-		}
-		
-		
-				
+		$scope.offer["languages"] = JSON.stringify($scope.offer_has_languages);				
     	insert.insertData(convertToData($scope.offer), "http://127.0.0.1/job-bank/OfferList/updateOffer");
     };
     

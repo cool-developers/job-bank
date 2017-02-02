@@ -44,9 +44,10 @@ class OfferList extends CI_Controller {
 		$this->input->post("offerVacant") &&	
 		$this->input->post("day_idDay") 	&&
 		$this->input->post("contract_idContract") &&			
-		$this->input->post("gradeTitle_idGradeTitle") 		
+		$this->input->post("gradeTitle_idGradeTitle") 
+		//$this->input->post("languageCont")
 		){
-			
+				
 		 	$this->form_validation->set_rules('offerEnterpisePhone', 'Titulo', 'required');
 	    	$this->form_validation->set_rules('offerEnterpriseName', 'Descripcion', 'required');
 			$this->form_validation->set_rules('offerEnterpriseEmail', 'Titulo', 'required');
@@ -58,39 +59,39 @@ class OfferList extends CI_Controller {
 			$this->form_validation->set_rules('day_idDay', 'Titulo', 'required');
 			$this->form_validation->set_rules('gradeTitle_idGradeTitle', 'Titulo', 'required');
 			$this->form_validation->set_rules('contract_idContract', 'Titulo', 'required');
+					
 			
 		if($this->form_validation->run() == false){           
 	                echo json_encode(array("respuesta" => "error_form2"));		  
 			}else{
-				$offerListData  = array(		        
-					
-					"offerEnterpisePhone" => $this->input->post("offerEnterpisePhone"),
-					"offerEnterpriseName" => $this->input->post("offerEnterpriseName"),
-					"offerEnterpriseEmail" => $this->input->post("offerEnterpriseEmail"),										
-			      	"offerJobTitle" => $this->input->post("offerJobTitle"),
-					"offerEndDate" => $this->input->post("offerEndDate"),
-					"offerType" => $this->input->post("offerType"),
-					"offerDescription"  => $this->input->post("offerDescription"),							
-			      	"offerVacant" => $this->input->post("offerVacant"),
-					"day_idDay" => $this->input->post("day_idDay"),
-					"gradeTitle_idGradeTitle" => $this->input->post("gradeTitle_idGradeTitle"),
-					"contract_idContract"  => $this->input->post("contract_idContract"),
-					"offerStartDate" => date("Y-m-d")	
-					 );					
+			 	$offerListData  = array(		        
 				
-					$updateOfferList = $this->Offer_model->updateOfferList($offerListData);
+				"offerEnterpisePhone" => $this->input->post("offerEnterpisePhone"),
+				"offerEnterpriseName" => $this->input->post("offerEnterpriseName"),
+				"offerEnterpriseEmail" => $this->input->post("offerEnterpriseEmail"),										
+		      	"offerJobTitle" => $this->input->post("offerJobTitle"),
+				"offerEndDate" => $this->input->post("offerEndDate"),
+				"offerType" => $this->input->post("offerType"),
+				"offerDescription"  => $this->input->post("offerDescription"),							
+		      	"offerVacant" => $this->input->post("offerVacant"),
+				"day_idDay" => $this->input->post("day_idDay"),
+				"gradeTitle_idGradeTitle" => $this->input->post("gradeTitle_idGradeTitle"),
+				"contract_idContract"  => $this->input->post("contract_idContract"),
+				"offerStartDate" => date("Y-m-d")	
+				 );
+				 
+				 $languageListData = json_decode($this->input->post("languages"));							
+			
+			     $updateOfferList = $this->Offer_model->updateOfferList($offerListData, $languageListData);				
+			
+				if($updateOfferList === TRUE){								
 					
+					echo json_encode(array("respuesta" => "success"));					
+					                   
+                }else{
+                    echo json_encode(array("respuesta" => "exists"));
 					
-					
-				
-					if($updateOfferList === TRUE){								
-						
-						echo json_encode(array("respuesta" => "success"));					
-						                   
-	                }else{
-	                    echo json_encode(array("respuesta" => "exists"));
-						
-	                }			    	
+                }			    	
 			
 		}
 		
