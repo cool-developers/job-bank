@@ -1,9 +1,9 @@
 <!--<h1 class="subheader">{{ saludo }}</h1>-->
 <div class="formpadre">
 <div class=form>
-	<img class="imagen" src="http://localhost/job-bank/img/icono.png"; alt="Smiley face" ><br><br><br>
+	<img class="imagen" src="http://localhost/job-bank/img/icono.png"; alt="Smiley face" ><br>
 <form name="loginUserForm"> 
-        <div>
+        <div id="login-container">
             <div ng-show="flash">
                 <div data-alert class="alert-box alert round">{{ flash }}</div>
             </div>
@@ -32,10 +32,10 @@
 
 <p>¿Buscas profesionales en nuestro centro?</p>
 	
-<p>	Ponte en <a href="http://www.fptxurdinaga.hezkuntza.net/web/guest/nosotros">contacto </a> con nosotros o registrate en la bolsa trabajo para gestionar las ofertas.</p>
+<p>	Ponte en <a href="http://www.fptxurdinaga.hezkuntza.net/web/guest/nosotros">contacto </a> con nosotros o registrate en la bolsa trabajo para gestionar tus ofertas.</p>
 
 
-<button class="button success" ng-click="toSignup()">Registrarse</button><br>
+<button class="button success botonw" ng-click="toSignup()">Registrarse</button><br>
 
 
 <div>
@@ -43,9 +43,9 @@
 
 
 <div class="slider" style="max-width:100px">
-  <img class="mySlides" src="http://localhost/job-bank/img/centro1.jpg" style="width:100%">
-  <img class="mySlides" src="http://localhost/job-bank/img/centro2.jpg" style="width:100%">
-  <img class="mySlides" src="http://localhost/job-bank/img/centro3.jpg" style="width:100%">
+  <img class="mySlides" src="http://localhost/job-bank/img/centro1.jpg" style="width:120%">
+  <img class="mySlides" src="http://localhost/job-bank/img/centro2.jpg" style="width:120%">
+  <img class="mySlides" src="http://localhost/job-bank/img/centro3.jpg" style="width:120%">
 </div>
 
 
