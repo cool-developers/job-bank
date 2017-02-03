@@ -467,9 +467,9 @@ app.directive('knowledgeDirective',[ "Knowledges" , function(Knowledges){
 			
 			scope.offer_has_knowledges = [];
 			
-			scope.knowledgeSelected = function (knowledgeName){
-				scope.search["knowledge"] = knowledgeName;
-				scope.newNowledge();
+			scope.knowledgeSelected = function (idKnowledge){
+				scope.search["knowledge"] = idKnowledge;
+				scope.newKnowledge();
 			};
 			
 			scope.deleteKnowledge =function (knowledge){
@@ -477,26 +477,23 @@ app.directive('knowledgeDirective',[ "Knowledges" , function(Knowledges){
 			};
 			
 			addKnowledge = function(){
-				knowledge = {knowledgeId :null };
-						scope.knowledges.filter(function(k){ 								
-							if(k.knowledgeName == scope.search["knowledge"].toLowerCase()){
-								knowledge.idKnowledge = k.idKnowledge;						
-							}
-						});
-						
-						
-						knowledge.knowledgeName =  scope.search["knowledge"].toLowerCase();
-						knowledge.knowledgeEnable = 0 ;						
-							
-						scope.offer_has_knowledges.push(Knowledge);
-						scope.search["knowledge"] = " ";
+				knowledge = {knowledgeEnable : null };
+				scope.knowledges.filter(function(k){ 	
+					console.log(k.idKnowledge + " " +scope.search["knowledge"].toLowerCase());						
+					if(k.idKnowledge == scope.search["knowledge"].toLowerCase()){
+						knowledge.knowledgeEnable = k.knowledgeEnable;						
+					}
+				});
+				
+				
+				knowledge.idKnowledge =  scope.search["knowledge"].toLowerCase();					
+				scope.offer_has_knowledges.push(knowledge);
+				scope.search["knowledge"] = " ";
 			};
 			
 			
 			
-			scope.newKnowledge = function(){	
-					
-					
+			scope.newKnowledge = function(){						
 					if(scope.offer_has_knowledges.length == 0){					
 						
 						addKnowledge();
@@ -504,20 +501,16 @@ app.directive('knowledgeDirective',[ "Knowledges" , function(Knowledges){
 					}else{
 						exists = false;
 						scope.offer_has_knowledges.filter(function(offerK){ 
-							if(offerK.knowledgeName == scope.search["knowledge"].toLowerCase()){													
+							if(offerK.idKnowledge == scope.search["knowledge"].toLowerCase()){													
 								exists = true;
 							}
 						});	
 						
 						if (exists == false){
 							addKnowledge();
-						}
-						
-								
-					}					
-							
-				scope.search["knowledge"] = " ";		
-				console.log(scope.offer_has_knowledges);			
+						}							
+					}												
+				scope.search["knowledge"] = " ";							
 			};
 		}
 		
