@@ -118,9 +118,27 @@ button {
 	margin:auto;
 	background-color:#c0d9f2;
 	padding: 15px;
-	margin-top:20px;
-
-	
+	margin-top:40px;	
 	 
 }
+
+input {
+  padding: .4em;
+}
+
+
+select{
+	padding: .35em;
+	
+	
+}
+
+label {
+  display: block;
+  margin: .5em 0 .2em 0;
+}
+
+
+
+
 

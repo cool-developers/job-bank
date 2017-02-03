@@ -8,12 +8,12 @@
                 <div data-alert class="alert-box alert round">{{ flash }}</div>
             </div>
             <div class="col-5">
-                <label>Email</label><br>
+                <label>Email</label>
                 <input type="email" required placeholder="Introduce tu email" ng-model="user.email" name"email">
                 <span ng-show="loginUserForm.email.$error.required">Campo obligatorio.</span>
             </div><br>
             <div class="col-5">
-                <label>Contraseña</label><br>
+                <label>Contraseña</label>
                 <input type="password" required placeholder="Introduce tu password" ng-model="user.password"name"password">
                 <span ng-show="loginUserForm.password.$error.required">Campo obligatorio.</span>
             </div><br>
