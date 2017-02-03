@@ -62,16 +62,7 @@
    			
    			 Conocimientos
    			 <br>
-   			  <div ng-repeat = "offer_has_knowlege in offer_has_knowleges"> 
- 			 	<div> {{offer_has_knowlege.knowledgeName}} <span ng-click="deleteKnowledge(offer_has_knowlege)"> x </span>	 </div>  		 	
- 			 </div>
-   			 {{offer_has_knowleges.knowledgeName}}
-   			 <br>
-   			 <input type="text" name="Knowledge" ng-model="search.knowledge" />
- 			 
- 			 <div ng-show="search.knowledge" ng-repeat = "knowledge in knowledges | filter:search.knowledge"> 
- 			 	<div ng-click="addKnowledge(knowledge)"> {{knowledge.knowledgeName}} </div>  			 	
- 			 </div>
+   			  <knowledge-directive ng-model="offer_has_knowledges"> </knowledge-directive>
    			  
    			 <br> 
    			 		   

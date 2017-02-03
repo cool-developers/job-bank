@@ -435,4 +435,96 @@ return {
 };
 }]);
 
+app.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
+
+app.directive('knowledgeDirective',[ "Knowledges" , function(Knowledges){
+	
+	return{
+		restrict: 'E',
+		replace: true,
+		scope: {
+			offer_has_knowledges : "=ngModel"
+		},
+		required: "?ngModel",
+		templateUrl: "/job-bank/templates/get/knowledgedirectivetemplate",
+		link: function(scope, element, attrs){
+			Knowledges.getKnowledge().then(function (knowledge){
+				scope.knowledges = knowledge.data;
+			});
+			
+			scope.offer_has_knowledges = [];
+			
+			scope.knowledgeSelected = function (knowledgeName){
+				scope.search["knowledge"] = knowledgeName;
+				scope.newNowledge();
+			};
+			
+			scope.deleteKnowledge =function (knowledge){
+				scope.offer_has_knowledges = scope.offer_has_knowledges.filter(function(k){ return k != knowledge;});
+			};
+			
+			addKnowledge = function(){
+				knowledge = {knowledgeId :null };
+						scope.knowledges.filter(function(k){ 								
+							if(k.knowledgeName == scope.search["knowledge"].toLowerCase()){
+								knowledge.idKnowledge = k.idKnowledge;						
+							}
+						});
+						
+						
+						knowledge.knowledgeName =  scope.search["knowledge"].toLowerCase();
+						knowledge.knowledgeEnable = 0 ;						
+							
+						scope.offer_has_knowledges.push(Knowledge);
+						scope.search["knowledge"] = " ";
+			};
+			
+			
+			
+			scope.newKnowledge = function(){	
+					
+					
+					if(scope.offer_has_knowledges.length == 0){					
+						
+						addKnowledge();
+						
+					}else{
+						exists = false;
+						scope.offer_has_knowledges.filter(function(offerK){ 
+							if(offerK.knowledgeName == scope.search["knowledge"].toLowerCase()){													
+								exists = true;
+							}
+						});	
+						
+						if (exists == false){
+							addKnowledge();
+						}
+						
+								
+					}					
+							
+				scope.search["knowledge"] = " ";		
+				console.log(scope.offer_has_knowledges);			
+			};
+		}
+		
+		};
+	
+	
+}]);
+
+
 
