@@ -27,8 +27,9 @@ class Login extends CI_Controller {
 	        $this->load->view('templates/footer');    
 		}
 		
-		 public function signupUser(){		 
-         if($this->input->post("email") && $this->input->post("password"))
+			
+		 public function signupEnterprise(){		 
+         if($this->input->post("email") && $this->input->post("password") && $this->input->post("town_idTown")&& $this->input->post("enterpriseName"))
          {         	
           
 		 	$this->form_validation->set_rules('email', 'Usuario','required|valid_email');
@@ -37,20 +38,43 @@ class Login extends CI_Controller {
         	$this->form_validation->set_message	('required', 'El campo  %s es obligatorio.');
 			$this->form_validation->set_message('min_length', 'El Campo %s debe tener un minimo de %d Caracteres');
 			$this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
+			$this->form_validation->set_rules('town_idTown', 'Localización', 'required');
+			$this->form_validation->set_rules('enterpriseName', 'Nombre de la empresa', 'required');
 			
+			$enterprisePhone = null;
+			
+			if($this->input->post("enterprisePhone")){
+				$this->form_validation->set_rules('enterprisePhone', 'Teléfono de la empresa', 'required');
+				$enterprisePhone = $this->input->post("enterprisePhone");
+			}			
+						
             if($this->form_validation->run() == false){           
                echo json_encode(array("respuesta" => "error_form"));
             }else{        
-		
-                $email = $this->input->post("email");
-                $password = password_hash($this->input->post("password"), PASSWORD_DEFAULT);	
-				$rol = 4;				
-				$hash = password_hash(rand(0,1000) + " " + rand(0,1000) , PASSWORD_DEFAULT);   
-				$active = FALSE;
-				$loginUser = $this->Login_model->signupUser($email,$password,$rol,$hash,$active);
+				
+				$email =  $this->input->post("email");
+				$hash = password_hash(rand(0,1000) + " " + rand(0,1000) , PASSWORD_DEFAULT);
+				$userData = array(
+					"email"         =>      $email,
+			        "password"      =>      password_hash($this->input->post("password"), PASSWORD_DEFAULT),
+			        "rol_idRol"     =>      4,
+			        "hash"			=> 		$hash ,
+			        "active" 		=> 		FALSE
+				);
+				
+				
+				$enterpriseData = array(
+					"enterpriseName" => $this->input->post("enterpriseName"),
+					"enterprisePhone" => $enterprisePhone,
+					"town_idTown" => $this->input->post("town_idTown")
+				);
+				
+				      
+				$loginUser = $this->Login_model->signupEnterprise($userData, $enterpriseData);
 			
 				if($loginUser === TRUE){
 								
+					
 					
 					echo json_encode(array("respuesta" => "success"));
 					
@@ -81,7 +105,7 @@ class Login extends CI_Controller {
                 }
             }
         }else{
-            echo json_encode(array("respuesta" => "error_form"));
+            echo json_encode(array("respuesta" => "error_form3"));
         }
   	   }
 

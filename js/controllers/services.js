@@ -520,4 +520,122 @@ app.directive('knowledgeDirective',[ "Knowledges" , function(Knowledges){
 }]);
 
 
+app.directive('dateContainer',function(){
+	return {
+		restrict: 'E',
+		controller : function($scope){
+			this.addDay = function(day){
+				$scope.day = day;
+			};
+			this.addMonth = function(month){
+				$scope.month = month;
+			};
+			this.addYear = function(year){
+				$scope.year = year;
+			};
+			
+			this.check = function(value){
+				$scope.check = value;
+			};
+			
+			this.testDate = function(){
+				
+			correct = true;
+				
+			if($scope.year%1 == 0){
+					if ($scope.month >= 1 && $scope.month <= 12){
+						if($scope.month != 2){
+							if($scope.month <= 7 ){
+								if($scope.month%2 == 0){
+									if($scope.day  < 1 || $scope.day  > 30){
+										correct = false;
+									}
+								}else{
+									if($scope.day  < 1 || $scope.day  > 31){
+										correct = false;
+									}
+								}
+							}else{
+								if($scope.month%2 == 0){
+									if($scope.day  < 1 || $scope.day  > 31){
+										correct = false;
+									}
+								}else{
+									if($scope.day  < 1 || $scope.day  > 30){
+										correct = false;
+									}
+								}
+							}
+						}else{
+							
+							if(($scope.year%4 == 0) && (($scope.year%100 != 0) || ($scope.year%400 == 0))){
+								if($scope.day  < 1 || $scope.day  > 29){
+									correct = false;
+								}
+							}else{
+								if($scope.day  < 1 || $scope.day  > 28){
+									correct = false;
+								}
+							}
+						}
+					}else{
+						correct = false;
+					}			
+		   }else{
+					correct = false;
+		   };
+		   
+		   
+		   return correct;
+					
+			
+		 };
+		},
+		link : function(scope, element, attrs , controller){
+		   //prueba = controller.testDate();
+		   //console.log(prueba);
+		   
+		   scope.setDate = function(){
+		   	 console.log('dataContainer');
+		   };
+		   
+		  
+		}
+	};
+});
+
+app.directive('dateField',function(){
+	return {
+		restrict: 'E',
+		require: '^dateContainer',
+		scope: {},
+		templateUrl: '/job-bank/templates/get/datefieldtemplate',
+		link: function(scope, element, attrs, dateContainterController){
+			
+			scope.getNumber = function(){
+				console.log('dataField');
+				console.log(attrs.container + " " + scope.number);
+				
+				switch(attrs.container){
+				case "d": dateContainterController.addDay(scope.number); break;
+				case "m": dateContainterController.addMonth(scope.number);  break;
+				case "y": dateContainterController.addYear(scope.number);  break;
+
+				}
+			};
+			
+			scope.setFalse = function(){
+				dateContainterController.check(false);
+			};
+			
+			scope.setTrue = function(){
+				dateContainterController.check(true);
+			};			
+		}
+	};
+});
+
+
+
+
 

@@ -36,6 +36,17 @@
  			 <label>Fecha limite: </label>
  			 <input type="date" name="offerEndDate" step="1"  value="<?php echo date("Y-m-d");?>" ng-model="offer.offerEndDate" />
  			 
+ 			 
+ 			 <br><br>
+ 			 
+ 
+ 			 <date-container>
+ 			 	<date-field container ="d"> </date-field>
+ 			 	<date-field container ="m"> </date-field>
+ 			 	<date-field container ="y"> </date-field>
+ 			 </date-container>
+ 		
+ 			 
  			 <br>
  			 
  			 <label>Descripción: </label><br>
