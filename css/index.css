@@ -100,6 +100,20 @@ button {
 	
 }
 
+.headpadre{
+	display: flex;
+     width: 100%;    
+     margin: auto;
+	flex-wrap: wrap;
+}
+
+.headhijo{
+	margin:auto;
+	padding: 15px;
+	margin-top:40px;
+	flex: 1;
+}
+
 .recoverpadre{
 	display: flex;
      width: 100%;    
@@ -114,11 +128,20 @@ button {
 	
 }
 
+.datapadre{
+	display: flex;
+     width: 100%;    
+     margin: auto;
+     background-color:#c0d9f2;
+	flex-wrap: wrap;
+}
+
 .recover{
 	margin:auto;
 	background-color:#c0d9f2;
 	padding: 15px;
-	margin-top:40px;	
+	margin-top:40px;
+		
 	 
 }
 
