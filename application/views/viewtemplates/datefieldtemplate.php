@@ -1,3 +1,3 @@
 <div>
-	<input ng-change="getNumber()" type="number" ng-model="number"  ng-blur="setFalse()" ng-focus="setTrue()">
+	<input ng-change="getNumber()" type="number" ng-model="number"  ng-blur="setTrue()">
 </div>

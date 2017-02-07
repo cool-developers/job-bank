@@ -40,12 +40,12 @@
  			 <br><br>
  			 
  
- 			 <date-container>
+ 			 <date-container required ng-model="date">
  			 	<date-field container ="d"> </date-field>
  			 	<date-field container ="m"> </date-field>
  			 	<date-field container ="y"> </date-field>
  			 </date-container>
- 		
+ 			<span ng-show="date == 'error">Introduce una fecha correcta</span>
  			 
  			 <br>
  			 

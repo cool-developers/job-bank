@@ -523,7 +523,16 @@ app.directive('knowledgeDirective',[ "Knowledges" , function(Knowledges){
 app.directive('dateContainer',function(){
 	return {
 		restrict: 'E',
+		scope: {
+			date : "=ngModel"
+		},
 		controller : function($scope){
+			
+			$scope.checkDay == false;
+			$scope.checkMonth == false;
+			$scope.checkYear == false;
+			
+			
 			this.addDay = function(day){
 				$scope.day = day;
 			};
@@ -534,70 +543,82 @@ app.directive('dateContainer',function(){
 				$scope.year = year;
 			};
 			
-			this.check = function(value){
-				$scope.check = value;
+			this.showError = function(){
+				console.log("Error");
 			};
 			
-			this.testDate = function(){
+			this.check = function(value, type){
 				
-			correct = true;
+				switch(type){
+					case "d": $scope.checkDay = value; break;
+					case "m": $scope.checkMonth = value;  break;
+					case "y": $scope.checkYear = value;  break;
+
+				}
 				
-			if($scope.year%1 == 0){
-					if ($scope.month >= 1 && $scope.month <= 12){
-						if($scope.month != 2){
-							if($scope.month <= 7 ){
-								if($scope.month%2 == 0){
-									if($scope.day  < 1 || $scope.day  > 30){
-										correct = false;
+				if($scope.checkDay == true &&  $scope.checkMonth == true &&  $scope.checkYear == true){
+						correct = true;
+				
+						if($scope.year%1 == 0){
+								if ($scope.month >= 1 && $scope.month <= 12){
+									if($scope.month != 2){
+										if($scope.month <= 7 ){
+											if($scope.month%2 == 0){
+												if($scope.day  < 1 || $scope.day  > 30){
+													correct = false;
+												}
+											}else{
+												if($scope.day  < 1 || $scope.day  > 31){
+													correct = false;
+												}
+											}
+										}else{
+											if($scope.month%2 == 0){
+												if($scope.day  < 1 || $scope.day  > 31){
+													correct = false;
+												}
+											}else{
+												if($scope.day  < 1 || $scope.day  > 30){
+													correct = false;
+												}
+											}
+										}
+									}else{
+										
+										if(($scope.year%4 == 0) && (($scope.year%100 != 0) || ($scope.year%400 == 0))){
+											if($scope.day  < 1 || $scope.day  > 29){
+												correct = false;
+											}
+										}else{
+											if($scope.day  < 1 || $scope.day  > 28){
+												correct = false;
+											}
+										}
 									}
 								}else{
-									if($scope.day  < 1 || $scope.day  > 31){
-										correct = false;
-									}
-								}
-							}else{
-								if($scope.month%2 == 0){
-									if($scope.day  < 1 || $scope.day  > 31){
-										correct = false;
-									}
-								}else{
-									if($scope.day  < 1 || $scope.day  > 30){
-										correct = false;
-									}
-								}
-							}
-						}else{
-							
-							if(($scope.year%4 == 0) && (($scope.year%100 != 0) || ($scope.year%400 == 0))){
-								if($scope.day  < 1 || $scope.day  > 29){
 									correct = false;
-								}
-							}else{
-								if($scope.day  < 1 || $scope.day  > 28){
-									correct = false;
-								}
-							}
-						}
-					}else{
-						correct = false;
-					}			
-		   }else{
-					correct = false;
-		   };
-		   
-		   
-		   return correct;
-					
+								}			
+					   }else{
+								correct = false;
+					   };
+					   
+					   
+					   return correct;
+				}else{
+					return null;
+				}
+				
+				
+			};			
 			
-		 };
 		},
 		link : function(scope, element, attrs , controller){
 		   //prueba = controller.testDate();
 		   //console.log(prueba);
 		   
-		   scope.setDate = function(){
+		 
 		   	 console.log('dataContainer');
-		   };
+		   
 		   
 		  
 		}
@@ -624,13 +645,18 @@ app.directive('dateField',function(){
 				}
 			};
 			
-			scope.setFalse = function(){
-				dateContainterController.check(false);
+			scope.setTrue = function(){
+			
+				if(scope.number == null){
+					dateContainterController.showError();
+				}else{
+					check = dateContainterController.check(true, attrs.container);
+					console.log(check);
+				}
+				
 			};
 			
-			scope.setTrue = function(){
-				dateContainterController.check(true);
-			};			
+		
 		}
 	};
 });
