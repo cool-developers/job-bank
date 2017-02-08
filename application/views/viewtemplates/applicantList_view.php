@@ -2,7 +2,7 @@
 
 
 		<div class="recoverpadre">
-			<div class="recover">
+			<div class="recoverlist">
 
  			 <label>Email</label>
 			 

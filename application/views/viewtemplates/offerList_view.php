@@ -6,8 +6,8 @@
 	echo validation_errors("<li>","</li>"); ?>
 </ul>	
 <form name="offerForm">
-	<div class="datapadre">
-		<div class="recover">
+	<div class="recoverpadre">
+		<div class="recoverlist">
 			 <label> Nombre de la empresa </label> 
 			 <input type="text" required placeholder="Introduce el nombre" name="offerEnterpriseName" ng-model="offer.offerEnterpriseName" />
 			
@@ -34,8 +34,7 @@
  
  			 <br>
 
- 			</div>
- 			 <div class="recover"> 		
+ 				
  			 <label>Fecha limite: </label> 			 			 
 
  
@@ -44,7 +43,7 @@
  			 	<date-field container ="m"> </date-field>
  			 	<date-field container ="y"> </date-field>
  			 </date-container>
- 			  	
+ 			  <br>	
  			 <span ng-show="offer.offerEndDate.substring(0 , 5) == 'Error'">{{offer.offerEndDate}}</span>
 
  			 <br>
@@ -59,8 +58,7 @@
  			 </select><br>
  			 
  			 
- 			</div>
- 			 <div class="recover">	
+ 			
  			 <label>Jornada: </label>
  			  <select ng-model="offer.day_idDay">
  			 <option ng-repeat="day in days" value="{{day.idDay}}"> {{day.dayName}}</option>
@@ -106,7 +104,7 @@
  			 
              <button ng-disabled="!offerForm.$valid" ng-click="updateOffer()" type="submit" class="button radius large-5 columns botonb">Regístrarme</button>
              <button type="reset" class="button radius alert large-5 columns botonw">Reset</button>
-             </div>
+             
  		 </div>   	
 </form>
 

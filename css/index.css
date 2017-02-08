@@ -156,6 +156,15 @@ button {
 	 
 }
 
+.recoverlist{
+	margin:left;
+	background-color:#c0d9f2;
+	padding: 15px;
+	margin-top:40px;
+		
+	 
+}
+
 input {
   padding: .4em;
 }
@@ -186,9 +195,17 @@ date-field {
 }
 
 .fechas{
-	width: 3em;
+	width: 4em;
+	-webkit-appearance;
 }
+
+.posicion {
+	border: 1px solid;
+	
+}
+
 
 .posicion li{
 	display: inline-block;
+	
 }
