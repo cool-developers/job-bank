@@ -17,12 +17,12 @@
             
             	 <label>Email</label>
 			 
-             <input type="email" required placeholder="Introduce un email correcto..." name="email"   ng-model="user.email" ng-model-options="{updateOn: 'blur'}" required/>
+             <input type="email" required placeholder="Introduce un email... " name="email"   ng-model="user.email" ng-model-options="{updateOn: 'blur'}" required/>
   
             
              <span style="color:red" ng-show="registerUserForm.email.$touched && registerUserForm.email.$invalid">
-	  			 <span ng-show="registerUserForm.email.$error.required">Email is required.</span>
-	 			 <span ng-show="registerUserForm.email.$error.email">Invalid email address.</span>
+	  			 <span ng-show="registerUserForm.email.$error.required">El email es obligatori.</span>
+	 			 <span ng-show="registerUserForm.email.$error.email">El email no es correcto.</span>
   			 </span>
       
          
