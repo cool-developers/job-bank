@@ -81,8 +81,8 @@ class OfferList extends CI_Controller {
 				 );
 				 
 				 $languageListData = json_decode($this->input->post("languages"));							
-			
-			     $updateOfferList = $this->Offer_model->updateOfferList($offerListData, $languageListData);				
+				 $knowledgeListData = json_decode($this->input->post("knowledges"));
+			     $updateOfferList = $this->Offer_model->updateOfferList($offerListData, $languageListData , $knowledgeListData);				
 			
 				if($updateOfferList === TRUE){								
 					

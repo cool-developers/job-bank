@@ -9,6 +9,12 @@
             <div ng-show="flash_success">
                 <div data-alert class="alert-box success round">{{ flash_success }}</div>
             </div>
+           
+                 
+			<label>Nombre de la empresa</label>          
+		    <input type="text" required placeholder="Nombre de la empresa" name="enterpriseName" ng-model="user.enterpriseName"/>
+		
+            
             	 <label>Email</label>
 			 
              <input type="email" required placeholder="Introduce un email... " name="email"   ng-model="user.email" ng-model-options="{updateOn: 'blur'}" required/>
@@ -18,8 +24,8 @@
 	  			 <span ng-show="registerUserForm.email.$error.required">El email es obligatori.</span>
 	 			 <span ng-show="registerUserForm.email.$error.email">El email no es correcto.</span>
   			 </span>
-       
-             
+      
+         
 			
 			
              <label>Contraseña</label>
@@ -57,9 +63,17 @@
  			 
  			 <label>Población</label>
  			 
- 			 <select>
+ 			 
+ 			 <select ng-model="user.town_idTown">
  				<option ng-repeat="town in towns" value="{{town.idTown}}"> {{town.townName}}</option>
  			 </select>	
+ 			 
+ 			 <br>
+ 			 
+ 			 <label>Numero de teléfono</label>          
+             <input type="text" required placeholder="Numero de teléfono" name="enterprisePhone" ng-model="user.enterprisePhone"/>
+          
+            
  			 
  			 <br><br>	 
 		

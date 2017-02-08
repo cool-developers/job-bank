@@ -194,9 +194,8 @@ class Migration_DataBaseStructure extends CI_Migration {
 		
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`knowledge` (
-		  `idKnowledge` INT NOT NULL AUTO_INCREMENT,
-		  `knowledgeName` VARCHAR(45) NOT NULL,
-		  `knowledgeEnable` TINYINT(1) NOT NULL,
+		  `idKnowledge` VARCHAR(45) NOT NULL,		
+		  `knowledgeEnable` TINYINT(1) NULL,
 		  PRIMARY KEY (`idKnowledge`))
 		ENGINE = InnoDB
 		");
@@ -312,7 +311,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`offer_has_knowledge` (
 		  `offer_idOffer` INT NOT NULL,
-		  `knowledge_idKnowledge` INT NOT NULL,
+		  `knowledge_idKnowledge` VARCHAR(45) NOT NULL,
 		  `offer_has_knowledgeTime` VARCHAR(45) NULL,
 		  PRIMARY KEY (`offer_idOffer`, `knowledge_idKnowledge`),
 		  INDEX `fk_offer_has_knowledge_knowledge1_idx` (`knowledge_idKnowledge` ASC),
@@ -345,7 +344,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  INDEX `fk_offer_has_language_offer1_idx` (`offer_idOffer` ASC),
 		  INDEX `fk_offer_has_language_languageLevel1_idx` (`languageReadLevel_idLanguageLevel` ASC),
 		  INDEX `fk_offer_has_language_languageLevel2_idx` (`languageWriteLevel_idLanguageLevel` ASC),
-		  INDEX `fk_offer_has_language_languageLevel3_idx` (`languageListenLevel_idLanguageLevel2` ASC),
+		  INDEX `fk_offer_has_language_languageLevel3_idx` (`languageListenLevel_idLanguageLevel` ASC),
 		  INDEX `fk_offer_has_language_languageLevel4_idx` (`languageSpeakLevel_idLanguageLevel` ASC),
 		  INDEX `fk_offer_has_language_languageLevel5_idx` (`languageExpresateLevel_idLanguageLevel` ASC),
 		  INDEX `fk_offer_has_language_languageLevel6_idx` (`languageTitulationLevel_idLanguageLevel` ASC),
@@ -370,7 +369,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		    ON DELETE NO ACTION
 		    ON UPDATE NO ACTION,
 		  CONSTRAINT `fk_offer_has_language_languageLevel3`
-		    FOREIGN KEY (`languageListenLevel_idLanguageLevel2`)
+		    FOREIGN KEY (`languageListenLevel_idLanguageLevel`)
 		    REFERENCES `jobBankDB`.`languageLevel` (`idLanguageLevel`)
 		    ON DELETE NO ACTION
 		    ON UPDATE NO ACTION,
@@ -491,7 +490,7 @@ class Migration_DataBaseStructure extends CI_Migration {
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`applicant_has_knowledge` (
 		  `applicant_user_idUser` INT NOT NULL,
-		  `knowledge_idKnowledge` INT NOT NULL,
+		  `knowledge_idKnowledge` VARCHAR(45) NOT NULL,
 		  `experience_idExperience` INT NULL,
 		  `applicant_has_knowledgeTime` VARCHAR(45) NULL,
 		  PRIMARY KEY (`applicant_user_idUser`, `knowledge_idKnowledge`),

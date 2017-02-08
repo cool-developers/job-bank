@@ -435,4 +435,233 @@ return {
 };
 }]);
 
+app.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
+
+app.directive('knowledgeDirective',[ "Knowledges" , function(Knowledges){
+	
+	return{
+		restrict: 'E',
+		replace: true,
+		scope: {
+			offer_has_knowledges : "=ngModel"
+		},
+		required: "?ngModel",
+		templateUrl: "/job-bank/templates/get/knowledgedirectivetemplate",
+		link: function(scope, element, attrs){
+			Knowledges.getKnowledge().then(function (knowledge){
+				scope.knowledges = knowledge.data;
+			});
+			
+			scope.offer_has_knowledges = [];
+			
+			scope.knowledgeSelected = function (idKnowledge){
+				scope.search["knowledge"] = idKnowledge;
+				scope.newKnowledge();
+			};
+			
+			scope.deleteKnowledge =function (knowledge){
+				scope.offer_has_knowledges = scope.offer_has_knowledges.filter(function(k){ return k != knowledge;});
+			};
+			
+			addKnowledge = function(){
+				knowledge = {knowledgeEnable : null };
+				scope.knowledges.filter(function(k){ 	
+					console.log(k.idKnowledge + " " +scope.search["knowledge"].toLowerCase());						
+					if(k.idKnowledge == scope.search["knowledge"].toLowerCase()){
+						knowledge.knowledgeEnable = k.knowledgeEnable;						
+					}
+				});
+				
+				
+				knowledge.idKnowledge =  scope.search["knowledge"].toLowerCase();					
+				scope.offer_has_knowledges.push(knowledge);
+				scope.search["knowledge"] = " ";
+			};
+			
+			
+			
+			scope.newKnowledge = function(){						
+					if(scope.offer_has_knowledges.length == 0){					
+						
+						addKnowledge();
+						
+					}else{
+						exists = false;
+						scope.offer_has_knowledges.filter(function(offerK){ 
+							if(offerK.idKnowledge == scope.search["knowledge"].toLowerCase()){													
+								exists = true;
+							}
+						});	
+						
+						if (exists == false){
+							addKnowledge();
+						}							
+					}												
+				scope.search["knowledge"] = " ";							
+			};
+		}
+		
+		};
+	
+	
+}]);
+
+
+app.directive('dateContainer',function(){
+	return {
+		restrict: 'E',
+		scope: {
+			date : "=ngModel"
+		},
+		controller : function($scope){
+			
+			$scope.checkDay == false;
+			$scope.checkMonth == false;
+			$scope.checkYear == false;
+			
+			
+			this.addDay = function(day){
+				$scope.day = day;
+			};
+			this.addMonth = function(month){
+				$scope.month = month;
+			};
+			this.addYear = function(year){
+				$scope.year = year;
+			};
+			
+			this.showError = function(){
+				console.log("Error");
+			};
+			
+			this.check = function(value, type){
+				
+				switch(type){
+					case "d": $scope.checkDay = value; break;
+					case "m": $scope.checkMonth = value;  break;
+					case "y": $scope.checkYear = value;  break;
+
+				}
+				
+				if($scope.checkDay == true &&  $scope.checkMonth == true &&  $scope.checkYear == true){
+						correct = true;
+				
+						if($scope.year%1 == 0){
+								if ($scope.month >= 1 && $scope.month <= 12){
+									if($scope.month != 2){
+										if($scope.month <= 7 ){
+											if($scope.month%2 == 0){
+												if($scope.day  < 1 || $scope.day  > 30){
+													correct = false;
+												}
+											}else{
+												if($scope.day  < 1 || $scope.day  > 31){
+													correct = false;
+												}
+											}
+										}else{
+											if($scope.month%2 == 0){
+												if($scope.day  < 1 || $scope.day  > 31){
+													correct = false;
+												}
+											}else{
+												if($scope.day  < 1 || $scope.day  > 30){
+													correct = false;
+												}
+											}
+										}
+									}else{
+										
+										if(($scope.year%4 == 0) && (($scope.year%100 != 0) || ($scope.year%400 == 0))){
+											if($scope.day  < 1 || $scope.day  > 29){
+												correct = false;
+											}
+										}else{
+											if($scope.day  < 1 || $scope.day  > 28){
+												correct = false;
+											}
+										}
+									}
+								}else{
+									correct = false;
+								}			
+					   }else{
+								correct = false;
+					   };
+					   
+					   
+					   return correct;
+				}else{
+					return null;
+				}
+				
+				
+			};			
+			
+		},
+		link : function(scope, element, attrs , controller){
+		   //prueba = controller.testDate();
+		   //console.log(prueba);
+		   
+		 
+		   	 console.log('dataContainer');
+		   
+		   
+		  
+		}
+	};
+});
+
+app.directive('dateField',function(){
+	return {
+		restrict: 'E',
+		require: '^dateContainer',
+		scope: {},
+		templateUrl: '/job-bank/templates/get/datefieldtemplate',
+		link: function(scope, element, attrs, dateContainterController){
+			
+			scope.getNumber = function(){
+				console.log('dataField');
+				console.log(attrs.container + " " + scope.number);
+				
+				switch(attrs.container){
+				case "d": dateContainterController.addDay(scope.number); break;
+				case "m": dateContainterController.addMonth(scope.number);  break;
+				case "y": dateContainterController.addYear(scope.number);  break;
+
+				}
+			};
+			
+			scope.setTrue = function(){
+			
+				if(scope.number == null){
+					dateContainterController.showError();
+				}else{
+					check = dateContainterController.check(true, attrs.container);
+					console.log(check);
+				}
+				
+			};
+			
+		
+		}
+	};
+});
+
+
+
+
 

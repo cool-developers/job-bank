@@ -2,7 +2,7 @@
 class Offer_model extends CI_Model {
 		
 		
-	function updateOfferList($offerListData, $languageListData){
+	function updateOfferList($offerListData, $languageListData , $knowledgeListData){
 		$this->db->trans_begin();
 
 		$this->db->insert("offer", $offerListData);
@@ -31,9 +31,32 @@ class Offer_model extends CI_Model {
 			}			
 			if ($cont > 1){
 				$this->db->insert("offer_has_language", $data);					
-			}
+			}				
+		}
+		
+		
+		foreach ($knowledgeListData as $key => $knowledge) {
+						
+				if($knowledge->knowledgeEnable == null){
+					$knowledgedata = array(
+						"idKnowledge" => $knowledge->idKnowledge,
+						"knowledgeEnable" => 0
+					);
+					
+					$this->db->insert("knowledge", ($knowledgedata));	
+				}			
 				
-		}	
+				$data = array(
+				"offer_idOffer"=> $idOffer,
+				"knowledge_idKnowledge" => $knowledge->idKnowledge				
+				 );		
+				
+				$this->db->insert("offer_has_knowledge", ($data));	
+				
+		}
+		
+		
+		
 		
 		if ($this->db->trans_status() === FALSE)
 		{

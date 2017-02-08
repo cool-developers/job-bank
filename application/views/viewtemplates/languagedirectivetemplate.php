@@ -6,7 +6,7 @@
  			 		<tr>
  			 			<td> <label>Idioma: </label> </td>
  			 			<td>  
- 			 				 <select ng-change="languageSelected()" ng-model="offer_has_language.language_idLanguage">
+ 			 				 <select ng-change="languageSelected(offer_has_language.id)" ng-model="offer_has_language.language_idLanguage">
 								<option ng-repeat="language in languages" value="{{language.idLanguage}}"> {{language.languageName}}</option>
 							 </select>
 							 <span ng-show="required && $last">*</span>

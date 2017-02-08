@@ -21,6 +21,42 @@ class Login_model extends CI_Model {
 			
 		}
 		
+		public function signupEnterprise($userData, $enterpriseData){
+			
+			$this->db->trans_begin();
+	
+			$this->db->where("email",$userData["email"]);
+		    $check_exists = $this->db->get("user");
+			
+		
+			
+		    if($check_exists->num_rows() == 0){
+		    	
+				$this->db->insert("user", $userData);
+		        $user = $this->get_email($userData["email"]);
+				$idUser = $user["idUser"];
+				
+				$enterpriseData["user_idUser"] = $idUser;
+				
+				$this->db->insert("enterprise",$enterpriseData);
+				
+				if ($this->db->trans_status() === FALSE)
+				{
+				        $this->db->trans_rollback();
+						return false;
+				}
+				else
+				{				
+				        $this->db->trans_commit();
+						return true;			
+				}			      
+				
+		    }else{
+		    	return false;
+		    }
+			
+		}
+		
 		public function set_enterprise($enterpriseName, $email, $idTown){
 				
 				
