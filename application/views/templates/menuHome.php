@@ -1,6 +1,7 @@
 <script type="text/javascript" src="/job-bank/js/appHome.js"></script>
 
 </head>
+<!--
 <body>  
 
 
@@ -14,8 +15,10 @@
 	<li>  <a href="#/applicantList">Alumnos</a></li>
 	<?php } ?>
 	<?php if($rol == 3){ ?>
-	<!-- <li>  <a href="#/CV">Curriculum</a> </li> -->
+	<!-- <li>  <a href="#/CV">Curriculum</a> </li> 
 	<?php } ?>
 </ul>
 
 <a href="http://127.0.0.1/job-bank/BolsaDeTrabajo/logout">Cerrar sesión</a>
+
+-->

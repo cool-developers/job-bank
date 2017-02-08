@@ -1,30 +1,36 @@
-
+<!--a continuacion hacemos referencia al contenedor padre del header-->
 <header class="headpadre">
-	<div class="headhijo">
-	<img src="http://localhost/job-bank/img/icono.png"; >
+	<!--contenedor hijo-logo del padre del header-->
+	<div class="headhijoi">
+	<img src="http://localhost/job-bank/img/icono.png";>
 		 
-		
-		 
- 		<img src="http://localhost/job-bank/img/add.png"; alt="Smiley face" height="42" width="42">	
- 			
-		<P>NOMBRE</P>
-		
-		
-	<a href="#" onclick="mostrar('divTexto1'); return false" />Hago clic aca y se ve u oculta UNO</a>
-<div id="divTexto1" style="visibility:hidden">
-Texto 1
-</div>
-<BR>
-
+	</div>	
+	<!--contenedor hijo-menu del padre del header-->	
+	<div class="headhijod">
+		<a href="#" onclick="mostrar('divTexto1'); return false" /><img src="http://localhost/job-bank/img/ajustes.png"; alt="Smiley face" height="42" width="42"></a>
+		<div id="divTexto1" style="visibility:hidden">	<a href="http://127.0.0.1/job-bank/BolsaDeTrabajo/logout">Cerrar sesión</a>
+		</div>
+			
 		
 		
-		 <img src="http://localhost/job-bank/img/!.png"; alt="Smiley face" height="42" width="42">	
-		 <img src="http://localhost/job-bank/img/ajustes.png"; alt="Smiley face" height="42" width="42">	
-		 <br>
-		 
-		 <button class="button success" ng-click="">MENU</button>
+		<ul>
+	<li > <a href="#/offerList">Ofertas</a></li>
+	<?php if($rol == 1){ ?>
+	<li>  <a href="#/teacherList">Profesores</a> </li>	
+	<?php } ?>	
+	<?php if($rol == 1 || $rol == 2){ ?>
+	<li>  <a href="#/applicantList">Alumnos</a></li>
+	<?php } ?>
+	<?php if($rol == 3){ ?>
+	<!-- <li>  <a href="#/CV">Curriculum</a> </li> -->
+	<?php } ?>
+</ul>
+	
+	
 	
 	</div>
+
+	
 </header>
 
 
