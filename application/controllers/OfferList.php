@@ -39,8 +39,7 @@ class OfferList extends CI_Controller {
 		$this->input->post("offerEnterpriseEmail") &&	
 		$this->input->post("offerJobTitle") &&
 		$this->input->post("offerEndDate") && 	
-		$this->input->post("offerType") &&	
-		$this->input->post("offerDescription") 	&&
+		$this->input->post("offerType") &&		
 		$this->input->post("offerVacant") &&	
 		$this->input->post("day_idDay") 	&&
 		$this->input->post("contract_idContract") &&			
@@ -53,12 +52,16 @@ class OfferList extends CI_Controller {
 			$this->form_validation->set_rules('offerEnterpriseEmail', 'Titulo', 'required');
 			$this->form_validation->set_rules('offerJobTitle', 'Titulo', 'required');
 	    	$this->form_validation->set_rules('offerEndDate', 'Descripcion', 'required');
-			$this->form_validation->set_rules('offerType', 'Titulo', 'required');
-			$this->form_validation->set_rules('offerDescription', 'Titulo', 'required');
+			$this->form_validation->set_rules('offerType', 'Titulo', 'required');		
 			$this->form_validation->set_rules('offerVacant', 'Titulo', 'required');
 			$this->form_validation->set_rules('day_idDay', 'Titulo', 'required');
 			$this->form_validation->set_rules('gradeTitle_idGradeTitle', 'Titulo', 'required');
 			$this->form_validation->set_rules('contract_idContract', 'Titulo', 'required');
+			
+			
+			if($this->input->post("offerDescription")){
+					$this->form_validation->set_rules('offerDescription', 'Titulo', 'required');
+			}
 					
 			
 		if($this->form_validation->run() == false){           

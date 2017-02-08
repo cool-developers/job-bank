@@ -1,6 +1,6 @@
  <div> 
 	 <div ng-repeat = "offer_has_knowledge in offer_has_knowledges"> 
-	 	<div> {{offer_has_knowledge.idKnowledge}} <span ng-click="deleteKnowledge(offer_has_knowlege)"> x </span>	 </div>  		 	
+	 	<div> {{offer_has_knowledge.idKnowledge}} <span ng-click="deleteKnowledge(offer_has_knowledge)"> x </span>	 </div>  		 	
 	 </div>
 	 
 	 {{offer_has_knowledges.idKnowledge}}

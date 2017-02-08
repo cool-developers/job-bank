@@ -10,7 +10,7 @@
 		<div class="recover">
 			 <label> Nombre de la empresa </label> 
 			 <input type="text" required placeholder="Introduce el nombre" name="offerEnterpriseName" ng-model="offer.offerEnterpriseName" />
-			 <br>
+			
 			 
 			 <label> Email de la empresa </label> 
 			 <input type="email" required placeholder="Introduce el correo" name="offerEnterpriseEmail" ng-model="offer.offerEnterpriseEmail" />
@@ -33,20 +33,20 @@
  			 </select>	
  
  			 <br>
+
  			</div>
- 			 <div class="recover">
- 			 <label>Fecha limite: </label>
- 			
- 			 <br>
- 			 
+ 			 <div class="recover"> 		
+ 			 <label>Fecha limite: </label> 			 			 
+
  
- 			 <date-container required ng-model="date">
+ 			 <date-container required ng-model="offer.offerEndDate">
  			 	<date-field container ="d"> </date-field>
  			 	<date-field container ="m"> </date-field>
  			 	<date-field container ="y"> </date-field>
  			 </date-container>
- 			<br><span ng-show="date == 'error">Introduce una fecha correcta</span>
- 			 
+ 			  	
+ 			 <span ng-show="offer.offerEndDate.substring(0 , 5) == 'Error'">{{offer.offerEndDate}}</span>
+
  			 <br>
  			 
  			 <label>Descripción: </label>
