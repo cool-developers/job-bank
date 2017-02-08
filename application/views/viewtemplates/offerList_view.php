@@ -33,19 +33,15 @@
  
  			 <br>
  			 
- 			 <label>Fecha limite: </label>
- 			 <input type="date" name="offerEndDate" step="1"  value="<?php echo date("Y-m-d");?>" ng-model="offer.offerEndDate" />
- 			 
- 			 
- 			 <br><br>
- 			 
+ 			 <label>Fecha limite: </label> 			 			 
  
- 			 <date-container required ng-model="date">
+ 			 <date-container required ng-model="offer.offerEndDate">
  			 	<date-field container ="d"> </date-field>
  			 	<date-field container ="m"> </date-field>
  			 	<date-field container ="y"> </date-field>
  			 </date-container>
- 			<span ng-show="date == 'error">Introduce una fecha correcta</span>
+ 		
+ 			 <span ng-show="date.substring(0 , 5) == 'Error'">{{date}}</span>
  			 
  			 <br>
  			 

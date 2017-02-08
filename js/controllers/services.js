@@ -427,6 +427,7 @@ return {
 	    
 	  scope.removeChoice = function(num) {	    
 	    scope.offer_has_languages = scope.offer_has_languages.filter(function(l) { return l.id != num; });
+	    scope.required = false;
 	  };	
 	  
 	  
@@ -472,7 +473,7 @@ app.directive('knowledgeDirective',[ "Knowledges" , function(Knowledges){
 				scope.newKnowledge();
 			};
 			
-			scope.deleteKnowledge =function (knowledge){
+			scope.deleteKnowledge =function (knowledge){		
 				scope.offer_has_knowledges = scope.offer_has_knowledges.filter(function(k){ return k != knowledge;});
 			};
 			
@@ -526,29 +527,37 @@ app.directive('dateContainer',function(){
 		scope: {
 			date : "=ngModel"
 		},
+		require: "ngModel",
 		controller : function($scope){
 			
-			$scope.checkDay == false;
-			$scope.checkMonth == false;
-			$scope.checkYear == false;
+			$scope.checkDay = false;
+			$scope.checkMonth = false;
+			$scope.checkYear = false;
 			
+			$scope.day = null;
+			$scope.month = null;
+			$scope.year = null;
+			
+			$scope.date = null;
 			
 			this.addDay = function(day){
 				$scope.day = day;
 			};
 			this.addMonth = function(month){
 				$scope.month = month;
+				
 			};
 			this.addYear = function(year){
 				$scope.year = year;
 			};
 			
-			this.showError = function(){
-				console.log("Error");
+			this.setError = function(){
+				$scope.date = 'Error debes de rellenar todos los campos';
+				console.log($scope.date);
 			};
 			
 			this.check = function(value, type){
-				
+			
 				switch(type){
 					case "d": $scope.checkDay = value; break;
 					case "m": $scope.checkMonth = value;  break;
@@ -601,12 +610,18 @@ app.directive('dateContainer',function(){
 					   }else{
 								correct = false;
 					   };
-					   
-					   
-					   return correct;
+				
+				if(correct == true){					
+					$scope.date = $scope.year + "-" + $scope.month + "-" + $scope.day ;
+					console.log($scope.date);
 				}else{
-					return null;
+					$scope.date = "Error , la fecha introducida no es correcta";
 				}
+					
+					
+				}
+				
+			
 				
 				
 			};			
@@ -615,10 +630,13 @@ app.directive('dateContainer',function(){
 		link : function(scope, element, attrs , controller){
 		   //prueba = controller.testDate();
 		   //console.log(prueba);
-		   
-		 
-		   	 console.log('dataContainer');
-		   
+		  //   date = controller.date;
+		 //	 console.log(date);
+		   	console.log('dataContainer');
+		   	scope.$watch('date', function(){
+		   		scope.date;
+		   		
+		   	});
 		   
 		  
 		}
@@ -648,7 +666,7 @@ app.directive('dateField',function(){
 			scope.setTrue = function(){
 			
 				if(scope.number == null){
-					dateContainterController.showError();
+					dateContainterController.setError();
 				}else{
 					check = dateContainterController.check(true, attrs.container);
 					console.log(check);
