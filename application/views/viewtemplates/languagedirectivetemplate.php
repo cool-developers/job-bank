@@ -12,7 +12,7 @@
 							 <span ng-show="required && $last">*</span>
 						</td> 	
  			 			
- 			 			<td><button type="button" class="remove"  ng-click="removeChoice(offer_has_language.id)">-</button></td>
+ 			 			<td><button type="button" class="remove botonb"  ng-click="removeChoice(offer_has_language.id)"><-</button></td>
  			 		</tr>
  			 		<tr> 			 				
  			 			<td> <label>Titulación mínima:<input ng-change="titulationChange(offer_has_language.id)" type="checkbox" ng-model="Titulation"> </label>    </td>		 			
@@ -66,6 +66,6 @@
  			 
  			 </div>	 
  	
-   			 <button type="button"  ng-hide="required" class="addfields" ng-click="addNewChoice()">Añadir idioma</button>
+   			 <button type="button"  ng-hide="required" class="addfields botonb" ng-click="addNewChoice()">Añadir idioma</button>
    			 
 </div>

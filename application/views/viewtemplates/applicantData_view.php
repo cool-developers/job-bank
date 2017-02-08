@@ -118,7 +118,7 @@
 			 
 			 
  			 
-             <button ng-disabled="!applicantDataForm.$valid" ng-click="updateApplicant(applicant)" type="submit" class="button radius large-5 columns ">Regístrarme</button>
+             <button ng-disabled="!applicantDataForm.$valid" ng-click="updateApplicant(applicant)" type="submit" class="button radius large-5 columns botonb">Regístrarme</button>
           </div>  
           </div>    
  		 </div>   

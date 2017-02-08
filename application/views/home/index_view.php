@@ -12,8 +12,8 @@
 		</div>
 			
 		
-		
-		<ul>
+	 
+<ul class="posicion">
 	<li > <a href="#/offerList">Ofertas</a></li>
 	<?php if($rol == 1){ ?>
 	<li>  <a href="#/teacherList">Profesores</a> </li>	

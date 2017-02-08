@@ -124,11 +124,7 @@ button {
 	
 	float:right;
 } 
-#divTexto1 {
-	display: block;
-	float:right;
-	vertical-align:bottom;
-}
+
 .recoverpadre{
 	display: flex;
      width: 100%;    
@@ -179,9 +175,20 @@ label {
 	color:white;
 	width: 5em;
 	height: 5em;
+	display: block;
+	float:right;
 	background-color:#c0d9f2;
 }
 
+date-field {
 
+	display: inline-block;
+}
 
+.fechas{
+	width: 3em;
+}
 
+.posicion li{
+	display: inline-block;
+}
