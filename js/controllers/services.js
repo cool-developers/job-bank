@@ -679,6 +679,22 @@ app.directive('dateField',function(){
 	};
 });
 
+app.directive("offerDirective", ["offer",function(Offer){
+	
+return {
+	restrict: "E",
+	replace: true,
+	scope: {
+		offer_has_languages : "=ngModel"
+	},
+	required: "?ngModel",
+	templateUrl: "/job-bank/templates/get/offerdirectivetemplate",
+	link: function(scope, element, attrs){
+		
+	  
+	}
+};
+}]);
 
 
 
