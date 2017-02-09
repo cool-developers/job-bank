@@ -30,8 +30,8 @@
 			
              <label>Contraseña</label>
           
-             <input type="password" required placeholder="Introduce un password..." id="password" name="password" ng-model="user.password" ng-blur="checkP" ng-minlength="8" ng-maxlength="45" required />
-          
+             <input type="password" required placeholder="Introduce un password..." id="password" name="password" ng-model="user.password" ng-model-options="{updateOn: 'blur'}" ng-blur="checkP" ng-minlength="8" ng-maxlength="45" required />
+             <br>
             
              <span style="color:red" ng-show="registerUserForm.password.$dirty">
              <span ng-show="registerUserForm.password.$error.required">La contraeña obligatoria.</span>
@@ -41,7 +41,7 @@
               
              
            
-             
+             <!--
              <label>Confirmar contraseña</label>
              <input type="password" required placeholder="Introduce un password..." name="password2" ng-model="password2" ng-minlength="8" ng-maxlength="45" pw-check="password" />
            	 
@@ -52,7 +52,7 @@
              <span style="color:red" ng-show="registerUserForm.password2.$dirty && registerUserForm.password2==registerUserForm.password">
          	 <span>La contraseña debe tener un minimo de 8 caracteres.</span>
              </span>
-                
+              -->
  			 
    	   
    	         <label>Provincia</label>
@@ -72,7 +72,7 @@
  			 
  			 <label>Numero de teléfono</label>          
              <input type="text" required placeholder="Numero de teléfono" name="enterprisePhone" ng-model="user.enterprisePhone"/>
-          
+			          
             
  			 
  			 <br><br>	 

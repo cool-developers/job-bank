@@ -77,6 +77,7 @@ class Offer_model extends CI_Model {
 			//$query = $this->db->get('offer');
 			
 			$query = $this->db->query("SELECT  
+									offer.idOffer 
 									offer.offerJobTitle ,
 									gradetitle.gradeTitleName,
 									offer.offerEnterpriseName, 

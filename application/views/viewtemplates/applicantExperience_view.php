@@ -26,11 +26,30 @@
 			 <br>	 	
 	 		
 	 		<label>Fecha de inicio</label>
-		 	<input type="date" required  name="experienceDateStart" ng-model="applicant.experienceDateStart">
-		   
+		 	<date-container required ng-model="offer.offerEndDate">
+ 			 	<date-field container ="d"> </date-field>
+ 			 	<date-field container ="m"> </date-field>
+ 			 	<date-field container ="y"> </date-field>
+ 			 </date-container>
+ 			  <br>	
+ 			<span ng-show="offer.offerEndDate.substring(0 , 5) == 'Error'">{{offer.offerEndDate}}</span>
 		    <label>Fecha fin</label>	 
-		 	<input type="date" name="experienceDateEnd" ng-model="applicant.applicant_has_gradeTitleEndDate">
+		 	 <date-container required ng-model="offer.offerEndDate">
+ 			 	<date-field container ="d"> </date-field>
+ 			 	<date-field container ="m"> </date-field>
+ 			 	<date-field container ="y"> </date-field>
+ 			 </date-container>
+ 			  <br>	
+ 			 <span ng-show="offer.offerEndDate.substring(0 , 5) == 'Error'">{{offer.offerEndDate}}</span>
 	 	    <br>
+	 	    
+	 	    	
+   			 <label>Conocimientos:</label>   			 
+   			 <knowledge-directive ng-model="offer_has_knowledges"> </knowledge-directive>
+   			  
+   			
+   			 		   
+	 	    
 	 	    
 	 	    </div>
 			<div class="recover">

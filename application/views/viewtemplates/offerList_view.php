@@ -8,6 +8,7 @@
 <form name="offerForm">
 	<div class="recoverpadre">
 		<div class="recoverlist">
+			 <div>
 			 <label> Nombre de la empresa </label> 
 			 <input type="text" required placeholder="Introduce el nombre" name="offerEnterpriseName" ng-model="offer.offerEnterpriseName" />
 			
@@ -32,7 +33,7 @@
 			 <label> Teléfono de la empresa </label> 
 			 <input type="text" required placeholder="Introduce un titulo" name="offerEnterpisePhone" ng-model="offer.offerEnterpisePhone" />
 			 <br>		
-			 			 
+			 </div>			 
 			 
              <label>Titulo del puesto</label>	
 			 <input type="text" required placeholder="Introduce un titulo" name="offerJobTitle" ng-model="offer.offerJobTitle" />

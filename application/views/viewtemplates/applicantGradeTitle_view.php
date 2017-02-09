@@ -41,10 +41,21 @@
 	 			 
 	 			 		 
 	 		 <div ng-show="applicant.applicant_has_gradeTitleName || applicant.gradeTitle_idGradeTitle">
-	 			  <label>Fecha de inicio</label>
-	 			 		 <input type="date" required  name="applicant_has_gradeTitleStartDate" ng-model="applicant.applicant_has_gradeTitleStartDate">
+	 			 	 <date-container required ng-model="offer.offerEndDate">
+		 			 	<date-field container ="d"> </date-field>
+		 			 	<date-field container ="m"> </date-field>
+		 			 	<date-field container ="y"> </date-field>
+		 			 </date-container>
+		 			  <br>	
+		 			 <span ng-show="offer.offerEndDate.substring(0 , 5) == 'Error'">{{offer.offerEndDate}}</span>
 	 			  <label>Fecha fin</label>	 
-	 			 		 <input type="date" name="applicant_has_gradeTitleEndDate" ng-model="applicant.applicant_has_gradeTitleEndDate">
+	 			 		 <date-container required ng-model="offer.offerEndDate">
+			 			 	<date-field container ="d"> </date-field>
+			 			 	<date-field container ="m"> </date-field>
+			 			 	<date-field container ="y"> </date-field>
+			 			 </date-container>
+			 			  <br>	
+			 			 <span ng-show="offer.offerEndDate.substring(0 , 5) == 'Error'">{{offer.offerEndDate}}</span>
 	 		 </div>
  			 <br>
  			 

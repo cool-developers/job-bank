@@ -18,6 +18,7 @@ app.controller("offerListController", function($scope, GradeTitle, Contract, Day
 	};	
 	
 	
+		
 	
 	GradeTitle.getGradeTitle().then(function(GradeTitle){
 		$scope.gradeTitle = GradeTitle.data;	

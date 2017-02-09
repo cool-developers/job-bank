@@ -76,7 +76,7 @@ class Login extends CI_Controller {
 								
 					
 					
-					echo json_encode(array("respuesta" => "success"));
+					//echo json_encode(array("respuesta" => "success"));
 					
 					$this->email->from('cooldevelopers.contact@gmail.com', 'Bolsa de trabajo Txurdinaga');
 		            $this->email->to($email);
@@ -89,14 +89,17 @@ class Login extends CI_Controller {
 				   
 		            if($this->email->send()){
 		           
-		            $data['title']='Mensaje Enviado';
-		            $data['msg'] = 'Mensaje enviado a su email';
-		                     // echo $this->email->print_debugger(); exit;                             
-		            $this->load->view('login/signUp_view', $data);  
+		            //$data['title']='Mensaje Enviado';
+		            //$data['msg'] = 'Mensaje enviado a su email';
+		            // echo $this->email->print_debugger(); exit;                             
+		            //$this->load->view('login/signUp_view', $data);  
+		           
+		            echo json_encode(array("respuesta" => "success"));
 		           
 		             }else{
-		                $data['title']='El mensaje no se pudo enviar' .  show_error($this->email->print_debugger());
-		                $this->load->view('login/signUp_view', $data); 
+		                //$data['title']='El mensaje no se pudo enviar' .  show_error($this->email->print_debugger());
+		                //$this->load->view('login/signUp_view', $data); 
+						echo json_encode(array("respuesta" => "error"));
 		             
 		             }	               
                    
@@ -105,7 +108,7 @@ class Login extends CI_Controller {
                 }
             }
         }else{
-            echo json_encode(array("respuesta" => "error_form3"));
+            echo json_encode(array("respuesta" => "error_form2"));
         }
   	   }
 

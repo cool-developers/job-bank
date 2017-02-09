@@ -11,7 +11,7 @@
 		<div id="divTexto1" style="visibility:hidden">	<a href="http://127.0.0.1/job-bank/BolsaDeTrabajo/logout">Cerrar sesión</a>
 		</div>
 			
-		
+
 	 
 <ul class="posicion">
 	<li > <a href="#/offerList">Ofertas</a></li>
