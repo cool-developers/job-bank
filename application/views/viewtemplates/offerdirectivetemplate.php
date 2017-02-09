@@ -6,7 +6,7 @@
  	<button type="button" class="addfields botonb" ng-click="deleteOffer(offer.idOffer)">X</button>
  	 </div>
 	<div class = "offers">
-	{{offer.offerJobTitle}}| {{offer.offerStartDate}} <br> 
+	<strong>{{offer.offerJobTitle}}</strong> | {{offer.offerStartDate}} <br> 
 	{{offer.gradeTitleName}}<br>
 	{{offer.offerEnterpriseName}} | {{offer.townName}} <br>
 	{{offer.offerDescription}} <br>	

@@ -210,7 +210,7 @@ date-field {
 	border: 1px solid;
 	margin: 25px;
 	margin-top:3px;
-	font:150% Roboto;
+	font:100% Roboto;
 	padding:3px;
 }
 
@@ -227,5 +227,5 @@ date-field {
 
 .izboton{
 	
-	margin-left: 62%;
+	margin-left: 50%;
 }
