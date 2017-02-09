@@ -15,10 +15,24 @@
 			 <label> Email de la empresa </label> 
 			 <input type="email" required placeholder="Introduce el correo" name="offerEnterpriseEmail" ng-model="offer.offerEnterpriseEmail" />
 			  <br>
+			 
+			 
+   	         <label>Provincia</label>
+   	           	         
+ 			 <select ng-change="provinceSelected()" ng-model="selectedProvince" >
+ 				<option ng-repeat="province in provinces" value="{{province.idProvince}}"> {{province.provinceName}}</option>
+ 			 </select>	
+ 			 
+ 			 <label>Población</label> 			 
+ 			 
+ 			 <select ng-model="offer.town_idTown">
+ 				<option ng-repeat="town in towns" value="{{town.idTown}}"> {{town.townName}}</option>
+ 			 </select>	
 			  
 			 <label> Teléfono de la empresa </label> 
 			 <input type="text" required placeholder="Introduce un titulo" name="offerEnterpisePhone" ng-model="offer.offerEnterpisePhone" />
-			 <br>					 
+			 <br>		
+			 			 
 			 
              <label>Titulo del puesto</label>	
 			 <input type="text" required placeholder="Introduce un titulo" name="offerJobTitle" ng-model="offer.offerJobTitle" />
@@ -64,14 +78,14 @@
  			 <option ng-repeat="day in days" value="{{day.idDay}}"> {{day.dayName}}</option>
  			 </select><br> 			 
  					 			 
- 		 			 
+ 		 	 <label>Idomas: </label>	 
  			 <language-directive ng-model="offer_has_languages"></language-directive>	
    			 
 
    			 
    			
    			
-   			 <label>Conocimientos </label>
+   			 <label>Conocimientos:</label>
    			 
    			  <knowledge-directive ng-model="offer_has_knowledges"> </knowledge-directive>
    			  
@@ -92,8 +106,8 @@
  			 
  			  </br>
  			  <label>Gestión: </label> 			  
- 			  Pribada <input type="radio" name="Pribada" required  ng-model="offer.offerType" value="true" /> 
-  			  Publica <input type="radio" name="Publica" required ng-model="offer.offerType" value="false" /> <br>
+ 			  Pribada <input type="radio" name="Pribada" checked ng-model="offer.offerType" value="1" /> 
+  			  Publica <input type="radio" name="Pribada" ng-model="offer.offerType" value="0" /> <br>
 			  <span ng-show = "offer.offerType == true">La oferta la gestionara el centro</span> 
 			  <span ng-show = "offer.offerType == false">La oferta la gestionara el propio sistema y sera publica para los alumnos</span> 
 			  <br>
@@ -107,4 +121,6 @@
              
  		 </div>   	
 </form>
+
+<offer-directive ng-model="idOffer"> </offer-directive>
 

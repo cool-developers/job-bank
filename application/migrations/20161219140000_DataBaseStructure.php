@@ -246,22 +246,24 @@ class Migration_DataBaseStructure extends CI_Migration {
 		$this->db->query("
 		CREATE TABLE IF NOT EXISTS `jobBankDB`.`offer` (
 		  `idOffer` INT NOT NULL AUTO_INCREMENT,
-		  `offerJobTitle` VARCHAR(150) NOT NULL,
+		  `offerJobTitle` VARCHAR(45) NOT NULL,
 		  `offerEnterpriseName` VARCHAR(45) NOT NULL,
 		  `offerEnterpriseEmail` VARCHAR(45) NOT NULL,
 		  `offerEnterpisePhone` VARCHAR(15) NULL,
 		  `offerStartDate` DATE NOT NULL,
-		  `offerEndDate` DATE NOT NULL,
+		  `offerEndDate` DATE NULL,
 		  `offerType` TINYINT(1) NOT NULL,
-		  `offerDescription` VARCHAR(8000) NULL,
+		  `offerDescription` TEXT NULL,
 		  `offerVacant` INT NOT NULL,
 		  `gradeTitle_idGradeTitle` INT NOT NULL,
 		  `contract_idContract` INT NOT NULL,
 		  `day_idDay` INT NOT NULL,
+		  `town_idTown` INT NOT NULL,
 		  PRIMARY KEY (`idOffer`),
 		  INDEX `fk_offer_gradeTitle1_idx` (`gradeTitle_idGradeTitle` ASC),
 		  INDEX `fk_offer_contract1_idx` (`contract_idContract` ASC),
 		  INDEX `fk_offer_day1_idx` (`day_idDay` ASC),
+		  INDEX `fk_offer_town1_idx` (`town_idTown` ASC),
 		  CONSTRAINT `fk_offer_gradeTitle1`
 		    FOREIGN KEY (`gradeTitle_idGradeTitle`)
 		    REFERENCES `jobBankDB`.`gradeTitle` (`idGradeTitle`)
@@ -275,6 +277,11 @@ class Migration_DataBaseStructure extends CI_Migration {
 		  CONSTRAINT `fk_offer_day1`
 		    FOREIGN KEY (`day_idDay`)
 		    REFERENCES `jobBankDB`.`day` (`idDay`)
+		    ON DELETE NO ACTION
+		    ON UPDATE NO ACTION,
+		  CONSTRAINT `fk_offer_town1`
+		    FOREIGN KEY (`town_idTown`)
+		    REFERENCES `jobBankDB`.`town` (`idTown`)
 		    ON DELETE NO ACTION
 		    ON UPDATE NO ACTION)
 		ENGINE = InnoDB

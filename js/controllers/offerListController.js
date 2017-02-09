@@ -1,9 +1,23 @@
-app.controller("offerListController", function($scope, GradeTitle, Contract, Day , insert){
+app.controller("offerListController", function($scope, GradeTitle, Contract, Day , insert, Provinces, Towns){
+	
+	
 	
 	$scope.offer_has_languages = [];		
 	$scope.offer_has_knowledges = [];
 	
 	$scope.saludo = "Hola estas en el offerlist";
+	
+	Provinces.getProvinces().then(function(Provinces){
+		$scope.provinces = Provinces.data;	
+	});
+	
+	$scope.provinceSelected = function(){
+		Towns.getTowns($scope.selectedProvince).then(function (Towns){
+			$scope.towns = Towns.data;
+		});
+	};	
+	
+	
 	
 	GradeTitle.getGradeTitle().then(function(GradeTitle){
 		$scope.gradeTitle = GradeTitle.data;	

@@ -13,6 +13,7 @@
 		<script type="text/javascript" src="/job-bank/js/prueba.js"></script>
 		<script type="text/javascript" src="/job-bank/js/angular.min.js"></script>
 		<script type="text/javascript" src="/job-bank/js/angular-route.min.js"></script>
+		<script type="text/javascript" src="/job-bank/js/angular-resource.min.js"></script>
 		<script>
 			var root = '<?php echo base_url(); ?>';
 		</script>

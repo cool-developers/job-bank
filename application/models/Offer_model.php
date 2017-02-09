@@ -68,8 +68,36 @@ class Offer_model extends CI_Model {
 		        $this->db->trans_commit();
 				return true;				
 		}		   	
-						
+					
 	}
+
+
+	public function get_OfferList(){
+		
+			//$query = $this->db->get('offer');
+			
+			$query = $this->db->query("SELECT  
+									offer.offerJobTitle ,
+									gradetitle.gradeTitleName,
+									offer.offerEnterpriseName, 
+									town.townName , 
+									offer.offerStartDate ,
+									offer.offerEndDate , 
+									offer.offerDescription,
+									day.dayName,
+									contract.contractName,
+									offer.offerType
+								FROM `town` , `offer`, `gradetitle`, `day` , `contract`
+								WHERE
+								town.idTown = offer.town_idTown AND
+								gradetitle.idGradeTitle = offer.gradeTitle_idGradeTitle AND
+								day.idDay = offer.day_idDay AND
+								contract.idContract = offer.contract_idContract");
+			
+			
+       		return $query->result_array();
+	}
+	
 	
 }
 

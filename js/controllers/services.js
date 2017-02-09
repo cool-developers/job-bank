@@ -679,22 +679,69 @@ app.directive('dateField',function(){
 	};
 });
 
-app.directive("offerDirective", ["offer",function(Offer){
+
+app.factory("OfferList",function($http){
+	return {
+		getOfferList: function(){			
+			return  $http.get('http://127.0.0.1/job-bank/OfferList/getOfferList');			
+			}
+	};
+});
+/*
+app.factory("offerStorage", function(localStorageService , OfferList){
+	
+	var localStorage = {};
+	
+	localStorage.key = "offerList";
+	
+	if(localStorageService.get(localStorage.key)){
+		localStorage.offers = localStorageService.get();
+	}else{
+		OfferList.getOfferList().then(function (offerList){
+			localStorage.offers = offerList.data;
+		});
+	
+	}
+	
+	localStorage.add = function
+	
+	
+	
+	return localStorage();
+	
+	
+});
+
+*/
+
+app.directive("offerDirective", ["OfferList" , "$resource", function(OfferList , $resource){
 	
 return {
 	restrict: "E",
 	replace: true,
 	scope: {
-		offer_has_languages : "=ngModel"
+		idOffer : "=ngModel"
 	},
 	required: "?ngModel",
 	templateUrl: "/job-bank/templates/get/offerdirectivetemplate",
 	link: function(scope, element, attrs){
 		
+		offer = $resource("OfferList/getOfferList/:idOffer" , {idOffer : "@idOffer"});
+		scope.offerList = offer.query();
+		scope.deleteOffer = function(idOffer){
+			offer.delete({idOffer: idOffer});
+		};
+		/*
+		OfferList.getOfferList().then(function (offerList){
+			scope.offerList = offerList.data;
+		});
+		*/
 	  
 	}
 };
 }]);
+
+
 
 
 

@@ -204,6 +204,9 @@ date-field {
 	
 }
 
+.offers{
+	border: 1px solid;
+}
 
 .posicion li{
 	display: inline-block;
