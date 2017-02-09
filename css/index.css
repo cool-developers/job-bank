@@ -200,15 +200,32 @@ date-field {
 }
 
 .posicion {
+	display:flex;
 	border: 1px solid;
+	margin: .5em 0 .2em 0;
 	
 }
 
 .offers{
 	border: 1px solid;
+	margin: 25px;
+	margin-top:3px;
+	font:100% Roboto;
+	padding:3px;
 }
 
 .posicion li{
 	display: inline-block;
+	margin: 15px;
 	
+}
+
+.posicion a{
+	text-decoration:none;
+	color:black;
+}
+
+.izboton{
+	
+	margin-left: 50%;
 }

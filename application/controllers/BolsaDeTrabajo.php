@@ -16,6 +16,32 @@ class BolsaDeTrabajo extends CI_Controller {
 			redirect("Login");			
 		}
 		
+		public function backUp(){
+			
+			if(!isset($this->session->userdata['email'])){        		
+				redirect("Login");					
+        	}  
+			$data['rol'] = $this->session->userdata['rol'];
+			if($data['rol'] != 1){
+				redirect("Login");
+			}
+			$this->load->dbutil();
+			 $prefs = array(     
+                'format'      => 'zip',             
+                'filename'    => 'my_db_backup.sql'
+              );
+			
+	        $backup =& $this->dbutil->backup($prefs);			
+		    $db_name = 'backup-on-'. date("Y-m-d-H-i-s") .'.zip';		
+			
+	        $save = 'backups/'.$db_name;	
+	        $this->load->helper('file');
+	        write_file($save, $backup); 
+	
+	        $this->load->helper('download');
+	        force_download($db_name, $backup); 
+			}
+			
 	    public function index()
         {
         	if(!isset($this->session->userdata['email'])){        		
@@ -98,6 +124,10 @@ class BolsaDeTrabajo extends CI_Controller {
             echo json_encode(array("respuesta" => "incomplete_form"));
         }
     }
+	
+	
+
+
 
 
 }

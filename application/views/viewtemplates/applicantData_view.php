@@ -26,8 +26,13 @@
 			 
 			 <label>Fecha</label>
 			  
-			 <input type="date" required  name="applicantBirthDate" ng-model="applicant.applicantBirthDate">
-			 
+			 <date-container required ng-model="offer.offerEndDate">
+ 			 	<date-field container ="d"> </date-field>
+ 			 	<date-field container ="m"> </date-field>
+ 			 	<date-field container ="y"> </date-field>
+ 			 </date-container>
+ 			  <br>	
+ 			 <span ng-show="offer.offerEndDate.substring(0 , 5) == 'Error'">{{offer.offerEndDate}}</span>
 			 <!--
 			
 			 

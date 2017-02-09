@@ -183,7 +183,7 @@ function convertToData(object){
 
 //factoria para registrar usuarios a la que le inyectamos la otra factoria
 //mensajesFlash para poder hacer uso de sus funciones
-app.factory("signupUsers", function($http, mensajesFlash){	
+app.factory("signupUsers", function($http, mensajesFlash, $location){	
     return {
       newUser : function(data, link){        	
             return $http({
@@ -194,6 +194,7 @@ app.factory("signupUsers", function($http, mensajesFlash){
             }).success(function(data){
                     if(data.respuesta == "success"){
                         mensajesFlash.clear();
+                        $location.url("/");
                         mensajesFlash.show_success("El registro se ha procesado correctamente.");
                     }else if(data.respuesta == "exists"){
                         mensajesFlash.clear();
@@ -728,16 +729,23 @@ return {
 		
 		offer = $resource("OfferList/getOfferList/:idOffer" , {idOffer : "@idOffer"});
 		scope.offerList = offer.query();
+
+		/*
 		scope.deleteOffer = function(Offer){
 			console.log(Offer);
 			offer.delete({idOffer: Offer.idOffer});
+		};
+		scope.deleteOffer = function(idOffer){		
+		
+			offer.delete({idOffer: idOffer});
+
 		};
 		/*
 		OfferList.getOfferList().then(function (offerList){
 			scope.offerList = offerList.data;
 		});
 		*/
-	  
+	 
 	}
 };
 }]);

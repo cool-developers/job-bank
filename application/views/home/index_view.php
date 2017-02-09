@@ -10,8 +10,9 @@
 		<a href="#" onclick="mostrar('divTexto1'); return false" /><img src="http://localhost/job-bank/img/ajustes.png"; alt="Smiley face" height="42" width="42"></a>
 		<div id="divTexto1" style="visibility:hidden">	<a href="http://127.0.0.1/job-bank/BolsaDeTrabajo/logout">Cerrar sesión</a>
 		</div>
+			<br><br><br>
 			
-		
+
 	 
 <ul class="posicion">
 	<li > <a href="#/offerList">Ofertas</a></li>

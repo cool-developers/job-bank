@@ -1,12 +1,8 @@
 app.controller("signupController", function signupController($scope, $location, signupUsers, Provinces, Towns){
 	$scope.saludo = "Hola estas en el registro";
 	$scope.signupUser = function(){			
-        signupUsers.newUser(convertToData($scope.user), "http://127.0.0.1/job-bank/login/signupEnterprise");
+        signupUsers.newUser(convertToData($scope.user), "http://127.0.0.1/job-bank/login/signupEnterprise");        
     };
-
-
-   
-
 
 	$scope.toLogin = function(){
 		$location.url("/");
@@ -23,7 +19,7 @@ app.controller("signupController", function signupController($scope, $location, 
 	};	
 	
 	
-	/*
+	
 	$scope.habilitado = false;
 	$scope.passwd = function (){
 		
@@ -54,7 +50,7 @@ app.controller("signupController", function signupController($scope, $location, 
 			}
 		}
 	};
-	*/
+	
 	
 	
 
