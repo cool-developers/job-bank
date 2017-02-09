@@ -728,8 +728,9 @@ return {
 		
 		offer = $resource("OfferList/getOfferList/:idOffer" , {idOffer : "@idOffer"});
 		scope.offerList = offer.query();
-		scope.deleteOffer = function(idOffer){
-			offer.delete({idOffer: idOffer});
+		scope.deleteOffer = function(Offer){
+			console.log(Offer);
+			offer.delete({idOffer: Offer.idOffer});
 		};
 		/*
 		OfferList.getOfferList().then(function (offerList){
