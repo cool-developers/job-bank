@@ -117,9 +117,10 @@
  
  		
  			 
-             <button ng-disabled="!offerForm.$valid" ng-click="updateOffer()" type="submit" class="button radius large-5 columns botonb">Regístrarme</button>
-             <button type="reset" class="button radius alert large-5 columns botonw">Reset</button>
+             <button ng-disabled="!offerForm.$valid" ng-click="updateOffer()" type="submit" class="button radius large-5 columns botonb">Enviar</button>
+             <button type="reset" class="button radius alert large-5 columns botonw">Reiniciar</button>
              
+            
  		 </div>   	
 </form>
 
