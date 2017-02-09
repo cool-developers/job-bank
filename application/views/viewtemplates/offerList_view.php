@@ -8,7 +8,7 @@
 <form name="offerForm">
 	<div class="recoverpadre">
 		<div class="recoverlist">
-			 <div>
+			 <div >
 			 <label> Nombre de la empresa </label> 
 			 <input type="text" required placeholder="Introduce el nombre" name="offerEnterpriseName" ng-model="offer.offerEnterpriseName" />
 			
